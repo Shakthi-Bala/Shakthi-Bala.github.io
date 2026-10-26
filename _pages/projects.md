@@ -2,12 +2,12 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Selected work in robot perception, state estimation, and research software.
+description: Selected work in robot perception, autonomous driving, robot learning, and research software.
 nav: true
 nav_order: 3
 ---
 
-From stereo camera and IMU data to robot trajectories; from research protocols to inspectable execution evidence. These projects show how I build systems, investigate failures, and measure results.
+From visual-inertial odometry and occupancy forecasting to reinforcement learning and robot manipulation. These projects show how I build systems, investigate failures, and measure results, with research tooling that keeps the evidence inspectable.
 
 {% assign featured_projects = site.projects | where: "featured", true | sort: "importance" %}
 

@@ -6,3 +6,6 @@ repo_description_lines_max: 3
 github_repos:
   - Shakthi-Bala/Classical_vio
   - Shakthi-Bala/DevResearchFlow
+  - Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving
+  - Shakthi-Bala/policy_gradient_lab
+  - Shakthi-Bala/imitation_learning_agent
