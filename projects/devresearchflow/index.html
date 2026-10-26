@@ -58,7 +58,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "Selected work in robot perception, autonomous driving, robot learning, 3D reconstruction, and research software.",
+          description: "Selected work in robot perception, autonomous driving, robot learning, 3D reconstruction, synthetic data, language models, and research software.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -166,6 +166,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-blender-synthetic-dataset-generator",
+          title: 'Blender Synthetic Dataset Generator',
+          description: "Automated multi-camera rendering of randomized window targets with paired mask passes and projected corner annotations.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/blender-dataset/";
             },},{id: "projects-camera-intrinsic-calibration",
           title: 'Camera Intrinsic Calibration',
           description: "A checkerboard calibration pipeline that derives camera intrinsics, extrinsics, and radial distortion from planar homographies.",
@@ -226,6 +231,11 @@ ninja.data = [{
           description: "Python to C++17: 3.1× faster deterministic replay, two estimation back ends, and zero failures across 11 EuRoC sequences.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/stereo-vio/";
+            },},{id: "projects-versifier-shakespeare-style-poem-generation",
+          title: 'Versifier: Shakespeare-Style Poem Generation',
+          description: "A prompt-driven poetry CLI with a character-level LSTM and a GPT-2 fine-tuning pipeline, plus sampling and sonnet-style formatting.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/versifier/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
