@@ -1,0 +1,65 @@
+---
+layout: page
+title: Stereo Visual-Inertial Odometry
+description: "Python to C++17: 3.1× faster deterministic replay, two estimation back ends, and zero failures across 11 EuRoC sequences."
+img: assets/projects/stereo-vio-demo.gif
+importance: 1
+category: Robotics & Perception
+featured: true
+github: https://github.com/Shakthi-Bala/Classical_vio/tree/cpp
+skills: C++17 · ROS 2 · Eigen · Ceres · OpenCV · Python
+highlight: 0.156 m mean trajectory error across all 11 EuRoC sequences
+media_alt: Stereo feature tracks beside estimated and ground-truth trajectories on EuRoC MH_05_difficult
+media_width: 720
+media_height: 338
+---
+
+**Robot localization from stereo cameras and an IMU, from numerical parity to real-time ROS 2 integration.**
+
+[View code on GitHub](https://github.com/Shakthi-Bala/Classical_vio/tree/cpp) ·
+[Benchmark and reproduction guide](https://github.com/Shakthi-Bala/Classical_vio/blob/cpp/cpp/README.md)
+
+{% include figure.liquid path="assets/projects/stereo-vio-demo.gif" avoid_scaling=true loading="eager" alt="Stereo feature tracks on the left and MSCKF, sliding-window, and ground-truth trajectories on the right" width="720" height="338" class="img-fluid rounded z-depth-1" %}
+
+_Recorded outputs from EuRoC MH_05_difficult, played at approximately 8× speed. Colors indicate feature-track age._
+
+## Results at a glance
+
+| Engineering result          | Measured outcome                                                                                                 |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Faster deterministic replay | **3.1× speedup:** 25.17 ms/frame in Python → 8.06 ms/frame for the behavior-matched C++ port                     |
+| Complete benchmark coverage | **11/11 EuRoC sequences completed**, with no failures for either final C++ back end                              |
+| Sliding-window accuracy     | **0.156 m** mean absolute trajectory error (ATE), versus **0.217 m** for the evaluated VINS-Fusion configuration |
+| ROS 2 integration           | **10.1 ms/frame** end to end for the MSCKF on MH_01, using one core                                              |
+| Numerical parity            | Filter poses agree with Python to **1e-9 m** when given identical feature input                                  |
+
+Timing for the behavior-matched port is the mean of five runs on the same compute node, using one core and MH_01_easy. The final MSCKF configuration takes 8.41 ms/frame offline; ROS 2 timing includes additional integration overhead. ATE is measured after SE3 alignment and averaged across all 11 EuRoC sequences, with loop closure disabled for the comparison above.
+
+## The problem
+
+A working Python estimator is a starting point, but a robotics system also needs predictable runtime, robust tracking, and reproducible evaluation. This project began with a WPI RBE/CS549 stereo MSCKF implementation and grew into a C++17 system with two estimation back ends and a ROS 2 interface.
+
+## What I built
+
+- **A verified C++ port.** Matched the Python filter module by module and checked front-end feature parity across all 2,882 MH_01 frames before changing the estimator.
+- **Two back ends on a shared front end.** An MSCKF filter and a Ceres sliding-window optimizer with IMU preintegration, inverse-depth landmarks, analytic Jacobians, and Schur-complement marginalization.
+- **Performance improvements backed by profiling.** Reused image pyramids, removed redundant covariance products, and restricted gating calculations to active state blocks while preserving numerical output.
+- **ROS 2 and reproducible evaluation.** Added bag playback, benchmark scripts, unit tests, cross-architecture CI, and Docker packaging.
+
+## A failure I investigated and fixed
+
+On V2_03_difficult, independent camera exposure and motion blur caused stereo matching to disappear for seconds at a time. Discarding every feature without a stereo match left the estimators without visual updates.
+
+I retained validated cam0-only tracks and added baseline checks for triangulation. The sliding-window estimator went from divergence to **0.200 m ATE** on that sequence; the final MSCKF reached **0.217 m**. This turned a dataset-specific tracking failure into a concrete front-end and estimator improvement.
+
+{% include figure.liquid path="assets/projects/stereo-vio-benchmark.png" avoid_scaling=true loading="lazy" alt="Benchmark plot comparing trajectory accuracy and processing latency for Python MSCKF, C++ MSCKF, C++ sliding window, and VINS-Fusion" class="img-fluid rounded" %}
+
+## Tradeoffs and evaluation scope
+
+The MSCKF offers lower compute cost; the sliding window improves average EuRoC accuracy. Optional 4-DoF loop closure reduces the sliding window's final mean ATE to **0.105 m**, but it uses pose-proximity candidates rather than general appearance-based place recognition.
+
+The EuRoC configuration was selected on the same 11 sequences used for evaluation. As a separate generalization check, the MSCKF achieved **0.129 m** mean ATE on the six TUM-VI room sequences using the EuRoC filter settings and dataset-specific calibration. These are repository benchmarks, not deployment guarantees.
+
+The Python baseline builds on course starter code translated from KumarRobotics/msckf_vio. The repository documents that lineage alongside the C++ extensions, measurements, and reproduction commands.
+
+[Explore the implementation and full results →](https://github.com/Shakthi-Bala/Classical_vio/tree/cpp/cpp)
