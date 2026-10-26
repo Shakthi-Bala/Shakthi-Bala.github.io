@@ -1,8 +1,8 @@
 # Portfolio project media
 
-These previews accompany the seven geometric-vision and navigation case studies. Scientific visualizations use repository outputs or executed source functions; they do not invent model predictions or flight recordings. Each case study captions the kind of evidence shown.
+These previews accompany the geometric-vision, navigation, synthetic-data, and language-model case studies. Scientific visualizations use repository outputs or executed source functions; they do not invent model predictions or flight recordings. Each case study captions the kind of evidence shown.
 
-Generated figure previews use an 800x600 canvas; NeRF uses a 480x480 render. The projects grid preserves each image inside a shared 4:3 display area. No additional build-time tooling is needed to serve these committed assets.
+Most geometric-vision previews use an 800x600 canvas; NeRF uses a 480x480 render. Calibration, Blender, and Versifier previews use a 1200x900 canvas. The projects grid preserves each image inside a shared 4:3 display area. No additional build-time tooling is needed to serve these committed assets.
 
 ## gap-navigation-planner.gif
 
@@ -20,13 +20,23 @@ Runs the source B-spline generator on waypoints (0,0,0), (1,0.45,0.2), (2,0,0.1)
 
 Cycles fig14_v2_trajectory_seq_001.png, fig14_v2_trajectory_seq_005.png, and fig14_v2_trajectory_seq_009.png at 1.6 seconds per figure. It does not depict a live camera stream.
 
-## camera-calibration.gif
+## camera-calibration.gif and camera-calibration-detail.png
 
-**Type:** Saved calibration-figure sequence.
+**Type:** Executed calibration with scientific overlays and residual plots.
 
-[Source at the inspected revision](https://github.com/Shakthi-Bala/Intrinsic_calibration_math_cam/tree/f04f48eb7a337ee7f0cfbd43701b7fe09dfde05e/outputs).
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Intrinsic_calibration_math_cam/tree/f04f48eb7a337ee7f0cfbd43701b7fe09dfde05e).
 
-Shows the 042606 corner overlay, then reprojection overlays for views 042606, 042614, and 042629, each for 1.6 seconds. Original images are fitted inside the preview without cropping.
+Executes `Code/Wrapper.py` on all 13 `Calibration_Imgs/*.jpg` images, changing only the three absolute input/output directory strings for the local checkout. All 13 images have detected corners. Overall RMS reprojection error is 2.4196855325 pixels. There is no nonlinear refinement or change to the estimator.
+
+Cycles sorted image indices 0, 4, and 10 (views 042606, 042614, and 042629) for 2.2 seconds each. Each frame crops around the measured checkerboard with a 16% margin and overlays cyan measured corners and pink projected points. The neighboring scatter plot displays projected-minus-measured residuals in pixels with equal axis scaling and image-oriented vertical coordinates. The PNG preserves the first frame for static inspection.
+
+`bin/render_portfolio_previews.py` executes the source estimator, captures its log and numerical arrays, and renders the figures. Place the inspected calibration checkout at `/path/to/portfolio-sources/calibration` and the Blender checkout at `/path/to/portfolio-sources/blender`, then run:
+
+```bash
+python bin/render_portfolio_previews.py /path/to/portfolio-sources
+```
+
+Requires NumPy, OpenCV, Matplotlib, and Pillow. The calibration run redirects its image outputs to a temporary directory and records `calibration-data.npz` and `calibration-run.log` in the supplied source directory. This is a fresh run on the supplied calibration views, not an independent test dataset.
 
 ## nerf-lego.gif
 
@@ -59,3 +69,21 @@ Executes HomographyDataset.get_random_crop_and_pertube without importing the tra
 [Source at the inspected revision](https://github.com/Shakthi-Bala/Traditional_panaroma/tree/13d8846aaf9041de0b2411ad11d13efa64b26fc5/YourDirectoryID_p1/Phase1).
 
 Shows Data/Train/Set1/1.jpg, report_outputs/corner_detection/corners_1.jpg, report_outputs/anms/anms_1.jpg, report_outputs/ransac/ransac_matches_0_1.png, and report_outputs/panaroma/set1_train.png, each for 1.6 seconds. These are selected saved outputs, not a newly executed complete stitching run.
+
+## blender-dataset.gif
+
+**Type:** Saved synthetic renders, masks, and projected annotations.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/blender_dataset_generator/tree/2b756a20cd24e8f16419a69c382794aef2edced0/Blender_dataset/images).
+
+Cycles `c1_00001`, `c2_00001`, `c3_00001`, `c1_00003`, `c2_00003`, and `c3_00003`, with 2.2 seconds per frame. The RGB panel overlays saved JSON plane-corner coordinates; y is converted with `height - 1 - y` from the generator's bottom-origin convention. The adjacent panel shows the corresponding saved mask unchanged. Mask rendering omits occluders, and the clamped corner labels have no visibility flag. These are source outputs, not inferred segmentation results.
+
+Render with `python bin/render_portfolio_previews.py /path/to/portfolio-sources`, with the source checkouts described above. Requires NumPy, OpenCV, Matplotlib, and Pillow; none are added to the website build.
+
+## versifier.svg
+
+**Type:** Native SVG architecture illustration with a documented sample excerpt.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Shakesphere_poem_generator/tree/9ab1f4b181337a47d28fdc25c51d194215fead86/Code).
+
+Shows the LSTM and GPT-2 paths implemented in `model.py`, `fine_tune.py`, `generate.py`, and `main.py`. The four displayed lines are transcribed from `section_output()` in `report.py`, which labels them as a GPT-2 sample at temperature 0.8. They are not a newly executed model output. No checkpoint or training corpus is included in the inspected public checkout.
