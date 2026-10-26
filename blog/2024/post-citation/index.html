@@ -62,7 +62,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "Selected work in robot perception, state estimation, and research software.",
+          description: "Selected work in robot perception, autonomous driving, robot learning, and research software.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -175,6 +175,21 @@ ninja.data = [{
           description: "A Python CLI that connects research plans, independent reviews, and captured experiment evidence through Git-aware validation.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/devresearchflow/";
+            },},{id: "projects-imitation-learning-from-2d-to-a-robot-arm",
+          title: 'Imitation Learning from 2D to a Robot Arm',
+          description: "Action-chunking policies for Push-T, zero-shot transfer to a simulated UR5e, and PPO fine-tuning that reduces clear failures.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/imitation-learning/";
+            },},{id: "projects-4d-occupancy-world-model",
+          title: '4D Occupancy World Model',
+          description: "A trajectory-conditioned world model that forecasts 3D semantic occupancy and helps a planner reject unsafe candidate trajectories.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/occupancy-world-model/";
+            },},{id: "projects-policy-gradient-lab",
+          title: 'Policy Gradient Lab',
+          description: "REINFORCE, learned value baselines, and generalized advantage estimation evaluated across four control environments with saved experiment evidence.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/policy-gradient-lab/";
             },},{id: "projects-stereo-visual-inertial-odometry",
           title: 'Stereo Visual-Inertial Odometry',
           description: "Python to C++17: 3.1× faster deterministic replay, two estimation back ends, and zero failures across 11 EuRoC sequences.",
