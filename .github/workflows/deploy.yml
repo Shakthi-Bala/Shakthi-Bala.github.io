@@ -60,6 +60,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     # available images: https://github.com/actions/runner-images#available-images
@@ -101,8 +105,22 @@ jobs:
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
-      - name: Deploy 🚀
+      - name: Check deployment revision
         if: github.event_name != 'pull_request'
+        id: deployment_revision
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          latest_sha="$(git ls-remote --exit-code origin "refs/heads/${GITHUB_REF_NAME}" | cut -f1)"
+          if [ "$latest_sha" = "$EXPECTED_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping outdated build ${EXPECTED_SHA}; branch is now at ${latest_sha}."
+          fi
+      - name: Deploy 🚀
+        if: github.event_name != 'pull_request' && steps.deployment_revision.outputs.current == 'true'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: _site
