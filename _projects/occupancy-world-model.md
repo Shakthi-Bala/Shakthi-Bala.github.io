@@ -2,16 +2,16 @@
 layout: page
 title: 4D Occupancy World Model
 description: A trajectory-conditioned world model that forecasts 3D semantic occupancy and helps a planner reject unsafe candidate trajectories.
-img: assets/projects/occupancy-forecast.gif
+img: assets/projects/occupancy-planning.gif
 importance: 3
 category: Autonomous Driving & World Models
 featured: true
 github: https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving
 skills: Python · PyTorch · Transformers · SE(2) Geometry · Occupancy Forecasting · Planning
 highlight: 41.92 mIoU forecasting; 42% fewer obstacle collisions in open-loop planning
-media_alt: Ground-truth occupancy, static ego-warp baseline, and learned world-model forecasts side by side
-media_width: 1692
-media_height: 360
+media_alt: Candidate driving trajectories colored by predicted collision risk, with the selected plan in blue
+media_width: 816
+media_height: 541
 ---
 
 **Predict how a driving scene changes under a planned trajectory, then use that prediction to choose a safer plan.**

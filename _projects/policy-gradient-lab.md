@@ -2,14 +2,14 @@
 layout: page
 title: Policy Gradient Lab
 description: REINFORCE, learned value baselines, and generalized advantage estimation evaluated across four control environments with saved experiment evidence.
-img: assets/projects/policy-gradient-cheetah.gif
+img: assets/projects/policy-gradient-lunar.gif
 importance: 4
 category: Reinforcement Learning & Control
 featured: true
 github: https://github.com/Shakthi-Bala/policy_gradient_lab
 skills: Python · PyTorch · REINFORCE · GAE · Gym · MuJoCo · Experiment Design
 highlight: 24 training runs across four control environments, with fresh-episode evaluations
-media_alt: A frozen HalfCheetah policy controlling the simulated robot after policy-gradient training
+media_alt: A selected successful LunarLander rollout controlled by the trained policy-gradient agent
 media_width: 480
 media_height: 360
 ---
@@ -19,11 +19,12 @@ media_height: 360
 [View code on GitHub](https://github.com/Shakthi-Bala/policy_gradient_lab) ·
 [Full results and experiment commands](https://github.com/Shakthi-Bala/policy_gradient_lab/blob/main/docs/RESULTS.md)
 
-{% include figure.liquid path="assets/projects/policy-gradient-cheetah.gif" avoid_scaling=true loading="eager" alt="A trained HalfCheetah controller from the unnormalized value-baseline experiment using the original PyTorch action sampler" width="480" height="360" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid path="assets/projects/policy-gradient-lunar.gif" avoid_scaling=true loading="eager" alt="A selected successful LunarLander episode from a frozen final policy-gradient checkpoint" width="480" height="360" class="img-fluid rounded z-depth-1" %}
 
-_Short preview of a frozen final HalfCheetah policy using the original PyTorch sampler and an unnormalized value baseline. This is one rollout; aggregate performance comes from separate fresh-episode evaluation._
+_Selected successful LunarLander rollout from a frozen final policy. This illustrates the learned behavior; aggregate performance comes from separate fresh-episode evaluation, which includes unsuccessful episodes._
 
-[Watch the full episode](https://github.com/Shakthi-Bala/policy_gradient_lab/blob/main/media/cheetah_reference_demo.mp4)
+[Watch the full episode](https://github.com/Shakthi-Bala/policy_gradient_lab/blob/main/media/lunar_demo.mp4) ·
+[Inspect the demo selection record](https://github.com/Shakthi-Bala/policy_gradient_lab/blob/main/docs/demo_selection.json)
 
 ## The problem
 

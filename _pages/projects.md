@@ -16,8 +16,8 @@ From visual-inertial odometry and occupancy forecasting to reinforcement learnin
     {% for project in featured_projects %}
     <article class="col mb-4" aria-labelledby="project-{{ project.slug }}">
       <div class="card h-100">
-        <a href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          {% include figure.liquid path=project.img avoid_scaling=true alt=project.media_alt loading="lazy" width=project.media_width height=project.media_height class="card-img-top img-fluid" %}
+        <a href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study" style="display: block; aspect-ratio: 4 / 3; overflow: hidden;">
+          <img src="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}" class="card-img-top" style="display: block; width: 100%; height: 100%; object-fit: contain;">
         </a>
         <div class="card-body">
           <p class="card-text"><small>{{ project.category }}</small></p>
