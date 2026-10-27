@@ -147,3 +147,13 @@ Summarizes seven lookup views, perception/deprojection/PCA, five workspace-regio
 [Source at the inspected revision](https://github.com/Shakthi-Bala/UR_robot_integration_with_vision_and_gripper-using-movit/tree/f52f1d92d8181ac91a6935136e4bb0aaad029862).
 
 Based on `final_pkg/scripts/Try.py`, `final_pkg/scripts/mpick_client.py`, the alternative object-location clients, and `final_pkg/launch/sim_complete.launch`. Distinguishes external object-location interfaces from fixed demonstration poses, then shows action goals, MoveIt planning/execution, gripper requests, and staged manipulation. It does not depict a recorded or newly verified hardware run.
+
+## pblite-boundaries.png
+
+**Type:** Saved scientific comparison figure extracted from the project report.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Pblite_boundary_detection/blob/63dbb9f4958a4616ba1bf5051cab065f301ce30c/Report.pdf).
+
+Extracts the second embedded image on PDF page 3: Figure 8, a 1800x4500 comparison of Canny, Sobel, and Pb-lite outputs across ten images. Selects rows 1, 4, and 5 (airplane, butterfly, duck), preserving all three method columns and their existing pixel values. White gutters between the original rows and columns are omitted; no detector is run and no edge contrast is enhanced. The selected panels are fitted on a labeled 1200x900 scientific figure.
+
+Reproduce with `python bin/render_pblite_preview.py /path/to/Pblite_boundary_detection`. The optional script requires PyMuPDF, NumPy, Matplotlib, and Pillow; none are added to the website build. The figure shows qualitative report outputs, not a new precision/recall evaluation. CIFAR-10 results discussed in the case study belong to the repository's separate classification phase.
