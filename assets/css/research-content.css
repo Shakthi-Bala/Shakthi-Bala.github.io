@@ -101,3 +101,77 @@
     padding: 0;
   }
 }
+
+.system-diagram {
+  margin: 2.5rem 0;
+  padding: 1.5rem 0;
+  border-block: 1px solid var(--global-divider-color);
+}
+.system-diagram figcaption > span {
+  display: block;
+  color: var(--brand-cyan-text, var(--global-theme-color));
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.system-diagram figcaption > strong {
+  display: block;
+  color: var(--global-text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.system-diagram-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.system-diagram-flow li {
+  position: relative;
+  border: 1px solid var(--global-divider-color);
+  border-top: 2px solid var(--brand-amethyst);
+  padding: 1rem;
+  margin: 0;
+  min-width: 0;
+}
+.system-diagram-flow li + li::before {
+  content: "→";
+  position: absolute;
+  right: calc(100% + 0.35rem);
+  top: 1rem;
+  color: var(--brand-amethyst-text);
+}
+.system-stage-label {
+  display: block;
+  color: var(--global-text-color-light);
+  font-size: 0.72rem;
+  margin-bottom: 0.65rem;
+}
+.system-diagram-flow strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.system-diagram-flow p,
+.system-diagram-note {
+  color: var(--global-text-color-light);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 0.65rem 0 0;
+}
+@media (max-width: 800px) {
+  .system-diagram-flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+  .system-diagram-flow li + li::before {
+    content: "↓";
+    right: auto;
+    left: 1rem;
+    top: -1.6rem;
+  }
+}
