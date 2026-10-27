@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
 const selected = ["stereo-vio", "occupancy-world-model", "imitation-learning", "deep-vio", "gap-navigation", "devresearchflow"];
-const projectPath = (baseURL) => `${baseURL.replace(/\/$/, "")}/projects/`;
+const projectPath = (baseURL) => `${baseURL.replace(/\/$/, "")}/work/`;
 
 test("selected work contains exactly the six chosen projects", async ({ page, baseURL }) => {
   await page.goto(projectPath(baseURL));
@@ -80,4 +80,27 @@ test("navigation and contact links contain only ready sections", async ({ page, 
   await expect(nav).toHaveText(["Home", "Projects (current)", "Writing", "About"]);
   await expect(page.locator('footer a[href="mailto:shakthibala2004@gmail.com"]')).toHaveCount(1);
   await expect(page.locator('footer a[href="https://www.linkedin.com/in/shakthi-bala/"]')).toHaveCount(1);
+});
+
+test("Home navigation opens the current project and writing pages", async ({ page, baseURL }) => {
+  await page.route("**/*", (route) => {
+    const local = new URL(route.request().url()).origin === new URL(baseURL).origin;
+    return local ? route.continue() : route.abort();
+  });
+  await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+  const toggle = page.locator(".navbar-toggler");
+  if (await toggle.isVisible()) await toggle.click();
+  await page
+    .locator("#navbar a.nav-link")
+    .filter({ hasText: /^Projects\s*$/ })
+    .click();
+  await expect(page).toHaveURL(/\/work\/$/);
+  await page.waitForLoadState("load");
+  if (await toggle.isVisible()) await toggle.click();
+  await page
+    .locator("#navbar a.nav-link")
+    .filter({ hasText: /^Writing\s*$/ })
+    .click();
+  await expect(page).toHaveURL(/\/writing\/$/);
+  await expect(page.locator("#navbar a.nav-link")).toHaveText(["Home", "Projects", "Writing (current)", "About"]);
 });

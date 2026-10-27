@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects
-permalink: /projects/
+permalink: /work/
 description: Selected projects in robot perception, state estimation, world models, robot learning, and research software, with a browsable collection of all work.
 nav: true
 nav_order: 1

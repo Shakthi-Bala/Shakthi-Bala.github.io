@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /blog/
+permalink: /writing/
 title: Writing
 nav: true
 nav_order: 2
