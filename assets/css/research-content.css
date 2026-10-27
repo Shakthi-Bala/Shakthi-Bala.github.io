@@ -1,16 +1,17 @@
 .project-brief {
-  border: 1px solid var(--global-divider-color);
-  border-radius: 10px;
+  border-top: 1px solid var(--global-divider-color);
+  border-bottom: 1px solid var(--global-divider-color);
+  border-radius: 0;
   margin: 1.5rem 0 2rem;
-  padding: 0 1.25rem;
-  background: var(--global-card-bg-color);
+  padding: 0;
+  background: transparent;
 }
 .project-brief dl {
   margin: 0;
 }
 .project-brief dl > div {
   display: grid;
-  grid-template-columns: 155px minmax(0, 1fr);
+  grid-template-columns: 175px minmax(0, 1fr);
   gap: 1.25rem;
   padding: 1rem 0;
 }
@@ -19,7 +20,7 @@
 }
 .project-brief dt {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.6;
 }
 .project-brief dd {
@@ -39,7 +40,7 @@
   margin-top: 1.5rem;
 }
 .research-page .research-question {
-  border-left: 2px solid var(--global-theme-color);
+  border-left: 1px solid var(--brand-amethyst);
   padding-left: 1.1rem;
   margin: 1.8rem 0;
 }
@@ -75,7 +76,7 @@
 }
 .research-timeline .research-period {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
 }
 .research-timeline .research-context {
@@ -97,6 +98,6 @@
     gap: 0.35rem;
   }
   .project-brief {
-    padding: 0 1rem;
+    padding: 0;
   }
 }
