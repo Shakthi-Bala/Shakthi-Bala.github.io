@@ -1,0 +1,346 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> IMU Orientation Estimation &amp; Filter Comparison | Shakthibala </title> <meta name="author" content="Shakthibala Sivagami Balamurugan"> <meta name="description" content="Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data."> <meta name="keywords" content="Shakthibala, Shakthibala Balamurugan, Shakthi Bala, robotics engineer, WPI, robot perception, aerial robotics, drone autonomy, computer vision, visual-inertial odometry, sensor fusion, motion planning, robot manipulation, reinforcement learning, ROS 2, Python, C++, photography"> <meta property="og:site_name" content="Shakthibala"> <meta property="og:type" content="website"> <meta property="og:title" content="Shakthibala | IMU Orientation Estimation &amp; Filter Comparison"> <meta property="og:url" content="https://shakthi-bala.github.io/projects/orientation-filters/"> <meta property="og:description" content="Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data."> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="IMU Orientation Estimation &amp; Filter Comparison"> <meta name="twitter:description" content="Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data."> <script type="application/ld+json">
+    {
+        "author":
+        {
+            "@type": "Person",
+            "name": "Shakthibala Sivagami Balamurugan"
+        },
+        "url": "https://shakthi-bala.github.io/projects/orientation-filters/",
+        "@type": "WebSite",
+        "description": "Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data.",
+        "headline": "IMU Orientation Estimation & Filter Comparison",
+        
+        "sameAs": [null,"https://inspirehep.net/authors/1010907","https://scholar.google.com/citations?user=qc6CJjYAAAAJ","https://www.alberteinstein.com/"],
+        
+        "name": "Shakthibala Sivagami Balamurugan",
+        "@context": "https://schema.org"
+    }
+  </script> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 1100px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A4%96&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://shakthi-bala.github.io/projects/orientation-filters/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav sticky-bottom-footer"> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Shakthibala </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/people/">people </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a> </div> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">IMU Orientation Estimation &amp; Filter Comparison</h1> <p class="post-description">Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data.</p> </header> <article> <p><strong>Investigate how different sensor-fusion choices change orientation estimates from the same inertial measurements.</strong></p> <p><a href="https://github.com/Shakthi-Bala/Pose_correction_with_filters" rel="external nofollow noopener" target="_blank">View code on GitHub</a> · <a href="https://github.com/Shakthi-Bala/Pose_correction_with_filters/blob/main/Phase1/scripts/Final_code.py" rel="external nofollow noopener" target="_blank">Inspect the comparison implementation</a></p> <figure> <picture> <img src="/assets/projects/orientation-filters.gif" class="img-fluid rounded z-depth-1" width="960" height="720" alt="Six saved orientation animations comparing gyro, accelerometer, complementary, Madgwick, UKF, and Vicon" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <p><em>Saved six-panel orientation-comparison recording labeled sequence 5 in the source repository. The original horizontal panels are rearranged into two rows for readability and sampled at source-video speed. Estimates and timestamps are unchanged.</em></p> <h2 id="the-problem">The problem</h2> <p>Gyroscope integration accumulates bias, while accelerometer-based tilt becomes unreliable during motion. This project compares several ways to combine those measurements, using a motion-capture orientation reference to inspect their behavior over time.</p> <h2 id="implementation">Implementation</h2> <ul> <li> <strong>Measurement preparation.</strong> Loads MATLAB IMU/Vicon records and calibration parameters, estimates gyroscope offsets, applies accelerometer scale/bias corrections, and checks timestamp ordering.</li> <li> <strong>Simple baselines.</strong> Implements rotation integration from angular velocity and gravity-based tilt after low-pass filtering.</li> <li> <strong>Complementary fusion.</strong> Combines integrated angular rates with smoothed accelerometer angles.</li> <li> <strong>Madgwick fusion.</strong> Uses quaternion propagation and an accelerometer-driven correction with configurable gain and bias handling.</li> <li> <strong>Quaternion UKF.</strong> Implements an error-state sigma-point construction, quaternion mean/covariance operations, gyro propagation, and accelerometer measurement updates.</li> <li> <strong>Reference comparison.</strong> Aligns Vicon samples to IMU timestamps and exports roll/pitch/yaw plots and side-by-side 3D orientation animations.</li> </ul> <h2 id="why-compare-the-baselines">Why compare the baselines?</h2> <p>The raw estimators make the fusion problem visible: integrating rates and measuring gravity answer different parts of the attitude problem. Accelerometer measurements alone cannot determine absolute yaw, and a six-axis fusion system still needs assumptions or an external reference to constrain heading drift.</p> <p>The UKF section explicitly references the Kraft formulation. The project also contains later planning and simulation experiments; this case study focuses on the orientation-filter comparison represented in the saved artifacts.</p> <h2 id="reproduction-and-scope">Reproduction and scope</h2> <p>The repository supplies training IMU/Vicon <code class="language-plaintext highlighter-rouge">.mat</code> files and calibration parameters. Update the absolute data paths in the comparison script and review its axis mappings, initialization, and noise settings before running. The inspected implementation initializes from Vicon and uses hand-selected parameters, so its plots are a diagnostic comparison rather than a reference-free localization benchmark. This page does not claim full position correction, a new error score, or performance across independent datasets.</p> <p><a href="https://github.com/Shakthi-Bala/Pose_correction_with_filters" rel="external nofollow noopener" target="_blank">Explore the calibration, filters, and recorded comparisons →</a></p> </article> </div> </div> <footer class="sticky-bottom mt-5" role="contentinfo"> <div class="container"> © Copyright 2026 Shakthibala Sivagami Balamurugan. Shakthibala Balamurugan · Robotics, Perception &amp; Autonomous Systems.<br> Built with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> and <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a>. Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>. Last updated: October 27, 2026. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected work in robot perception, autonomous driving, robot learning, aerial control, manipulation, sensor fusion, 3D reconstruction, synthetic data, language models, and research software.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-repositories",
+          title: "repositories",
+          description: "GitHub activity and selected repositories in robotics, autonomous systems, and machine learning.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/repositories/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "nav-teaching",
+          title: "teaching",
+          description: "Course materials, schedules, and resources for classes taught.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-people",
+          title: "people",
+          description: "members of the lab or group",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/people/";
+          },
+        },{id: "dropdown-bookshelf",
+              title: "bookshelf",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/books/";
+              },
+            },{id: "dropdown-blog",
+              title: "blog",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/blog/";
+              },
+            },{id: "books-the-godfather",
+          title: 'The Godfather',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/the_godfather/";
+            },},{id: "news-a-simple-inline-announcement",
+          title: 'A simple inline announcement.',
+          description: "",
+          section: "News",},{id: "news-a-long-announcement-with-details",
+          title: 'A long announcement with details',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
+          title: 'A simple inline announcement with Markdown emoji! <img class="emoji" title=":sparkles:" alt=":sparkles:" src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png" height="20" width="20"> <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">',
+          description: "",
+          section: "News",},{id: "projects-project-1",
+          title: 'project 1',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_project/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-project-3-with-very-long-name",
+          title: 'project 3 with very long name',
+          description: "a project that redirects to another website",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
+            },},{id: "projects-project-4",
+          title: 'project 4',
+          description: "another without an image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
+            },},{id: "projects-project-5",
+          title: 'project 5',
+          description: "a project with a background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
+            },},{id: "projects-project-6",
+          title: 'project 6',
+          description: "a project with no image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
+            },},{id: "projects-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_project/";
+            },},{id: "projects-project-8",
+          title: 'project 8',
+          description: "an other project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/8_project/";
+            },},{id: "projects-project-9",
+          title: 'project 9',
+          description: "another project with an image 🎉",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/9_project/";
+            },},{id: "projects-multi-window-navigation-in-a-gaussian-splat-scene",
+          title: 'Multi-Window Navigation in a Gaussian-Splat Scene',
+          description: "A rendered aerial-navigation project connecting attention U-Net window detection, camera-ray geometry, waypoint control, and an optical-flow extension.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/aerial-window-navigation/";
+            },},{id: "projects-blender-synthetic-dataset-generator",
+          title: 'Blender Synthetic Dataset Generator',
+          description: "Automated multi-camera rendering of randomized window targets with paired mask passes and projected corner annotations.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/blender-dataset/";
+            },},{id: "projects-camera-intrinsic-calibration",
+          title: 'Camera Intrinsic Calibration',
+          description: "A checkerboard calibration pipeline that derives camera intrinsics, extrinsics, and radial distortion from planar homographies.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/camera-calibration/";
+            },},{id: "projects-quadrotor-control-with-collision-cone-barrier-functions",
+          title: 'Quadrotor Control with Collision-Cone Barrier Functions',
+          description: "A velocity-level safety filter layered over a nonlinear quadrotor controller, with sphere and cylinder scenarios in Isaac Sim and Pegasus.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/cbf-drone/";
+            },},{id: "projects-classical-panorama-stitching",
+          title: 'Classical Panorama Stitching',
+          description: "A feature-based panorama pipeline that detects and distributes corners, matches descriptors, estimates robust homographies, and blends overlapping images.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/classical-panorama/";
+            },},{id: "projects-classical-structure-from-motion",
+          title: 'Classical Structure from Motion',
+          description: "A geometric reconstruction pipeline with robust feature matching, camera-pose recovery, triangulation, PnP, and local bundle adjustment.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/classical-sfm/";
+            },},{id: "projects-learned-homography-estimation",
+          title: 'Learned Homography Estimation',
+          description: "A supervised CNN that learns eight corner displacements from paired image patches, with synthetic training pairs generated by known projective warps.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/deep-homography/";
+            },},{id: "projects-deep-visual-inertial-odometry",
+          title: 'Deep Visual-Inertial Odometry',
+          description: "A comparison of vision-only, IMU-only, and fused motion estimators trained on synthetic data, including ResNet-18 and FiLM fusion.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/deep-vio/";
+            },},{id: "projects-devresearchflow",
+          title: 'DevResearchFlow',
+          description: "A Python CLI that connects research plans, independent reviews, and captured experiment evidence through Git-aware validation.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/devresearchflow/";
+            },},{id: "projects-navigation-through-unknown-gaps",
+          title: 'Navigation Through Unknown Gaps',
+          description: "An optical-flow perception and quadrotor control pipeline that localizes openings and guides waypoint motion in rendered scenes.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/gap-navigation/";
+            },},{id: "projects-imitation-learning-from-2d-to-a-robot-arm",
+          title: 'Imitation Learning from 2D to a Robot Arm',
+          description: "Action-chunking policies for Push-T, zero-shot transfer to a simulated UR5e, and PPO fine-tuning that reduces clear failures.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/imitation-learning/";
+            },},{id: "projects-neural-radiance-fields",
+          title: 'Neural Radiance Fields',
+          description: "A PyTorch NeRF implementation for learning scene appearance from posed images and rendering novel viewpoints.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/nerf/";
+            },},{id: "projects-4d-occupancy-world-model",
+          title: '4D Occupancy World Model',
+          description: "A trajectory-conditioned world model that forecasts 3D semantic occupancy and helps a planner reject unsafe candidate trajectories.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/occupancy-world-model/";
+            },},{id: "projects-imu-orientation-estimation-amp-filter-comparison",
+          title: 'IMU Orientation Estimation &amp; Filter Comparison',
+          description: "Gyroscope integration, accelerometer tilt, complementary filtering, Madgwick fusion, and quaternion UKF compared with Vicon orientation reference data.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/orientation-filters/";
+            },},{id: "projects-policy-gradient-lab",
+          title: 'Policy Gradient Lab',
+          description: "REINFORCE, learned value baselines, and generalized advantage estimation evaluated across four control environments with saved experiment evidence.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/policy-gradient-lab/";
+            },},{id: "projects-rgmc-simsort-vision-based-object-sorting",
+          title: 'RGMC SimSort: Vision-Based Object Sorting',
+          description: "A documented sorting-system design that combines seven camera lookup positions, five workspace regions, object orientation estimation, and region-specific motion planning.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/rgmc-simsort/";
+            },},{id: "projects-stereo-visual-inertial-odometry",
+          title: 'Stereo Visual-Inertial Odometry',
+          description: "Python to C++17: 3.1× faster deterministic replay, two estimation back ends, and zero failures across 11 EuRoC sequences.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/stereo-vio/";
+            },},{id: "projects-ur16e-vision-moveit-amp-gripper-integration",
+          title: 'UR16e Vision, MoveIt &amp; Gripper Integration',
+          description: "A ROS 1 manipulation integration connecting object-location interfaces, pick/place action goals, MoveIt execution, and a service-driven gripper.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ur16e-vision-gripper/";
+            },},{id: "projects-versifier-shakespeare-style-poem-generation",
+          title: 'Versifier: Shakespeare-Style Poem Generation',
+          description: "A prompt-driven poetry CLI with a character-level LSTM and a GPT-2 fine-tuning pipeline, plus sampling and sonnet-style formatting.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/versifier/";
+            },},{id: "projects-vizflyt-window-perception-stack",
+          title: 'Vizflyt Window Perception Stack',
+          description: "A segmentation-to-navigation prototype with attention U-Net inference, window-mask postprocessing, centroid corrections, and simulated waypoint tracking.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/vizflyt-perception/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/example_pdf.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%79%6F%75@%65%78%61%6D%70%6C%65.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-inspire',
+        title: 'Inspire HEP',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://inspirehep.net/authors/1010907", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=qc6CJjYAAAAJ", "_blank");
+        },
+      },{
+        id: 'social-custom_social',
+        title: 'Custom_social',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.alberteinstein.com/", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
