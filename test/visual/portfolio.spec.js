@@ -130,3 +130,27 @@ test("brand palette remains readable and fits the viewport", async ({ page, base
     expect(ratio).toBeGreaterThanOrEqual(4.5);
   }
 });
+
+test("theme switch works and remembers the visitor choice", async ({ page, baseURL }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto(projectPath(baseURL));
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(9, 9, 14)");
+  const menu = page.locator(".navbar-toggler");
+  if (await menu.isVisible()) await menu.click();
+  const toggle = page.getByRole("button", { name: "Change color theme" });
+  await expect(toggle).toBeVisible();
+  // The upstream switch cycles dark -> system -> light -> dark.
+  await toggle.click();
+  await toggle.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme-setting", "light");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(247, 245, 251)");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  if (await menu.isVisible()) await menu.click();
+  await toggle.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(9, 9, 14)");
+  const stylesheet = await page.locator('link[href*="/assets/css/main.css"]').getAttribute("href");
+  expect(stylesheet).not.toContain("3116ba77db9ee1581d05bb3e86fbf7f1");
+});
