@@ -1436,3 +1436,76 @@ ninja-keys {
   font-weight: 500;
   color: var(--brand-amethyst-text);
 }
+
+.card-tech-stack {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--global-text-color-light);
+  margin: 22px 0 14px;
+}
+.home-work-item > .card-tech-stack {
+  margin: 22px 0 14px;
+  font-size: 11px;
+}
+.card-code-links {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+}
+.card-preview-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.card-preview-toggle {
+  border: 0;
+  border-bottom: 1px solid var(--global-divider-color);
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-amethyst-text);
+  font: inherit;
+  font-size: 12px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.card-preview-toggle:focus-visible {
+  outline: 2px solid var(--brand-amethyst-text);
+  outline-offset: 4px;
+}
+.card-preview-toggle[hidden],
+.card-preview-video[hidden] {
+  display: none !important;
+}
+.home-work-image,
+.hero-preview-media,
+.portfolio-featured-media {
+  position: relative;
+}
+.hero-preview-media {
+  display: block;
+}
+.card-preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #101014;
+  pointer-events: none;
+}
+.portfolio-featured-body > .card-tech-stack {
+  font-size: 11px !important;
+  margin-top: 20px;
+}
+.hero-experiment figcaption {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-work-image img {
+    transition: none;
+  }
+}

@@ -22,13 +22,15 @@ permalink: /
         <a href="mailto:shakthibala2004@gmail.com">Email me <span aria-hidden="true">↗</span></a>
       </div>
     </div>
-    <figure class="hero-experiment">
+    <figure class="hero-experiment" data-video-scope>
       <div class="experiment-caption"><span>From the work</span><span>01 / Estimation</span></div>
-      <a href="{{ lead.url | relative_url }}" aria-label="Explore Stereo Visual-Inertial Odometry">
+      <a class="hero-preview-media" data-video-hover href="{{ lead.url | relative_url }}" aria-label="Explore Stereo Visual-Inertial Odometry">
         <img src="{{ lead_preview.poster | relative_url }}" alt="Tracked camera features from the recorded EuRoC MH_05 estimator run" width="{{ lead_preview.width }}" height="{{ lead_preview.height }}" fetchpriority="high">
+        <video class="card-preview-video" data-card-video data-video-src="{{ lead_preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>
       </a>
       <figcaption>
         <span>Stereo visual-inertial odometry</span>
+        <button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ lead.title | escape }}" hidden>Play preview</button>
         <a href="{{ lead.url | relative_url }}">View experiment <span aria-hidden="true">↗</span></a>
       </figcaption>
       <div class="experiment-result"><strong>0.156<span> m</span></strong><p>Mean trajectory error across 11 EuRoC sequences.<br>SE3 alignment · loop closure disabled.</p></div>
@@ -40,13 +42,15 @@ permalink: /
     <div class="home-work-grid">
       {% for project in selected %}
       {% assign preview = site.data.project_previews[project.slug] %}
-      <article class="home-work-item">
-        <a class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy"></a>
-        <p class="preview-caption">{{ preview.label }}</p>
+      <article class="home-work-item" data-video-scope>
+        <a data-video-hover class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy"><video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video></a>
+        <div class="card-preview-caption"><p class="preview-caption">{{ preview.label }}</p><button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button></div>
         <div class="work-index"><span>{{ forloop.index | prepend: '0' }} / {{ project.featured_area }}</span><span aria-hidden="true">↗</span></div>
         <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
         <p>{{ project.featured_summary }}</p>
         <div class="home-work-evidence"><p class="home-work-outcome">{{ project.card_result | escape }}</p><p class="home-work-conditions">{{ project.card_conditions | escape }}</p></div>
+        <p class="card-tech-stack">{{ project.card_stack | escape }}</p>
+        <div class="card-code-links"><a href="{{ project.url | relative_url }}">Write-up <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a><a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a></div>
       </article>
       {% endfor %}
     </div>
@@ -74,3 +78,5 @@ permalink: /
   </section>
   <section class="contact-end" aria-labelledby="home-contact"><p class="edition-label" id="home-contact">Contact</p><a class="contact-address" href="mailto:shakthibala2004@gmail.com">shakthibala2004@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-elsewhere"><a href="https://github.com/Shakthi-Bala">GitHub ↗</a><a href="https://www.linkedin.com/in/shakthi-bala/">LinkedIn ↗</a></div></section>
 </div>
+
+<script src="{{ "/assets/js/card-videos.js" | relative_url }}" defer></script>

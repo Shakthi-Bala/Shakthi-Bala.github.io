@@ -56,22 +56,45 @@ test("the complete collection remains available without JavaScript", async ({ br
   await context.close();
 });
 
-test("previews start still and play only on request", async ({ page, baseURL }) => {
+test("video previews respect reduced motion and support explicit playback", async ({ page, baseURL }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto(projectPath(baseURL));
-  const card = page
-    .locator(".portfolio-featured-card")
-    .filter({ has: page.locator("[data-preview-toggle]") })
-    .first();
-  const image = card.locator("img");
-  const button = card.locator("[data-preview-toggle]");
-  const poster = await image.getAttribute("data-preview-poster");
-  await expect(image).toHaveAttribute("src", poster);
+  const cards = page.locator(".portfolio-featured-card");
+  const first = cards.first();
+  const video = first.locator("video");
+  const button = first.locator("[data-video-toggle]");
+  await expect(video).not.toHaveAttribute("src");
+  await first.locator("[data-video-hover]").hover();
+  await expect(video).toHaveJSProperty("paused", true);
+  await expect(video).not.toHaveAttribute("src");
   await button.click();
   await expect(button).toHaveAttribute("aria-pressed", "true");
-  await expect(image).toHaveAttribute("src", await image.getAttribute("data-preview-source"));
+  await expect(video).toHaveJSProperty("paused", false);
+  await expect(video).toHaveJSProperty("muted", true);
+  await expect(video).toHaveJSProperty("loop", true);
   await button.click();
-  await expect(image).toHaveAttribute("src", poster);
+  await expect(video).toHaveJSProperty("paused", true);
+  await expect(video).toBeHidden();
+  await button.focus();
+  await page.keyboard.press("Enter");
+  await expect(button).toHaveAttribute("aria-pressed", "true");
+  const next = cards.nth(1);
+  await next.locator("[data-video-toggle]").click();
+  await expect(next.locator("video")).toHaveJSProperty("paused", false);
+  await expect(video).toHaveJSProperty("paused", true);
   await expect(button).toHaveAttribute("aria-pressed", "false");
+});
+
+test("mouse hover plays a preview and leaving restores the still", async ({ page, baseURL, isMobile }) => {
+  test.skip(isMobile, "Touch devices use the explicit playback button.");
+  await page.goto(projectPath(baseURL));
+  const card = page.locator(".portfolio-featured-card").first();
+  await card.locator("[data-video-hover]").hover();
+  await expect(card.locator("video")).toHaveJSProperty("paused", false);
+  await expect(card.locator("video")).toBeVisible();
+  await page.mouse.move(0, 0);
+  await expect(card.locator("video")).toHaveJSProperty("paused", true);
+  await expect(card.locator("video")).toBeHidden();
 });
 
 test("navigation and contact links contain only ready sections", async ({ page, baseURL }) => {

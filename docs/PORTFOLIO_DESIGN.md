@@ -53,3 +53,5 @@ The six featured projects define `card_result` and `card_conditions` in their fr
 Each of the six featured case studies has a four-stage system overview between its project brief and demo. Native HTML keeps labels selectable and readable without JavaScript; CSS switches the horizontal flow to a vertical flow on smaller screens. Captions distinguish alternative back ends, offline training, and evaluation scope from the data flow. Keep these diagrams aligned with the implementation described in each case study.
 
 Availability on Home and About comes from `_data/career_interests.yml`. Update the shared seeking, graduation, start, and updated fields when plans change; `updated` records the last confirmation, not the build date. An empty start field is omitted until the date is confirmed.
+
+Featured cards on Home and Projects share concise `card_stack` metadata from project front matter and expose a direct Code link beside the case-study link. List only tools supported by that implementation. For motion-preview behavior and regeneration, see [Project media](PROJECT_MEDIA.md#mp4-previews-on-home-and-projects).
