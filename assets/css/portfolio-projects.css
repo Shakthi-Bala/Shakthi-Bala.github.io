@@ -122,11 +122,6 @@
   border-left: 1px solid var(--brand-amethyst);
   padding-left: 14px;
 }
-.portfolio-featured-body .portfolio-skills {
-  color: var(--portfolio-muted);
-  font-size: 11px !important;
-  margin-bottom: 18px;
-}
 .portfolio-project-links {
   display: flex;
   align-items: center;
