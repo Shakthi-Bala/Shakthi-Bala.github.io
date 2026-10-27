@@ -15,6 +15,7 @@ permalink: /
       <p class="home-deck">I work on how robots see their surroundings, estimate motion, and learn from observations.</p>
       <p class="home-context">Robotics graduate student at WPI.<br><a href="{{ '/about/' | relative_url }}#experience-pear-lab">Student researcher · PeAR Lab <span aria-hidden="true">↗</span></a></p>
       <p class="home-role-statement">{{ site.data.career_interests.statement }}</p>
+      <div class="career-availability" aria-label="Availability"><p><strong>{{ site.data.career_interests.availability.seeking }}</strong></p><p>Expected graduation: {{ site.data.career_interests.availability.graduation }}{% if site.data.career_interests.availability.start != empty %}<br>{{ site.data.career_interests.availability.start }}{% endif %}</p></div>
       <div class="editorial-actions">
         <a class="text-action" href="#selected-work">Selected work <span aria-hidden="true">↘</span></a>
         <a href="#home-research">Research questions <span aria-hidden="true">↓</span></a>

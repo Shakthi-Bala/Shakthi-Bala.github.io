@@ -34,6 +34,17 @@ A trajectory-conditioned model that forecasts 3D semantic occupancy from past oc
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>Occupancy forecasting · geometry before learned correction</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Known input</span><strong>2 s of ground-truth occupancy</strong><p>Past semantic grids + candidate future ego trajectory</p></li>
+    <li><span class="system-stage-label">Geometry &amp; encoding</span><strong>BEV latents + SE(2) alignment</strong><p>VAE compression; explicit ego-motion warping</p></li>
+    <li><span class="system-stage-label">Learned forecast</span><strong>Space-time transformer + refinement</strong><p>Trajectory-conditioned residual prediction; full-resolution occupancy up to 3 s ahead</p></li>
+    <li><span class="system-stage-label">Candidate selection</span><strong>Collision + off-road scoring</strong><p>Imitation prior shortlists 32 of 256 trajectories; forecasts score those candidates</p></li>
+  </ol>
+  <p class="system-diagram-note">The future trajectory conditions warping and forecasting for each candidate. Planning is evaluated open-loop on logged data; the input is known occupancy, not camera images.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/occupancy-forecast.gif" avoid_scaling=true loading="eager" alt="Three-second occupancy forecasts for validation scene 0797: ground truth, a static-world ego-warp baseline, and the learned world model" width="1692" height="360" class="img-fluid rounded z-depth-1" %}

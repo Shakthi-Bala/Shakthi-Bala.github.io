@@ -34,6 +34,17 @@ A rendered navigation pipeline using optical flow to locate candidate openings.
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>Gap navigation · perception running alongside motion</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Rendered input</span><strong>Consecutive scene images</strong><p>Frames from the rendered navigation setup</p></li>
+    <li><span class="system-stage-label">Worker thread</span><strong>Pretrained RAFT → OpenCV</strong><p>Optical flow, low-motion contours, and candidate centroid</p></li>
+    <li><span class="system-stage-label">Motion handoff</span><strong>Image-center offset → alignment</strong><p>Waypoint motion continues while perception computes the next update</p></li>
+    <li><span class="system-stage-label">Navigation command</span><strong>Align, then move forward</strong><p>Updated frames provide the next perception cycle</p></li>
+  </ol>
+  <p class="system-diagram-note">Arrows show the intended perception-to-motion handoff. The recording below verifies saved detector outputs; it does not establish end-to-end flight success.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 <video controls playsinline preload="metadata" width="480" height="272" poster="{{ '/assets/projects/covers/gap-navigation.webp' | relative_url }}" aria-label="Recorded optical-flow detections from the gap-navigation repository" style="display:block;width:100%;height:auto;">

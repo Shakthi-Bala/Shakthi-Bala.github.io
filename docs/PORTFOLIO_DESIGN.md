@@ -47,3 +47,9 @@ Featured covers focus on a single useful panel with a readable evidence label be
 ## Project-card results
 
 The six featured projects define `card_result` and `card_conditions` in their front matter. Home and Projects use these same fields so outcome text and evaluation scope stay consistent. Conditions retain details such as open-loop planning, ground-truth occupancy inputs, simulation, matched evaluations, repository-reported results, and unreported flight-success rates. The home-page evidence block remains visible without opening a case study or enabling JavaScript.
+
+## Case-study system overviews
+
+Each of the six featured case studies has a four-stage system overview between its project brief and demo. Native HTML keeps labels selectable and readable without JavaScript; CSS switches the horizontal flow to a vertical flow on smaller screens. Captions distinguish alternative back ends, offline training, and evaluation scope from the data flow. Keep these diagrams aligned with the implementation described in each case study.
+
+Availability on Home and About comes from `_data/career_interests.yml`. Update the shared seeking, graduation, start, and updated fields when plans change; `updated` records the last confirmation, not the build date. An empty start field is omitted until the date is confirmed.

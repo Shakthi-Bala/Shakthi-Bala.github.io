@@ -34,6 +34,17 @@ A team comparison of learned visual, inertial, and fused odometry on synthetic d
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>Learned odometry · compare modalities and fusion</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Synthetic data</span><strong>Image pairs + IMU windows</strong><p>Rendered sequences with relative-pose targets</p></li>
+    <li><span class="system-stage-label">Modality encoders</span><strong>Visual CNN / ResNet-18; inertial LSTM</strong><p>Separate vision-only and IMU-only baselines</p></li>
+    <li><span class="system-stage-label">Fusion alternatives</span><strong>Concatenation / FiLM + soft gating</strong><p>Fused models combine visual and inertial features; vision-only bypasses fusion</p></li>
+    <li><span class="system-stage-label">Evaluation</span><strong>Relative pose → integrated trajectory</strong><p>Compare prediction loss and absolute trajectory error</p></li>
+  </ol>
+  <p class="system-diagram-note">These are model alternatives, not one stacked model. The comparison uses synthetic test data; the lowest prediction loss did not give the lowest trajectory error.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/deep-vio-trajectories.gif" avoid_scaling=true loading="eager" alt="Saved trajectory plots for sequences 001, 005, and 009 comparing ground truth, ResNet visual odometry, and FiLM fusion variants" width="800" height="600" class="img-fluid rounded z-depth-1" %}

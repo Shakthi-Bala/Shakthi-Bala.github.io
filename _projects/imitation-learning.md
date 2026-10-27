@@ -34,6 +34,17 @@ Action-chunking policies trained on 2D demonstrations, transferred to a simulate
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>Robot learning · demonstrations to simulated arm rollouts</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Offline training</span><strong>206 human demonstrations</strong><p>2D Push-T; compare MSE regression and flow matching</p></li>
+    <li><span class="system-stage-label">Policy interface</span><strong>State → eight-action chunk</strong><p>Keep task coordinates and the five-number state consistent for transfer</p></li>
+    <li><span class="system-stage-label">Simulated execution</span><strong>UR5e tracking in MuJoCo</strong><p>Inverse kinematics, gravity compensation, and velocity feed-forward</p></li>
+    <li><span class="system-stage-label">Fine-tuning &amp; comparison</span><strong>PPO on the flow policy</strong><p>Reward feedback updates the policy; compare final policies on matched starts</p></li>
+  </ol>
+  <p class="system-diagram-note">Training and fine-tuning are offline stages. Rollouts repeatedly feed the current state to the policy; the transfer and PPO results are from simulation.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/imitation-ur5e.gif" avoid_scaling=true loading="eager" alt="A UR5e arm pushes a T-shaped block toward the green goal with a policy trained on 2D data; the right panel shows a top view and the policy target" width="800" height="343" class="img-fluid rounded z-depth-1" %}

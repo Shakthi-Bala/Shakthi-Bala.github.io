@@ -34,6 +34,17 @@ Stereo visual-inertial odometry in Python and C++17, evaluated on EuRoC and TUM-
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>Stereo VIO · shared front end, two back ends</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Sensor input</span><strong>Stereo images + IMU</strong><p>Calibrated EuRoC or ROS 2 input</p></li>
+    <li><span class="system-stage-label">Measurements</span><strong>Tracked features + inertial constraints</strong><p>Stereo matching; retain validated cam0-only tracks during stereo dropouts</p></li>
+    <li><span class="system-stage-label">Estimator alternatives</span><strong>MSCKF filter / Ceres sliding window</strong><p>Shared visual front end; the sliding window uses IMU preintegration</p></li>
+    <li><span class="system-stage-label">Output &amp; evaluation</span><strong>Pose trajectory</strong><p>SE3-aligned ATE, completion rate, and processing time</p></li>
+  </ol>
+  <p class="system-diagram-note">The filter and sliding-window optimizer are alternative back ends. Benchmark results on this page disable loop closure unless stated otherwise.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/stereo-vio-demo.gif" avoid_scaling=true loading="eager" alt="Stereo feature tracks on the left and MSCKF, sliding-window, and ground-truth trajectories on the right" width="720" height="338" class="img-fluid rounded z-depth-1" %}

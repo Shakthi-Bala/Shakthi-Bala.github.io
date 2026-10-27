@@ -34,6 +34,17 @@ A Python CLI for reviewing research plans, checking inputs, and recording experi
   </dl>
 </section>
 
+<figure class="system-diagram" aria-labelledby="system-diagram-title">
+  <figcaption id="system-diagram-title"><span>System overview</span><strong>DevResearchFlow · checked inputs to traceable evidence</strong></figcaption>
+  <ol class="system-diagram-flow">
+    <li><span class="system-stage-label">Plan &amp; review</span><strong>Structured protocol + review records</strong><p>Recorded roles, decisions, and source references</p></li>
+    <li><span class="system-stage-label">Execution gate</span><strong>Verify reviewed code and data</strong><p>Check manifests and reject changed inputs before running</p></li>
+    <li><span class="system-stage-label">Runner</span><strong>Execute and capture receipts</strong><p>Logs, timestamps, exit codes, and checksums; preserve failed runs</p></li>
+    <li><span class="system-stage-label">Evidence &amp; validation</span><strong>Link claims back to recorded runs</strong><p>Schema, identity, and provenance checks through CLI, Git hooks, and CI</p></li>
+  </ol>
+  <p class="system-diagram-note">Review gates check recorded evidence and provenance. They do not establish scientific correctness; the runnable demo uses explicitly synthetic review fixtures.</p>
+</figure>
+
 <span id="project-demo" class="research-anchor"></span>
 
 <video controls playsinline preload="metadata" width="844" height="600" poster="{{ '/assets/projects/covers/devresearchflow.webp' | relative_url }}" aria-label="DevResearchFlow CLI recording of the runnable toy ablation" style="display:block;width:100%;height:auto;">

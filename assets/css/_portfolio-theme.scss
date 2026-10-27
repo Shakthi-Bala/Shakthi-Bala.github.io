@@ -1420,3 +1420,19 @@ ninja-keys {
   line-height: 1.8;
   margin: 0;
 }
+
+.career-availability {
+  border-left: 1px solid var(--brand-amethyst);
+  padding-left: 14px;
+  margin: 20px 0;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.career-availability p {
+  margin: 0;
+  color: var(--global-text-color-light);
+}
+.career-availability strong {
+  font-weight: 500;
+  color: var(--brand-amethyst-text);
+}
