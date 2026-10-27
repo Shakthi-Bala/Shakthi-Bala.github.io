@@ -12,6 +12,11 @@ highlight: 41.92 mIoU forecasting; 42% fewer obstacle collisions in open-loop pl
 media_alt: Candidate driving trajectories colored by predicted collision risk, with the selected plan in blue
 media_width: 816
 media_height: 541
+portfolio: true
+topics: [perception, learning]
+featured_order: 2
+featured_area: World models & scene forecasting
+featured_summary: Geometry-aware occupancy forecasting with trajectory-conditioned predictions and inspectable planning evaluations.
 ---
 
 **Predict how a driving scene changes under a planned trajectory, then use that prediction to choose a safer plan.**

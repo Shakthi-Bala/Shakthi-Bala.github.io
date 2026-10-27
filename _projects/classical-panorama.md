@@ -5,13 +5,15 @@ description: A feature-based panorama pipeline that detects and distributes corn
 img: assets/projects/classical-panorama.gif
 importance: 12
 category: Computer Vision & Image Stitching
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Traditional_panaroma
 skills: Python · NumPy · OpenCV · ANMS · Feature Matching · RANSAC · Image Warping
 highlight: Corners → robust correspondences → aligned and blended panoramas
 media_alt: A sequence of repository input images, corner detections, ANMS features, RANSAC matches, and a stitched panorama
 media_width: 800
 media_height: 600
+portfolio: true
+topics: [vision]
 ---
 
 **Build an image-stitching pipeline from local features and projective geometry, with intermediate outputs that explain the final panorama.**

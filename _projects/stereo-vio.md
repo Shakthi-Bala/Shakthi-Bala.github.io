@@ -12,6 +12,11 @@ highlight: 0.156 m mean trajectory error across all 11 EuRoC sequences
 media_alt: Stereo feature tracks beside estimated and ground-truth trajectories on EuRoC MH_05_difficult
 media_width: 720
 media_height: 338
+portfolio: true
+topics: [perception]
+featured_order: 1
+featured_area: Visual-inertial estimation
+featured_summary: C++17 estimation with two back ends, numerical parity checks, and ROS 2 integration.
 ---
 
 **Robot localization from stereo cameras and an IMU, from numerical parity to real-time ROS 2 integration.**

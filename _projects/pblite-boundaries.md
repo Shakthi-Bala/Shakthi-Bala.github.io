@@ -5,13 +5,15 @@ description: A classical boundary-detection pipeline combining texture, brightne
 img: assets/projects/pblite-boundaries.png
 importance: 21
 category: Computer Vision & Image Understanding
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Pblite_boundary_detection
 skills: Python · OpenCV · NumPy · K-Means · Filter Banks · PyTorch
 highlight: Filter responses → textons → histogram gradients → boundary maps
 media_alt: Saved Canny, Sobel, and Pb-lite boundary comparisons for airplane, butterfly, and duck images from the project report
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [vision, learning]
 ---
 
 **Look beyond intensity edges by measuring how texture, brightness, and color change across a potential boundary.**

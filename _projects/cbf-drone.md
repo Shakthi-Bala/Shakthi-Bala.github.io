@@ -5,13 +5,15 @@ description: A velocity-level safety filter layered over a nonlinear quadrotor c
 img: assets/projects/cbf-drone.gif
 importance: 15
 category: Aerial Robotics & Safety-Aware Control
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/CBF_for_full_drone_dynamics
 skills: Python · CVXPY · OSQP · Geometric Control · Isaac Sim · Pegasus
 highlight: Nominal velocity → constrained QP → nonlinear flight control
 media_alt: Saved CBF quadrotor trajectory and obstacle-distance figures for a two-cylinder simulation
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [other-robotics]
 ---
 
 **Explore how a collision-cone filter changes a quadrotor's motion while retaining a nonlinear tracking controller.**

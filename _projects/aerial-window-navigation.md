@@ -5,13 +5,15 @@ description: A rendered aerial-navigation project connecting attention U-Net win
 img: assets/projects/aerial-window-navigation.webp
 importance: 17
 category: Aerial Robotics & Visual Navigation
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Final_project_Aerial_Robotics_RBE595
 skills: Python · PyTorch · Attention U-Net · Gaussian Splatting · Camera Geometry · Quadrotor Control
 highlight: Window segmentation → world-frame ray → waypoint motion
 media_alt: Recorded Gaussian-splat camera views moving through a scene with three window targets
 media_width: 720
 media_height: 540
+portfolio: true
+topics: [perception]
 ---
 
 **Turn a detected opening into a geometric direction and a simulated motion command through a multi-window scene.**

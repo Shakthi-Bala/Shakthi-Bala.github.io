@@ -5,13 +5,15 @@ description: A segmentation-to-navigation prototype with attention U-Net inferen
 img: assets/projects/vizflyt-perception.webp
 importance: 19
 category: Robot Perception & Visual Servoing
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Vizflyt_perception_stack
 skills: Python · PyTorch · OpenCV · Attention U-Net · Gaussian Splatting · Visual Servoing
 highlight: RGB rendering → window features → alignment and traversal
 media_alt: Synchronized RGB, depth, and window-mask views from the supplied window perception video
 media_width: 960
 media_height: 720
+portfolio: true
+topics: [perception]
 ---
 
 **Connect a window segmentation model to the geometric and control interfaces needed for rendered navigation.**

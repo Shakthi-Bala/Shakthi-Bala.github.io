@@ -5,13 +5,15 @@ description: A documented sorting-system design that combines seven camera looku
 img: assets/projects/rgmc-simsort.svg
 importance: 16
 category: Robotic Manipulation & Task Planning
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/RGMC_Simsort_2025
 skills: MATLAB · YOLOv4 · Point Clouds · PCA · Inverse Kinematics · Cubic Splines
 highlight: Seven lookup views → five region strategies → class-based sorting
 media_alt: Illustration of seven lookup views feeding perception, five region strategies, and class-based placement
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [perception, manipulation]
 ---
 
 **Break a large sorting workspace into manageable perception views and region-specific manipulation strategies.**

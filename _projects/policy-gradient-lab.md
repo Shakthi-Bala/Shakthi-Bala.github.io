@@ -5,13 +5,15 @@ description: REINFORCE, learned value baselines, and generalized advantage estim
 img: assets/projects/policy-gradient-lunar.gif
 importance: 4
 category: Reinforcement Learning & Control
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/policy_gradient_lab
 skills: Python · PyTorch · REINFORCE · GAE · Gym · MuJoCo · Experiment Design
 highlight: 24 training runs across four control environments, with fresh-episode evaluations
 media_alt: A selected successful LunarLander rollout controlled by the trained policy-gradient agent
 media_width: 480
 media_height: 360
+portfolio: true
+topics: [learning]
 ---
 
 **Implement policy-gradient learning, then measure how return estimators, baselines, and advantage estimation affect control.**

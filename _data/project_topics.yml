@@ -1,0 +1,12 @@
+- id: perception
+  label: Perception
+- id: learning
+  label: Learning
+- id: manipulation
+  label: Manipulation
+- id: vision
+  label: Computer vision
+- id: research-tools
+  label: Research tools
+- id: other-robotics
+  label: Other robotics

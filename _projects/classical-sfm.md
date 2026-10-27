@@ -5,13 +5,15 @@ description: A geometric reconstruction pipeline with robust feature matching, c
 img: assets/projects/classical-sfm.gif
 importance: 10
 category: Geometric Vision & 3D Reconstruction
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Structure_from_motion_classical
 skills: Python · NumPy · OpenCV · SIFT · RANSAC · Triangulation · PnP · SciPy
 highlight: Image correspondences → camera poses and 3D points → reprojection diagnostics
 media_alt: Saved reprojection overlays at linear triangulation, unstable nonlinear triangulation, and after bundle adjustment
 media_width: 800
 media_height: 600
+portfolio: true
+topics: [vision]
 ---
 
 **Recover camera motion and scene structure from overlapping images, and inspect how each optimization stage changes the reprojection.**

@@ -5,13 +5,15 @@ description: A prompt-driven poetry CLI with a character-level LSTM and a GPT-2 
 img: assets/projects/versifier.svg
 importance: 14
 category: Natural Language Processing & Generative Models
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Shakesphere_poem_generator
 skills: Python · PyTorch · LSTM · GPT-2 · Hugging Face · Text Generation
 highlight: From character prediction to pretrained language-model fine-tuning
 media_alt: Versifier architecture showing the LSTM and GPT-2 paths, with an excerpt of the sample recorded in the project report source
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [learning]
 ---
 
 **Build a language model from scratch, then explore what pretrained language representations bring to creative generation.**

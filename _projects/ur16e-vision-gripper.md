@@ -5,13 +5,15 @@ description: A ROS 1 manipulation integration connecting object-location interfa
 img: assets/projects/ur16e-vision-gripper.svg
 importance: 18
 category: Robot Manipulation & Systems Integration
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/UR_robot_integration_with_vision_and_gripper-using-movit
 skills: Python · ROS 1 · MoveIt · actionlib · UR16e · RViz · rosserial
 highlight: Object poses → pick/place goals → arm motion + gripper commands
 media_alt: ROS manipulation architecture connecting object poses, action goals, MoveIt planning, and gripper commands
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [perception, manipulation]
 ---
 
 **Connect perception interfaces, motion planning, and gripper control through an explicit ROS manipulation workflow.**

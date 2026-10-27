@@ -5,13 +5,15 @@ description: A PyTorch NeRF implementation for learning scene appearance from po
 img: assets/projects/nerf-lego.gif
 importance: 9
 category: Neural Rendering & 3D Reconstruction
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/NERF
 skills: Python · PyTorch · NeRF · Positional Encoding · Volume Rendering · Camera Rays
 highlight: Posed images → a learned radiance field → novel-view renders
 media_alt: A novel-view rendering animation of the Lego scene from the project repository
 media_width: 480
 media_height: 480
+portfolio: true
+topics: [vision, learning]
 ---
 
 **Represent a scene as a learned function of position and viewing direction, then render it from new camera poses.**

@@ -12,6 +12,11 @@ highlight: Compare sensor modalities, fusion strategies, and integrated trajecto
 media_alt: A sequence of saved DeepVO and FiLM trajectory-comparison plots from synthetic test sequences
 media_width: 800
 media_height: 600
+portfolio: true
+topics: [perception, learning]
+featured_order: 4
+featured_area: Learned state estimation
+featured_summary: Vision-only, inertial, and fused motion estimators compared through prediction loss and integrated trajectory error.
 ---
 
 **Learn motion from images and inertial measurements, then test whether fusion actually improves the resulting trajectory.**

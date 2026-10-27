@@ -5,13 +5,15 @@ description: Gyroscope integration, accelerometer tilt, complementary filtering,
 img: assets/projects/orientation-filters.gif
 importance: 20
 category: State Estimation & Sensor Fusion
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Pose_correction_with_filters
 skills: Python · NumPy · SciPy · Quaternions · Madgwick · UKF · IMU Calibration
 highlight: Compare five orientation estimators against a Vicon reference
 media_alt: Six saved orientation animations comparing gyro, accelerometer, complementary, Madgwick, UKF, and Vicon
 media_width: 960
 media_height: 720
+portfolio: true
+topics: [perception]
 ---
 
 **Investigate how different sensor-fusion choices change orientation estimates from the same inertial measurements.**

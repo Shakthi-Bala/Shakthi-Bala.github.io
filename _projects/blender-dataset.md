@@ -5,13 +5,15 @@ description: Automated multi-camera rendering of randomized window targets with 
 img: assets/projects/blender-dataset.gif
 importance: 13
 category: Synthetic Data & Computer Vision
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/blender_dataset_generator
 skills: Python · Blender · bpy · Synthetic Data · Camera Projection · Segmentation
 highlight: Randomized scenes → RGB renders + masks + JSON corner annotations
 media_alt: Saved Blender renders with projected corner annotations beside their paired mask passes across multiple cameras and scenes
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [vision]
 ---
 
 **Generate visual training data and geometric annotations together, with explicit control over the scene and cameras.**

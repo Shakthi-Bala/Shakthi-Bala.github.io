@@ -12,6 +12,11 @@ highlight: 2D-to-UR5e transfer; PPO reduces clear failures from 11.4% to 6.4%
 media_alt: A simulated UR5e arm executing a flow-matching policy trained only on 2D Push-T demonstrations
 media_width: 800
 media_height: 343
+portfolio: true
+topics: [learning, manipulation]
+featured_order: 3
+featured_area: Robot learning & manipulation
+featured_summary: Action-chunking policies transferred from 2D demonstrations to a simulated UR5e, with paired fine-tuning evaluations.
 ---
 
 **Learn to push from human demonstrations, transfer the policy to a simulated robot arm, and improve it with reward feedback.**

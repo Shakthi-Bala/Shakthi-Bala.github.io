@@ -5,13 +5,15 @@ description: A checkerboard calibration pipeline that derives camera intrinsics,
 img: assets/projects/camera-calibration.gif
 importance: 8
 category: Computer Vision & Camera Geometry
-featured: true
+featured: false
 github: https://github.com/Shakthi-Bala/Intrinsic_calibration_math_cam
 skills: Python · NumPy · OpenCV · DLT · SVD · Least Squares · Camera Geometry
 highlight: Checkerboard observations → camera parameters → reprojection checks
 media_alt: Close-up checkerboard measurements beside true-scale reprojection residual plots for three calibration views
 media_width: 1200
 media_height: 900
+portfolio: true
+topics: [perception, vision]
 ---
 
 **Recover camera parameters from images of a planar checkerboard, with the geometry implemented explicitly.**

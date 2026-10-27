@@ -12,6 +12,11 @@ highlight: Reviewed protocols → verified inputs → recorded execution evidenc
 media_alt: Animated diagram showing the research workflow and independent review stages
 media_width: 1200
 media_height: 744
+portfolio: true
+topics: [research-tools]
+featured_order: 6
+featured_area: Research software & reproducibility
+featured_summary: A Python CLI connecting reviewed research plans, verified inputs, and captured execution evidence.
 ---
 
 **Make AI-assisted research easier to inspect, reproduce, and challenge.**
