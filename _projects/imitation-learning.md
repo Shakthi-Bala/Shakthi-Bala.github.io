@@ -17,6 +17,8 @@ topics: [learning, manipulation]
 featured_order: 3
 featured_area: Robot learning & manipulation
 featured_summary: Action-chunking policies transferred from 2D demonstrations to a simulated UR5e, with paired fine-tuning evaluations.
+card_result: "PPO reduced clear failures from 11.4% to 6.4%."
+card_conditions: "Paired evaluation on 500 simulated UR5e start states; failure means goal-coverage reward below 0.3. Fully solved episodes did not improve measurably."
 ---
 
 Action-chunking policies trained on 2D demonstrations, transferred to a simulated UR5e, and fine-tuned with PPO.

@@ -34,7 +34,8 @@ nav_order: 1
         <div class="portfolio-featured-body">
           <p class="portfolio-project-area"><span>{{ forloop.index | prepend: '0' }} /</span> {{ project.featured_area }}</p>
           <h3 id="featured-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-          <p class="portfolio-evidence">{{ project.highlight }}</p>
+          <p class="portfolio-evidence">{{ project.card_result | default: project.highlight | escape }}</p>
+          {% if project.card_conditions %}<p class="portfolio-evidence-conditions">{{ project.card_conditions | escape }}</p>{% endif %}
           <p>{{ project.featured_summary }}</p>
           <p class="portfolio-skills">{{ project.skills }}</p>
         {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}

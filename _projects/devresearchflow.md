@@ -17,6 +17,8 @@ topics: [research-tools]
 featured_order: 6
 featured_area: Research software & reproducibility
 featured_summary: A Python CLI connecting reviewed research plans, verified inputs, and captured execution evidence.
+card_result: "88 passing tests; 84% combined statement/branch coverage."
+card_conditions: "The v0.3.0 validation record reports tests on Python 3.10 and 3.13, with coverage measured on 3.13."
 ---
 
 A Python CLI for reviewing research plans, checking inputs, and recording experiment execution.

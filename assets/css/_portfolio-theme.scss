@@ -1400,3 +1400,23 @@ ninja-keys {
     border: 0;
   }
 }
+
+.home-work-evidence {
+  margin-top: 20px;
+  padding-left: 14px;
+  border-left: 1px solid var(--brand-amethyst);
+  max-width: 56ch;
+}
+.home-work-outcome {
+  color: var(--brand-amethyst-text);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+.home-work-conditions {
+  color: var(--global-text-color-light);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 0;
+}

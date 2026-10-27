@@ -45,6 +45,7 @@ permalink: /
         <div class="work-index"><span>{{ forloop.index | prepend: '0' }} / {{ project.featured_area }}</span><span aria-hidden="true">↗</span></div>
         <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
         <p>{{ project.featured_summary }}</p>
+        <div class="home-work-evidence"><p class="home-work-outcome">{{ project.card_result | escape }}</p><p class="home-work-conditions">{{ project.card_conditions | escape }}</p></div>
       </article>
       {% endfor %}
     </div>

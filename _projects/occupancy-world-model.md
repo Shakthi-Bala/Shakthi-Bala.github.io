@@ -17,6 +17,8 @@ topics: [perception, learning]
 featured_order: 2
 featured_area: World models & scene forecasting
 featured_summary: Geometry-aware occupancy forecasting with trajectory-conditioned predictions and inspectable planning evaluations.
+card_result: "41.92 mIoU; 42% fewer obstacle collisions in open-loop planning."
+card_conditions: "Occ3D-nuScenes validation with ground-truth past occupancy; collision reduction versus the imitation prior on matched candidates."
 ---
 
 A trajectory-conditioned model that forecasts 3D semantic occupancy from past occupancy grids.

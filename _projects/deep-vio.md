@@ -17,6 +17,8 @@ topics: [perception, learning]
 featured_order: 4
 featured_area: Learned state estimation
 featured_summary: Vision-only, inertial, and fused motion estimators compared through prediction loss and integrated trajectory error.
+card_result: "1.5 m trajectory error for ResNet-18 versus 3.5 m for two-stage FiLM."
+card_conditions: "Repository-reported synthetic-test ATE; FiLM’s lower prediction loss did not produce lower integrated trajectory error."
 ---
 
 A team comparison of learned visual, inertial, and fused odometry on synthetic data.

@@ -17,6 +17,8 @@ topics: [perception]
 featured_order: 5
 featured_area: Perception & navigation
 featured_summary: Optical-flow gap localization connected to waypoint navigation in rendered scenes.
+card_result: "Saved optical-flow outputs show contour and centroid detections."
+card_conditions: "The replay contains 200 consecutive RAFT-branch frames. An aggregate end-to-end flight-success rate is not reported."
 ---
 
 A rendered navigation pipeline using optical flow to locate candidate openings.

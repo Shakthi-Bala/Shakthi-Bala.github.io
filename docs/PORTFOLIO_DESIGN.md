@@ -43,3 +43,7 @@ Featured covers focus on a single useful panel with a readable evidence label be
 ## Experience
 
 `_data/experience.yml` contains six owner-supplied research, teaching, and internship roles. About presents the full reverse-chronological timeline with dates, locations, concise contribution bullets, and skills. Research shows a shorter overview linking to individual role anchors. The existing Git-based project history is retained in a separate expandable section and is not presented as employment. The current PeAR Lab role is also linked from Home. Relative LinkedIn duration labels are omitted so the dates do not become stale.
+
+## Project-card results
+
+The six featured projects define `card_result` and `card_conditions` in their front matter. Home and Projects use these same fields so outcome text and evaluation scope stay consistent. Conditions retain details such as open-loop planning, ground-truth occupancy inputs, simulation, matched evaluations, repository-reported results, and unreported flight-success rates. The home-page evidence block remains visible without opening a case study or enabling JavaScript.
