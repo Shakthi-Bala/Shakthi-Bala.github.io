@@ -114,13 +114,15 @@ Cycles `cbf_2cylinder_top_down.png` and `cbf_2cylinder_dist_to_obs.png`, 2.4 sec
 
 Reads the 1,153-frame, 30 fps source recording at every 15th frame (77 retained frames), resizes from 2752x2064 to 720x540 without cropping, and encodes animated WebP at quality 72 with 120 ms per frame. The WebP encoder merges one adjacent duplicate, yielding 76 encoded frames while preserving the 9.24-second playback duration. Playback is approximately 4.2 times source-video speed. It shows saved camera views of a Gaussian-splat scene; it is not a physical flight recording or a newly run navigation benchmark.
 
-## vizflyt-perception.webp
+## vizflyt-perception.webp and vizflyt-perception-mask-depth.mp4
 
-**Type:** Sampled simulated-camera recording.
+**Type:** Owner-supplied synchronized RGB, depth, and window-mask recording.
 
-[Source at the inspected revision](https://github.com/Shakthi-Bala/Vizflyt_perception_stack/blob/5eb4627ef37bc41f853098166117c9bf32ccd6e6/Code/log/drone_state_machine.mp4).
+Source: `video_with mask_and depth.mp4`, supplied by the site owner. A browser-compatible H.264 copy is committed at `assets/video/vizflyt-perception-mask-depth.mp4` and embedded with native playback controls on the project page. The supplied MPEG-4 Part 2 video is transcoded with libx264 (`-preset fast -crf 21 -pix_fmt yuv420p -movflags +faststart`), preserving resolution, frame count, frame rate, and panel layout. The full recording is 1920x480, 431 frames at 30 fps (approximately 14.37 seconds), with three adjacent 640x480 panels: RGB, depth, and window-mask output.
 
-Reads the 194-frame, 30 fps source recording at every sixth frame (33 retained frames), resizes from 2752x2064 to 720x540 without cropping, and encodes animated WebP at quality 72 with 200 ms per frame for approximately original-speed playback. The WebP encoder merges one adjacent duplicate, yielding 32 encoded frames while preserving the 6.6-second playback duration. These are saved RGB views; no new segmentation overlay or PnP result is added. The inspected navigation path uses centroid corrections and per-window offsets.
+`window_perception()` in `bin/render_robotics_previews.py` reads the committed video directly, so the original local filename and the external Vizflyt recording are no longer needed to reproduce this preview. It samples every sixth frame (72 retained samples) with 200 ms per sample, preserving approximately source-video speed. The RGB panel appears larger on the left, with depth and mask stacked on the right, on a 960x720 canvas. Each panel is fitted without cropping. The WebP uses quality 72; the encoder may merge adjacent identical frames while preserving timing. No new inference, depth estimation, or mask computation is performed.
+
+The full MP4 retains the source's original horizontal layout and timing. It replaces the earlier RGB-only preview from `Code/log/drone_state_machine.mp4`. The inspected navigation path still uses centroid corrections and per-window offsets; this recording does not add a measured PnP accuracy result.
 
 ## orientation-filters.gif
 

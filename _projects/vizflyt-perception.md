@@ -9,18 +9,27 @@ featured: true
 github: https://github.com/Shakthi-Bala/Vizflyt_perception_stack
 skills: Python · PyTorch · OpenCV · Attention U-Net · Gaussian Splatting · Visual Servoing
 highlight: RGB rendering → window features → alignment and traversal
-media_alt: Saved simulated-camera views of window targets from the Vizflyt perception repository
-media_width: 720
-media_height: 540
+media_alt: Synchronized RGB, depth, and window-mask views from the supplied window perception video
+media_width: 960
+media_height: 720
 ---
 
 **Connect a window segmentation model to the geometric and control interfaces needed for rendered navigation.**
 
 [View code on GitHub](https://github.com/Shakthi-Bala/Vizflyt_perception_stack) · [Inspect window feature extraction](https://github.com/Shakthi-Bala/Vizflyt_perception_stack/blob/main/Code/window_detector.py)
 
-{% include figure.liquid path="assets/projects/vizflyt-perception.webp" avoid_scaling=true loading="eager" alt="Saved simulated-camera views of window targets from the Vizflyt perception repository" width="720" height="540" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid path="assets/projects/vizflyt-perception.webp" avoid_scaling=true loading="eager" alt="Synchronized RGB, depth, and window-mask views from the supplied window perception video" width="960" height="720" class="img-fluid rounded z-depth-1" %}
 
-_Saved simulated-camera sequence from `Code/log/drone_state_machine.mp4`, sampled at five frames per second and shown at source-video speed. The preview contains rendered RGB views; it does not display a newly computed detection overlay._
+_Supplied window-perception recording, sampled at five frames per second and shown at source-video speed. The synchronized RGB, depth, and window-mask panels are rearranged for readability; no new model inference is added._
+
+<video controls playsinline preload="metadata" style="display: block; width: 100%; height: auto;" width="1920" height="480" aria-label="Full window perception recording showing synchronized RGB, depth, and window-mask views">
+  <source src="{{ '/assets/video/vizflyt-perception-mask-depth.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support embedded video. <a href="{{ '/assets/video/vizflyt-perception-mask-depth.mp4' | relative_url }}">Watch the full recording</a>.
+</video>
+
+[Open the full-resolution video]({{ '/assets/video/vizflyt-perception-mask-depth.mp4' | relative_url }})
+
+_The full recording preserves the original three-panel layout, resolution, and playback timing._
 
 ## The problem
 
@@ -36,7 +45,7 @@ A segmentation mask is not yet a navigation target. Multiple detections must be 
 
 ## Design and evidence
 
-The saved recording demonstrates the rendered scene and changing camera views. The implementation exposes the mask-to-feature handoff and its control use, but the active navigation path remains tuned to three windows with explicit per-window offsets.
+The supplied recording shows synchronized RGB, depth, and window-mask output as the camera view changes. The implementation exposes the mask-to-feature handoff and its control use, but the active navigation path remains tuned to three windows with explicit per-window offsets.
 
 Although the repository overview mentions PnP pose estimation, the inspected main navigation path uses segmentation-centroid corrections. This case study describes that implemented path without assigning it an unverified PnP accuracy result.
 

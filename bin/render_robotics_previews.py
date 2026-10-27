@@ -75,6 +75,44 @@ def cbf_figures():
     save_gif(frames, "cbf-drone.gif", 2400)
 
 
+def window_perception():
+    """Reflow the owner's three-panel recording for a readable project card."""
+    path = OUT.parents[1] / "assets/video/vizflyt-perception-mask-depth.mp4"
+    cap = cv2.VideoCapture(str(path))
+    frames = []
+    index = 0
+    while True:
+        ok, bgr = cap.read()
+        if not ok:
+            break
+        if index % 6 == 0:
+            rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+            height, width = rgb.shape[:2]
+            assert (width, height) == (1920, 480), "Expected three 640x480 panels"
+            fig = plt.figure(figsize=(12, 9), dpi=80, facecolor=BG)
+            fig.text(.035, .94, "Window perception: RGB + depth + mask", color="white", fontsize=25, weight="bold")
+            for panel, bounds, label, label_y in [
+                (0, [.025, .16, .60, .64], "RGB VIEW", .805),
+                (1, [.66, .51, .31, .33], "DEPTH VIEW", .855),
+                (2, [.66, .105, .31, .33], "WINDOW-MASK OUTPUT", .45),
+            ]:
+                ax = fig.add_axes(bounds)
+                ax.imshow(rgb[:, panel*640:(panel+1)*640])
+                ax.axis("off")
+                fig.text(bounds[0], label_y, label, color="#67e8f9", fontsize=13)
+            fig.text(.035, .045, "Supplied recording / synchronized source panels / source-video speed", color="#a8b7ca", fontsize=12)
+            stream = io.BytesIO()
+            fig.savefig(stream, format="png", facecolor=BG)
+            plt.close(fig)
+            stream.seek(0)
+            frames.append(Image.open(stream).convert("RGB"))
+        index += 1
+    cap.release()
+    if not frames:
+        raise RuntimeError(f"No decoded frames: {path}")
+    save_gif(frames, "vizflyt-perception.webp", 200)
+
+
 def orientation():
     path = SOURCE / "Pose_correction_with_filters/Phase1/Videos/orientation_comparison_6_panel_5.mp4"
     cap = cv2.VideoCapture(str(path))
@@ -109,5 +147,5 @@ def orientation():
 if __name__ == "__main__":
     cbf_figures()
     recording("Final_project_Aerial_Robotics_RBE595/video/drone_3windows.mp4", "aerial-window-navigation.webp", 15, 120)
-    recording("Vizflyt_perception_stack/Code/log/drone_state_machine.mp4", "vizflyt-perception.webp", 6, 200)
+    window_perception()
     orientation()
