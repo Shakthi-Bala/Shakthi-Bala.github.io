@@ -5,6 +5,7 @@
   const stop = (button) => {
     const image = button.closest("article").querySelector("[data-preview-source]");
     image.src = image.dataset.previewPoster;
+    button.closest("article").classList.remove("is-preview-playing");
     button.setAttribute("aria-pressed", "false");
     button.textContent = "Play preview";
     button.setAttribute("aria-label", button.getAttribute("aria-label").replace(/^Pause/, "Play"));
@@ -13,6 +14,7 @@
     buttons.forEach(stop);
     const image = button.closest("article").querySelector("[data-preview-source]");
     image.src = image.dataset.previewSource;
+    button.closest("article").classList.add("is-preview-playing");
     button.setAttribute("aria-pressed", "true");
     button.textContent = "Pause preview";
     button.setAttribute("aria-label", button.getAttribute("aria-label").replace(/^Play/, "Pause"));
@@ -24,6 +26,7 @@
       else play(button);
     });
     const scope = button.closest("article");
+    scope.querySelectorAll("[data-preview-cue]").forEach((cue) => (cue.hidden = false));
     const hoverTarget = scope.querySelector("[data-preview-hover]");
     if (hoverTarget) {
       hoverTarget.addEventListener("pointerenter", (event) => {

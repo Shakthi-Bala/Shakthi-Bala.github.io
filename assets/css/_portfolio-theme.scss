@@ -1509,3 +1509,40 @@ ninja-keys {
     transition: none;
   }
 }
+
+.preview-cue {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid rgba(194, 167, 255, 0.35);
+  border-radius: 20px;
+  background: rgba(9, 9, 14, 0.88);
+  color: #f4f0ff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.preview-cue > span {
+  color: #53e3f5;
+  font-size: 9px;
+}
+.preview-cue[hidden] {
+  display: none !important;
+}
+.is-preview-playing .preview-cue {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview-cue {
+    transition: none;
+  }
+}

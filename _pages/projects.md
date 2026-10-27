@@ -28,7 +28,7 @@ nav_order: 1
       {% assign preview = site.data.project_previews[project.slug] %}
       <article {% if preview.video %}data-video-scope{% endif %} class="portfolio-featured-card " aria-labelledby="featured-{{ project.slug }}">
         <a {% unless preview.video %}{% if preview.animation %}data-preview-hover{% endif %}{% endunless %} data-video-hover class="portfolio-featured-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}<span class="preview-cue" data-preview-cue aria-hidden="true" hidden><span>▶</span> Preview</span>
         </a>
         {% if preview.label %}<p class="preview-caption">{{ preview.label }}</p>{% endif %}
         <div class="portfolio-featured-body">
@@ -103,6 +103,6 @@ nav_order: 1
 
 <script src="{{ '/assets/js/portfolio-projects.js' | relative_url }}" defer></script>
 
-<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=workflow-hover-1" defer></script>
+<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=preview-cue-1" defer></script>
 
-<script src="{{ "/assets/js/card-videos.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/js/card-videos.js" | relative_url }}?v=preview-cue-1" defer></script>

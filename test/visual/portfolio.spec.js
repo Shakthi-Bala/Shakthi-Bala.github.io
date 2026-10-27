@@ -63,6 +63,9 @@ test("video previews respect reduced motion and support explicit playback", asyn
   const first = cards.first();
   const video = first.locator("video");
   const button = first.locator("[data-video-toggle]");
+  const cue = first.locator("[data-preview-cue]");
+  await expect(cue).toBeVisible();
+  await expect(cue).toHaveCSS("opacity", "1");
   await expect(video).not.toHaveAttribute("src");
   await first.locator("[data-video-hover]").hover();
   await expect(video).toHaveJSProperty("paused", true);
@@ -70,11 +73,13 @@ test("video previews respect reduced motion and support explicit playback", asyn
   await button.click();
   await expect(button).toHaveAttribute("aria-pressed", "true");
   await expect(video).toHaveJSProperty("paused", false);
+  await expect(cue).toHaveCSS("opacity", "0");
   await expect(video).toHaveJSProperty("muted", true);
   await expect(video).toHaveJSProperty("loop", true);
   await button.click();
   await expect(video).toHaveJSProperty("paused", true);
   await expect(video).toBeHidden();
+  await expect(cue).toHaveCSS("opacity", "1");
   await button.focus();
   await page.keyboard.press("Enter");
   await expect(button).toHaveAttribute("aria-pressed", "true");
@@ -290,16 +295,20 @@ test("DevResearchFlow workflow animates on hover or explicit playback while the 
     const button = card.locator("[data-preview-toggle]");
     const poster = await image.getAttribute("data-preview-poster");
     const animation = await image.getAttribute("data-preview-source");
+    const cue = card.locator("[data-preview-cue]");
+    await expect(cue).toHaveCSS("opacity", "1");
     await expect(image).toHaveAttribute("src", poster);
     await expect(card.locator("video")).toHaveCount(0);
     await expect(card.getByRole("link", { name: /^Demo/ })).toHaveAttribute("href", "/projects/devresearchflow/#project-demo");
     if (isMobile) await button.click();
     else await card.locator("[data-preview-hover]").hover();
     await expect(image).toHaveAttribute("src", animation);
+    await expect(cue).toHaveCSS("opacity", "0");
     await expect(button).toHaveAttribute("aria-pressed", "true");
     if (isMobile) await button.click();
     else await page.mouse.move(0, 0);
     await expect(image).toHaveAttribute("src", poster);
+    await expect(cue).toHaveCSS("opacity", "1");
     await page.emulateMedia({ reducedMotion: "reduce" });
     if (!isMobile) {
       await card.locator("[data-preview-hover]").hover();

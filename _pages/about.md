@@ -27,6 +27,7 @@ permalink: /
       <a class="hero-preview-media" data-video-hover href="{{ lead.url | relative_url }}" aria-label="Explore Stereo Visual-Inertial Odometry">
         <img src="{{ lead_preview.poster | relative_url }}" alt="Tracked camera features from the recorded EuRoC MH_05 estimator run" width="{{ lead_preview.width }}" height="{{ lead_preview.height }}" fetchpriority="high">
         <video class="card-preview-video" data-card-video data-video-src="{{ lead_preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>
+        <span class="preview-cue" data-preview-cue aria-hidden="true" hidden><span>▶</span> Preview</span>
       </a>
       <figcaption>
         <span>Stereo visual-inertial odometry</span>
@@ -43,7 +44,7 @@ permalink: /
       {% for project in selected %}
       {% assign preview = site.data.project_previews[project.slug] %}
       <article class="home-work-item" {% if preview.video %}data-video-scope{% endif %}>
-        <a {% unless preview.video %}{% if preview.animation %}data-preview-hover{% endif %}{% endunless %} data-video-hover class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" {% unless preview.video %}data-preview-poster="{{ preview.poster | relative_url }}" data-preview-source="{{ preview.animation | relative_url }}"{% endunless %} alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}</a>
+        <a {% unless preview.video %}{% if preview.animation %}data-preview-hover{% endif %}{% endunless %} data-video-hover class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" {% unless preview.video %}data-preview-poster="{{ preview.poster | relative_url }}" data-preview-source="{{ preview.animation | relative_url }}"{% endunless %} alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}<span class="preview-cue" data-preview-cue aria-hidden="true" hidden><span>▶</span> Preview</span></a>
         <div class="card-preview-caption"><p class="preview-caption">{{ preview.label }}</p>{% if preview.video %}<button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% elsif preview.animation %}<button type="button" class="card-preview-toggle" data-preview-toggle aria-pressed="false" aria-label="Play workflow preview: {{ project.title | escape }}" hidden>Play workflow</button>{% endif %}</div>
         <div class="work-index"><span>{{ forloop.index | prepend: '0' }} / {{ project.featured_area }}</span><span aria-hidden="true">↗</span></div>
         <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
@@ -79,6 +80,6 @@ permalink: /
   <section class="contact-end" aria-labelledby="home-contact"><p class="edition-label" id="home-contact">Contact</p><a class="contact-address" href="mailto:shakthibala2004@gmail.com">shakthibala2004@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-elsewhere"><a href="https://github.com/Shakthi-Bala">GitHub ↗</a><a href="https://www.linkedin.com/in/shakthi-bala/">LinkedIn ↗</a></div></section>
 </div>
 
-<script src="{{ "/assets/js/card-videos.js" | relative_url }}" defer></script>
+<script src="{{ "/assets/js/card-videos.js" | relative_url }}?v=preview-cue-1" defer></script>
 
-<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=workflow-hover-1" defer></script>
+<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=preview-cue-1" defer></script>

@@ -9,6 +9,7 @@
     const button = scope.querySelector("[data-video-toggle]");
     video.pause();
     video.hidden = true;
+    scope.classList.remove("is-preview-playing");
     button.setAttribute("aria-pressed", "false");
     button.textContent = "Play preview";
     button.setAttribute("aria-label", button.getAttribute("aria-label").replace(/^Pause/, "Play"));
@@ -29,6 +30,7 @@
         return;
       }
       video.hidden = false;
+      scope.classList.add("is-preview-playing");
       button.setAttribute("aria-pressed", "true");
       button.textContent = "Pause preview";
       button.setAttribute("aria-label", button.getAttribute("aria-label").replace(/^Play/, "Pause"));
@@ -46,6 +48,7 @@
     const video = scope.querySelector("[data-card-video]");
     const button = scope.querySelector("[data-video-toggle]");
     button.hidden = false;
+    scope.querySelectorAll("[data-preview-cue]").forEach((cue) => (cue.hidden = false));
     button.addEventListener("click", () => (active === scope ? stop(scope) : play(scope)));
     scope.querySelector("[data-video-hover]").addEventListener("pointerenter", (event) => {
       if (event.pointerType === "mouse" && hoverPointer.matches && !reducedMotion.matches && !navigator.connection?.saveData) play(scope);

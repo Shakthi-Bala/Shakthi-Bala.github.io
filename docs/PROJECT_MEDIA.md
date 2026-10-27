@@ -226,3 +226,7 @@ The DevResearchFlow cover is a still of the final frame of `docs/assets/research
 Home and featured Projects cards show the still by default, with Write-up, Code, and Demo links. DevResearchFlow deliberately has no `video` field in preview data, so the terminal recording stays off these cards. Its `demo_anchor` links to the recorded CLI demonstration inside the case study; that recording and its synthetic-fixture caption remain unchanged.
 
 The workflow image on Home and featured Projects cards now plays the repository GIF on mouse hover and restores its still when the pointer leaves the card. A Play/Pause button supports touch and keyboard use. Reduced-motion and data-saving preferences suppress automatic hover playback. The Demo link still opens the terminal recording inside the case study; no CLI video is embedded in these cards.
+
+## Preview cues
+
+The hero and six featured cards have a small decorative “▶ Preview” badge in the top-right corner. It appears only after JavaScript enables playback, fades while the video or workflow GIF is playing, and returns on pause or pointer exit. The badge does not intercept case-study links; the existing labelled Play/Pause buttons remain the touch and keyboard controls. Reduced-motion preferences disable the fade. Videos retain on-demand loading and `preload="none"`.

@@ -100,4 +100,4 @@ The repository requires external RAFT code and weights, scene assets, and update
 
 [Explore the scene setup, perception code, and control modules →](https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt)
 
-<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=workflow-hover-1" defer></script>
+<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=preview-cue-1" defer></script>
