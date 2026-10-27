@@ -87,3 +87,61 @@ Render with `python bin/render_portfolio_previews.py /path/to/portfolio-sources`
 [Source at the inspected revision](https://github.com/Shakthi-Bala/Shakesphere_poem_generator/tree/9ab1f4b181337a47d28fdc25c51d194215fead86/Code).
 
 Shows the LSTM and GPT-2 paths implemented in `model.py`, `fine_tune.py`, `generate.py`, and `main.py`. The four displayed lines are transcribed from `section_output()` in `report.py`, which labels them as a GPT-2 sample at temperature 0.8. They are not a newly executed model output. No checkpoint or training corpus is included in the inspected public checkout.
+
+## Robotics preview reproduction
+
+`bin/render_robotics_previews.py` renders the following scientific figures and recorded-video previews with OpenCV, Matplotlib, NumPy, and Pillow:
+
+```bash
+python bin/render_robotics_previews.py /path/to/portfolio-sources
+```
+
+Place the inspected source checkouts in that directory under their original GitHub repository names. The script reads saved artifacts; it does not run robot hardware, controllers, segmentation inference, or a new simulation. All animations loop. The native SVG architecture illustrations below can be edited directly.
+
+## cbf-drone.gif
+
+**Type:** Saved simulation-figure sequence.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/CBF_for_full_drone_dynamics/tree/d8f9752023047048af9578bc7de1dc33d1418a98/figures/with_cbf/2_cylinder).
+
+Cycles `cbf_2cylinder_top_down.png` and `cbf_2cylinder_dist_to_obs.png`, 2.4 seconds each, on a 1200x900 canvas. Original figures are fitted without cropping; axes, legends, and results remain unchanged. These are the repository's saved CBF-labeled scenario outputs, not a new simulation or a claim of a full-dynamics safety guarantee. The active default controller file is the baseline; the CBF integration is in `scripts/backup_nonlinear_controller.py`.
+
+## aerial-window-navigation.webp
+
+**Type:** Sampled rendered-navigation recording.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Final_project_Aerial_Robotics_RBE595/blob/05fc96f3c62a2839f375984e783c2c2b16fbee54/video/drone_3windows.mp4).
+
+Reads the 1,153-frame, 30 fps source recording at every 15th frame (77 retained frames), resizes from 2752x2064 to 720x540 without cropping, and encodes animated WebP at quality 72 with 120 ms per frame. The WebP encoder merges one adjacent duplicate, yielding 76 encoded frames while preserving the 9.24-second playback duration. Playback is approximately 4.2 times source-video speed. It shows saved camera views of a Gaussian-splat scene; it is not a physical flight recording or a newly run navigation benchmark.
+
+## vizflyt-perception.webp
+
+**Type:** Sampled simulated-camera recording.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Vizflyt_perception_stack/blob/5eb4627ef37bc41f853098166117c9bf32ccd6e6/Code/log/drone_state_machine.mp4).
+
+Reads the 194-frame, 30 fps source recording at every sixth frame (33 retained frames), resizes from 2752x2064 to 720x540 without cropping, and encodes animated WebP at quality 72 with 200 ms per frame for approximately original-speed playback. The WebP encoder merges one adjacent duplicate, yielding 32 encoded frames while preserving the 6.6-second playback duration. These are saved RGB views; no new segmentation overlay or PnP result is added. The inspected navigation path uses centroid corrections and per-window offsets.
+
+## orientation-filters.gif
+
+**Type:** Reflowed scientific orientation-comparison recording.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Pose_correction_with_filters/blob/a9cdb78b9519d7002ff41ed4e9c407401eb1d1b9/Phase1/Videos/orientation_comparison_6_panel_5.mp4).
+
+Reads the 120-frame, 20 fps recording at every fourth frame, retaining 30 frames at 200 ms each. Each original 2400x480 scientific frame is divided into its six equal 400x480 panels, then arranged into a three-column, two-row layout on a 960x720 canvas. Original panel titles, timestamps, and orientation visualizations are retained. The source filename labels sequence 5; this does not independently verify data provenance or establish a new error metric. Columns show gyro, accelerometer, complementary filter, Madgwick, UKF, and Vicon.
+
+## rgmc-simsort.svg
+
+**Type:** Native SVG illustration of a documented design.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/RGMC_Simsort_2025/blob/9c700495deb61d0eab2962ca6e2044594afa2328/README.md).
+
+Summarizes seven lookup views, perception/deprojection/PCA, five workspace-region strategies, and class-based placement. The inspected Git checkout contains only the README. The illustration is not a screenshot, execution trace, or verified implementation result; the README's external demo/files folder was not used to create this asset.
+
+## ur16e-vision-gripper.svg
+
+**Type:** Native SVG source-code architecture illustration.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/UR_robot_integration_with_vision_and_gripper-using-movit/tree/f52f1d92d8181ac91a6935136e4bb0aaad029862).
+
+Based on `final_pkg/scripts/Try.py`, `final_pkg/scripts/mpick_client.py`, the alternative object-location clients, and `final_pkg/launch/sim_complete.launch`. Distinguishes external object-location interfaces from fixed demonstration poses, then shows action goals, MoveIt planning/execution, gripper requests, and staged manipulation. It does not depict a recorded or newly verified hardware run.
