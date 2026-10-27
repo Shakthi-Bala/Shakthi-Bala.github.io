@@ -104,3 +104,29 @@ test("Home navigation opens the current project and writing pages", async ({ pag
   await expect(page).toHaveURL(/\/writing\/$/);
   await expect(page.locator("#navbar a.nav-link")).toHaveText(["Home", "Projects", "Writing (current)", "About"]);
 });
+
+test("brand palette remains readable and fits the viewport", async ({ page, baseURL }) => {
+  for (const route of ["/", "/work/", "/writing/", "/about/"]) {
+    await page.goto(`${baseURL.replace(/\/$/, "")}${route}`, { waitUntil: "domcontentloaded" });
+    await expect(page.locator("body")).toHaveCSS("background-color", "rgb(9, 9, 14)");
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    expect(overflow).toBe(false);
+    const ratio = await page.evaluate(() => {
+      const luminance = (color) => {
+        const values = color
+          .match(/\d+/g)
+          .slice(0, 3)
+          .map(Number)
+          .map((value) => {
+            const channel = value / 255;
+            return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+          });
+        return values[0] * 0.2126 + values[1] * 0.7152 + values[2] * 0.0722;
+      };
+      const body = getComputedStyle(document.body);
+      const muted = getComputedStyle(document.querySelector(".post-description") || document.body);
+      return (luminance(muted.color) + 0.05) / (luminance(body.backgroundColor) + 0.05);
+    });
+    expect(ratio).toBeGreaterThanOrEqual(4.5);
+  }
+});

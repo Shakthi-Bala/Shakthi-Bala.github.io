@@ -169,3 +169,7 @@ Used in the engineering note about EuRoC V2_03 stereo-matching dropouts. The plo
 ## Still previews in the project collection
 
 `assets/projects/posters/*.webp` are still frames extracted from the existing animated project previews, with a maximum dimension of 960 pixels. `_data/project_previews.yml` maps project slugs to these posters. The project collection starts with still images; its Play preview buttons load the original animation on request. Only one preview plays at a time, and switching browser tabs stops it. Without JavaScript, the still previews and project links remain available.
+
+## Site presentation
+
+The site uses a single dark palette: jet black `#09090e`, royal amethyst `#7040b5` for primary buttons, and electric cyan `#53e3f5` for links and focus indicators. Lighter amethyst is used for text on dark surfaces. `assets/css/main.scss` mirrors the upstream theme entrypoint and adds the site-only `portfolio-theme` Sass module. Its reviewed override is recorded in `.al-folio-overrides.yml`; compare it when upgrading `al_folio_core`. The palette stays consistent for visitors who previously saved a light-mode preference.
