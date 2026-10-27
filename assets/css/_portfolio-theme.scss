@@ -1061,3 +1061,12 @@ ninja-keys {
 .photo-print--wide {
   grid-column: 1 / -1;
 }
+
+.home-identity h1 .home-middle-name {
+  display: block;
+  font-size: 0.3em;
+  line-height: 1.6;
+  letter-spacing: -0.025em;
+  margin-top: 0.25em;
+  color: var(--global-text-color-light);
+}

@@ -11,7 +11,7 @@ permalink: /
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-identity">
       <p class="edition-label"><span class="edition-dot" aria-hidden="true"></span> Robotics / Worcester Polytechnic Institute</p>
-      <h1 id="home-title">Shakthibala<br><em>Balamurugan.</em></h1>
+      <h1 id="home-title">Shakthibala<br><span class="home-middle-name">Sivagami</span> <em>Balamurugan.</em></h1>
       <p class="home-deck">I work on how robots see their surroundings, estimate motion, and learn from observations.</p>
       <p class="home-context">Robotics graduate student at WPI.<br>Course projects &amp; independent work.</p>
       <div class="editorial-actions">
@@ -55,7 +55,7 @@ permalink: /
   </section>
 
   <section class="home-personal" aria-labelledby="beyond-work">
-    <img src="{{ '/assets/img/shakthibala-headshot.png' | relative_url }}" alt="Shakthibala Balamurugan" loading="lazy" width="160" height="200">
+    <img src="{{ '/assets/img/shakthibala-headshot.png' | relative_url }}" alt="Shakthibala Sivagami Balamurugan" loading="lazy" width="160" height="200">
     <div><p class="edition-label">Outside robotics</p><h2 id="beyond-work">A few other interests.</h2><p>Photography, chess, books, and films with a good plot. </p><div class="home-personal-links"><a class="text-action" href="{{ '/photography/' | relative_url }}">View photographs <span aria-hidden="true">↗</span></a><a class="text-action" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">↗</span></a></div></div>
   </section>
   <section class="contact-end" aria-labelledby="home-contact"><p class="edition-label" id="home-contact">Contact</p><a class="contact-address" href="mailto:shakthibala2004@gmail.com">shakthibala2004@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-elsewhere"><a href="https://github.com/Shakthi-Bala">GitHub ↗</a><a href="https://www.linkedin.com/in/shakthi-bala/">LinkedIn ↗</a></div></section>

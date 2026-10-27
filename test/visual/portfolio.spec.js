@@ -157,7 +157,7 @@ test("theme switch works and remembers the visitor choice", async ({ page, baseU
 
 test("home presents the six real projects with locally hosted type and still previews", async ({ page, baseURL }) => {
   await page.goto(baseURL, { waitUntil: "domcontentloaded" });
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("ShakthibalaBalamurugan.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Shakthibala\s*Sivagami\s*Balamurugan\./);
   const projects = page.locator(".home-work-item");
   await expect(projects).toHaveCount(6);
   const paths = await projects

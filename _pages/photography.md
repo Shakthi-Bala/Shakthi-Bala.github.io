@@ -18,7 +18,7 @@ nav_order: 3
     </figure>
     {% endfor %}
   </div>
-  <p class="photography-credit">Photographs by Shakthibala Balamurugan.</p>
+  <p class="photography-credit">Photographs by Shakthibala Sivagami Balamurugan.</p>
 </div>
 
 <dialog class="photo-lightbox" data-photo-viewer aria-label="Photograph viewer" aria-describedby="photo-viewer-caption">
