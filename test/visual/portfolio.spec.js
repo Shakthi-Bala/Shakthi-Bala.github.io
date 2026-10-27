@@ -175,7 +175,7 @@ test("home presents the six real projects with locally hosted type and still pre
 test("photography preserves framing and supports keyboard viewing", async ({ page, baseURL }) => {
   await page.goto(`${baseURL.replace(/\/$/, "")}/photography/`);
   const prints = page.locator(".photo-print");
-  await expect(prints).toHaveCount(4);
+  await expect(prints).toHaveCount(5);
   for (const image of await prints.locator("img").all()) {
     await image.scrollIntoViewIfNeeded();
     await image.evaluate((element) => element.decode());
@@ -185,13 +185,13 @@ test("photography preserves framing and supports keyboard viewing", async ({ pag
   await first.click();
   const viewer = page.getByRole("dialog", { name: "Photograph viewer" });
   await expect(viewer).toBeVisible();
-  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 4");
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 5");
   await expect(viewer.locator("[data-photo-image]")).toHaveAttribute("alt", /vaulted church ceiling/);
   await page.keyboard.press("ArrowRight");
-  await expect(viewer.locator("[data-photo-position]")).toHaveText("2 / 4");
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("2 / 5");
   await expect(viewer.locator("[data-photo-caption]")).toHaveText("Lights after dark");
   await page.keyboard.press("ArrowLeft");
-  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 4");
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 5");
   await page.keyboard.press("Escape");
   await expect(viewer).not.toBeVisible();
   await expect(first).toBeFocused();
@@ -214,7 +214,7 @@ test("photographs remain accessible without JavaScript", async ({ browser, baseU
   const page = await context.newPage();
   await page.goto(`${baseURL.replace(/\/$/, "")}/photography/`);
   const photos = page.locator(".photo-print a");
-  await expect(photos).toHaveCount(4);
+  await expect(photos).toHaveCount(5);
   const response = await page.request.get(await photos.first().getAttribute("href"));
   expect(response.ok()).toBe(true);
   expect(response.headers()["content-type"]).toContain("image/jpeg");

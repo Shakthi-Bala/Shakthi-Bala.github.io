@@ -240,6 +240,7 @@ kramdown:
 include: ["_pages"]
 exclude:
   - "photo*.jpeg"
+  - "DSC_*.JPG"
   - _books/
   - _news/
   - _teachings/

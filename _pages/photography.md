@@ -10,9 +10,9 @@ nav_order: 3
   <header class="editorial-page-heading"><p class="edition-label">Outside robotics / Photographs</p><h1>A different <em>lens.</em></h1><p>A few photographs from my time away from the screen.</p></header>
   <div class="photo-gallery" data-photo-gallery>
     {% for photo in site.data.photographs %}
-    <figure class="photo-print">
+    <figure class="photo-print{% if photo.wide %} photo-print--wide{% endif %}">
       <a href="{{ '/assets/photography/' | append: photo.id | append: '-large.jpg' | relative_url }}" data-photo-open data-photo-caption="{{ photo.caption | escape }}" aria-label="View photograph: {{ photo.caption | escape }}">
-        <img src="{{ '/assets/photography/' | append: photo.id | append: '-1000.webp' | relative_url }}" srcset="{{ '/assets/photography/' | append: photo.id | append: '-640.webp' | relative_url }} 640w, {{ '/assets/photography/' | append: photo.id | append: '-1000.webp' | relative_url }} 1000w, {{ '/assets/photography/' | append: photo.id | append: '-1600.webp' | relative_url }} 1600w" sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1240px) 48vw, 620px" alt="{{ photo.alt | escape }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+        <img src="{{ '/assets/photography/' | append: photo.id | append: '-1000.webp' | relative_url }}" srcset="{{ '/assets/photography/' | append: photo.id | append: '-640.webp' | relative_url }} 640w, {{ '/assets/photography/' | append: photo.id | append: '-1000.webp' | relative_url }} 1000w, {{ '/assets/photography/' | append: photo.id | append: '-1600.webp' | relative_url }} 1600w{% if photo.wide %}, {{ '/assets/photography/' | append: photo.id | append: '-2400.webp' | relative_url }} 2400w{% endif %}" sizes="{% if photo.wide %}(max-width: 1240px) calc(100vw - 40px), 1180px{% else %}(max-width: 600px) calc(100vw - 40px), (max-width: 1240px) 48vw, 620px{% endif %}" alt="{{ photo.alt | escape }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
       </a>
       <figcaption><span>{{ forloop.index | prepend: '0' }} / {{ photo.caption }}</span><span aria-hidden="true">↗</span></figcaption>
     </figure>

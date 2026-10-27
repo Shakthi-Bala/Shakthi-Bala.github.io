@@ -18,3 +18,9 @@
   alt: Long shadows on a wooded hillside above picnic tables and a silver trailer in warm afternoon light.
   width: 2268
   height: 4032
+- id: photo-5
+  caption: Water lily
+  alt: A white water lily among green lily pads and reflections of trees on dark pond water.
+  width: 6000
+  height: 4000
+  wide: true

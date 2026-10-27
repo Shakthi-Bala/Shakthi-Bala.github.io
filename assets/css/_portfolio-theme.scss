@@ -1057,3 +1057,7 @@ ninja-keys {
     font-size: 11px;
   }
 }
+
+.photo-print--wide {
+  grid-column: 1 / -1;
+}
