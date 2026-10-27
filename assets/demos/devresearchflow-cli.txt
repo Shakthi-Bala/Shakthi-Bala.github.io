@@ -1,0 +1,47 @@
+DevResearchFlow | real CLI demonstration
+
+Runnable toy ablation. Reviews are synthetic fixtures.
+
+$ drf --version
+0.3.0
+
+$ python examples/toy-ablation/build.py "$DEMO_DIR"
+Example created: /tmp/drf-portfolio-recorded-example
+Actual MSE: baseline 0, ablated 7.5. One failed run retained.
+All commit snapshots validated. Reviews are synthetic fixtures, not independent judgments.
+Reviewed records and retained runs
+
+
+$ drf --project "$DEMO_DIR" status
+DevResearchFlow: 12 records, 0 blockers
+EXP-001: completed → complete: decision DEC-001 recorded; choose the next research question
+RUN-001: failed
+RUN-002: completed
+Next: EXP-001: complete: decision DEC-001 recorded; choose the next research question
+
+$ drf --project "$DEMO_DIR" check
+12 records; 0 errors. Structural validity does not establish scientific support.
+Recompute the toy result
+
+
+$ python analysis/check.py
+Recomputed expected MSE: (1+4+9+16)/4 = 7.5
+
+$ cat runs/RUN-002/metrics.json
+{
+  "baseline_mse": 0.0,
+  "ablated_mse": 7.5,
+  "difference": 7.5
+}
+
+$ cat runs/RUN-001/stderr.log
+Injected demonstration failure before metrics
+
+$ drf --version
+0.3.0
+
+$ drf check
+12 records; 0 errors. Structural validity does not establish scientific support.
+
+$ python analysis/check.py
+Recomputed expected MSE: (1+4+9+16)/4 = 7.5

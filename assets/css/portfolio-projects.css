@@ -320,3 +320,6 @@
     transition: none;
   }
 }
+.portfolio-projects .preview-caption {
+  margin-bottom: 0;
+}
