@@ -3,7 +3,7 @@ layout: page
 permalink: /repositories/
 title: repositories
 description: GitHub activity and selected repositories in robotics, autonomous systems, and machine learning.
-nav: true
+nav: false
 nav_order: 4
 ---
 

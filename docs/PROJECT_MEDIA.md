@@ -165,3 +165,7 @@ Reproduce with `python bin/render_pblite_preview.py /path/to/Pblite_boundary_det
 [Source at the inspected revision](https://github.com/Shakthi-Bala/Classical_vio/blob/5a659caad3694b498a67e6236d9b847d2ab257ce/cpp/results/final/v203_tracking.png).
 
 Used in the engineering note about EuRoC V2_03 stereo-matching dropouts. The plot shows the repository's recorded tracking/exposure diagnostics; no measurements or plot content were changed for the website. It supports the observation that temporal tracks remained available during periods of failed stereo matching.
+
+## Still previews in the project collection
+
+`assets/projects/posters/*.webp` are still frames extracted from the existing animated project previews, with a maximum dimension of 960 pixels. `_data/project_previews.yml` maps project slugs to these posters. The project collection starts with still images; its Play preview buttons load the original animation on request. Only one preview plays at a time, and switching browser tabs stops it. Without JavaScript, the still previews and project links remain available.

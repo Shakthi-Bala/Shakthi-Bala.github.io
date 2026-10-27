@@ -1,10 +1,10 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
 description: Selected projects in robot perception, state estimation, world models, robot learning, and research software, with a browsable collection of all work.
 nav: true
-nav_order: 3
+nav_order: 1
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/portfolio-projects.css' | relative_url }}">
@@ -15,7 +15,7 @@ nav_order: 3
 <div class="projects portfolio-projects" data-project-portfolio>
   <div class="portfolio-intro">
     <p class="portfolio-eyebrow">Perception · Robot learning · Research software</p>
-    <p class="portfolio-lead">Building robotic systems that see, learn, and explain their results.</p>
+    <p class="portfolio-lead">Perception, state estimation, and robot learning.</p>
     <p>From visual-inertial estimation and occupancy forecasting to learned manipulation and reproducible research. Explore six selected projects, or browse the full collection by topic.</p>
     <a class="portfolio-jump" href="#all-projects">Browse all {{ portfolio_projects.size }} projects <span aria-hidden="true">↓</span></a>
   </div>
@@ -30,11 +30,13 @@ nav_order: 3
     </div>
     <div class="portfolio-featured-grid">
       {% for project in featured_projects %}
+      {% assign preview = site.data.project_previews[project.slug] %}
       <article class="portfolio-featured-card hoverable{% if forloop.first or forloop.last %} portfolio-featured-card--wide{% endif %}" aria-labelledby="featured-{{ project.slug }}">
         <a class="portfolio-featured-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
         </a>
         <div class="portfolio-featured-body">
+        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <p class="portfolio-project-area">{{ project.featured_area }}</p>
           <h3 id="featured-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           <p class="portfolio-evidence">{{ project.highlight }}</p>
@@ -74,11 +76,13 @@ nav_order: 3
     </div>
     <div class="portfolio-library-grid" id="project-library-grid">
       {% for project in portfolio_projects %}
+      {% assign preview = site.data.project_previews[project.slug] %}
       <article class="portfolio-library-card" data-project-card data-topics="{{ project.topics | join: ' ' | escape }}" data-search="{{ project.title | append: ' ' | append: project.description | append: ' ' | append: project.skills | append: ' ' | append: project.category | escape }}" aria-labelledby="library-{{ project.slug }}">
         <a class="portfolio-library-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
         </a>
         <div class="portfolio-library-body">
+        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <p class="portfolio-project-area">{{ project.category }}</p>
           <h3 id="library-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           <p>{{ project.description }}</p>
@@ -98,3 +102,5 @@ nav_order: 3
 </div>
 
 <script src="{{ '/assets/js/portfolio-projects.js' | relative_url }}" defer></script>
+
+<script src="{{ "/assets/js/project-previews.js" | relative_url }}" defer></script>

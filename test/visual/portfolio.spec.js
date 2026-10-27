@@ -55,3 +55,29 @@ test("the complete collection remains available without JavaScript", async ({ br
   await expect(page.locator("[data-project-controls]")).toBeHidden();
   await context.close();
 });
+
+test("previews start still and play only on request", async ({ page, baseURL }) => {
+  await page.goto(projectPath(baseURL));
+  const card = page
+    .locator(".portfolio-featured-card")
+    .filter({ has: page.locator("[data-preview-toggle]") })
+    .first();
+  const image = card.locator("img");
+  const button = card.locator("[data-preview-toggle]");
+  const poster = await image.getAttribute("data-preview-poster");
+  await expect(image).toHaveAttribute("src", poster);
+  await button.click();
+  await expect(button).toHaveAttribute("aria-pressed", "true");
+  await expect(image).toHaveAttribute("src", await image.getAttribute("data-preview-source"));
+  await button.click();
+  await expect(image).toHaveAttribute("src", poster);
+  await expect(button).toHaveAttribute("aria-pressed", "false");
+});
+
+test("navigation and contact links contain only ready sections", async ({ page, baseURL }) => {
+  await page.goto(projectPath(baseURL));
+  const nav = page.locator("#navbar a.nav-link");
+  await expect(nav).toHaveText(["Home", "Projects (current)", "Writing", "About"]);
+  await expect(page.locator('footer a[href="mailto:shakthibala2004@gmail.com"]')).toHaveCount(1);
+  await expect(page.locator('footer a[href="https://www.linkedin.com/in/shakthi-bala/"]')).toHaveCount(1);
+});

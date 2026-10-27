@@ -3,7 +3,7 @@ layout: page
 title: research
 description: Questions behind my work, project experience, and technical notes.
 permalink: /research/
-nav: true
+nav: false
 nav_order: 2
 ---
 

@@ -1,0 +1,34 @@
+aerial-window-navigation:
+  poster: /assets/projects/posters/aerial-window-navigation.webp
+blender-dataset:
+  poster: /assets/projects/posters/blender-dataset.webp
+camera-calibration:
+  poster: /assets/projects/posters/camera-calibration.webp
+cbf-drone:
+  poster: /assets/projects/posters/cbf-drone.webp
+classical-panorama:
+  poster: /assets/projects/posters/classical-panorama.webp
+classical-sfm:
+  poster: /assets/projects/posters/classical-sfm.webp
+deep-homography:
+  poster: /assets/projects/posters/deep-homography.webp
+deep-vio:
+  poster: /assets/projects/posters/deep-vio.webp
+devresearchflow:
+  poster: /assets/projects/posters/devresearchflow.webp
+gap-navigation:
+  poster: /assets/projects/posters/gap-navigation.webp
+imitation-learning:
+  poster: /assets/projects/posters/imitation-learning.webp
+nerf:
+  poster: /assets/projects/posters/nerf.webp
+occupancy-world-model:
+  poster: /assets/projects/posters/occupancy-world-model.webp
+orientation-filters:
+  poster: /assets/projects/posters/orientation-filters.webp
+policy-gradient-lab:
+  poster: /assets/projects/posters/policy-gradient-lab.webp
+stereo-vio:
+  poster: /assets/projects/posters/stereo-vio.webp
+vizflyt-perception:
+  poster: /assets/projects/posters/vizflyt-perception.webp

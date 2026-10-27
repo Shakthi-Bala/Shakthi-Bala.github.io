@@ -151,7 +151,7 @@
   grid-template-columns: 1fr 1.1fr;
 }
 .portfolio-featured-card--wide .portfolio-featured-media {
-  aspect-ratio: auto;
+  aspect-ratio: 4 / 3;
   min-height: 330px;
 }
 .portfolio-featured-card--wide .portfolio-featured-body {
@@ -232,7 +232,7 @@
   flex-direction: column;
 }
 .portfolio-library-media {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
 }
 .portfolio-library-body {
   display: flex;
