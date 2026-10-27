@@ -2,16 +2,16 @@
 layout: page
 title: DevResearchFlow
 description: A Python CLI that connects research plans, independent reviews, and captured experiment evidence through Git-aware validation.
-img: assets/projects/devresearchflow-workflow.gif
+img: assets/projects/devresearchflow-cli.webp
 importance: 2
 category: Research & Developer Tools
 featured: true
 github: https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev
 skills: Python · CLI Design · JSON Schema · Git · CI · Provenance
 highlight: Reviewed protocols → verified inputs → recorded execution evidence
-media_alt: Animated diagram showing the research workflow and independent review stages
-media_width: 1200
-media_height: 744
+media_alt: Recorded terminal commands validating the runnable example and recomputing its mean squared error
+media_width: 843
+media_height: 600
 portfolio: true
 topics: [research-tools]
 featured_order: 6
@@ -28,15 +28,20 @@ A Python CLI for reviewing research plans, checking inputs, and recording experi
     <div><dt>Contribution &amp; credit</dt><dd>Built the Python CLI, structured records, review gates, input checks, execution runner, and Git hooks. Optional integrations use external tools; the repository supplies the workflow and evidence checks.</dd></div>
     <div><dt>Outcome &amp; conditions</dt><dd>The 0.3.0 validation record reports <strong>88 passing tests on Python 3.10 and 3.13</strong>, with 84% combined statement/branch coverage on 3.13. These checks cover software behavior and recorded evidence.</dd></div>
     <div><dt>Engineering decision</dt><dd>Validated staged files and checked code/data manifests before execution. A review should stop being accepted when the material it covered changes.</dd></div>
-    <div><dt>Artifacts</dt><dd><a href="#project-demo">Workflow illustration</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev">Code</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/docs/release-review.md">Validation record</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/examples/toy-ablation/README.md">Runnable example</a></dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Recorded CLI demonstration</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev">Code</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/docs/release-review.md">Validation record</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/examples/toy-ablation/README.md">Runnable example</a></dd></div>
   </dl>
 </section>
 
 <span id="project-demo" class="research-anchor"></span>
 
-{% include figure.liquid path="assets/projects/devresearchflow-workflow.gif" avoid_scaling=true loading="eager" alt="Workflow illustration following research planning, implementation, execution, independent review, and conclusions" width="1200" height="744" class="img-fluid rounded z-depth-1" %}
+<video controls playsinline preload="metadata" width="844" height="600" poster="{{ '/assets/projects/covers/devresearchflow.webp' | relative_url }}" aria-label="DevResearchFlow CLI recording of the runnable toy ablation" style="display:block;width:100%;height:auto;">
+  <source src="{{ '/assets/video/devresearchflow-cli.mp4' | relative_url }}" type="video/mp4">
+  <a href="{{ '/assets/video/devresearchflow-cli.mp4' | relative_url }}">Open the CLI recording</a>.
+</video>
 
-_Workflow illustration, not a recording of live agent execution. Amber outlines identify independent review stages._
+_Actual commands from the repository’s runnable toy ablation: build the example, inspect a retained failed run and a completed run, validate 12 records with zero errors, and recompute MSE 7.5. The review records are synthetic teaching fixtures; no independent reviewer or live agent session is represented. Idle periods are shortened for playback._
+
+[Read the recording transcript]({{ '/assets/demos/devresearchflow-cli.txt' | relative_url }}) · [Download the terminal recording]({{ '/assets/demos/devresearchflow-cli.cast' | relative_url }}) · [Reproduce the example](https://github.com/Shakthi-Bala/DevResearchFlow/tree/2740a816fa9af3f44289d8360a088610fc670827/examples/toy-ablation)
 
 ## The problem
 
@@ -83,5 +88,11 @@ The [first-experiment guide](https://github.com/Shakthi-Bala/DevResearchFlow/blo
 ## Boundaries
 
 The validator checks structure, recorded identities, and provenance; scientific correctness still requires substantive review. Receipts detect ordinary changes but are not cryptographic attestation against someone controlling the repository and execution host. The worked example uses real local execution with explicitly synthetic review fixtures; a real thesis pilot and live role-profile enforcement remain unverified.
+
+## Workflow reference
+
+{% include figure.liquid path="assets/projects/devresearchflow-workflow.gif" avoid_scaling=true loading="eager" alt="Workflow illustration following research planning, implementation, execution, independent review, and conclusions" width="1200" height="744" class="img-fluid rounded z-depth-1" %}
+
+_Workflow illustration, not a recording of live agent execution. Amber outlines identify independent review stages._
 
 [Explore the CLI, architecture, and reproducible example →](https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev)

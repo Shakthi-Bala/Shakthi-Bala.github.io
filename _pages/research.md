@@ -1,6 +1,6 @@
 ---
 layout: page
-title: research
+title: Research
 description: Questions behind my work, project experience, and technical notes.
 permalink: /research/
 nav: false
@@ -15,15 +15,15 @@ nav_order: 2
   <section aria-labelledby="research-questions">
     <h2 id="research-questions">Questions behind the work</h2>
     <div class="research-question">
-      <h3>Which geometry should a model be given rather than learn?</h3>
+      <h3>{{ site.data.research_questions[0].question }}</h3>
       <p>In the <a href="{{ '/projects/occupancy-world-model/' | relative_url }}">occupancy world model</a>, explicit ego-motion warping made a large difference under the same training schedule. I’m interested in where that division stops helping: moving objects, newly visible space, and imperfect pose estimates.</p>
     </div>
     <div class="research-question">
-      <h3>How should a planner treat space it has not observed?</h3>
+      <h3>{{ site.data.research_questions[1].question }}</h3>
       <p>The occupancy experiments exposed two related problems: forecasts that leave unseen regions empty, and metrics that confuse missing ground labels with off-road evidence. I want to understand how those unknowns should affect candidate scoring and evaluation.</p>
     </div>
     <div class="research-question">
-      <h3>What can a localization system keep using when stereo matching fails?</h3>
+      <h3>{{ site.data.research_questions[2].question }}</h3>
       <p>On a difficult EuRoC sequence, temporal tracks remained useful while stereo matches disappeared. The <a href="{{ '/projects/stereo-vio/' | relative_url }}">VIO work</a> investigates how to retain those observations without adding poorly constrained landmarks. The <a href="{{ '/projects/deep-vio/' | relative_url }}">Deep VIO comparison</a> raises a related question: when does a lower prediction loss actually improve the integrated trajectory?</p>
     </div>
     <p>I’d be interested in comparing failure cases, evaluation protocols, and reproduction results with others working on these problems. The <a href="https://github.com/Shakthi-Bala" target="_blank" rel="noopener noreferrer">project repositories</a> contain the code and supporting records.</p>

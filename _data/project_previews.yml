@@ -13,22 +13,53 @@ classical-sfm:
 deep-homography:
   poster: /assets/projects/posters/deep-homography.webp
 deep-vio:
-  poster: /assets/projects/posters/deep-vio.webp
+  alt: Top-down ground-truth and model trajectories from the saved synthetic-sequence
+    evaluation.
+  animation: /assets/projects/previews/deep-vio.webp
+  height: 615
+  label: Trajectory comparisons · saved evaluation figures
+  poster: /assets/projects/covers/deep-vio.webp
+  width: 860
 devresearchflow:
-  poster: /assets/projects/posters/devresearchflow.webp
+  alt: Recorded DevResearchFlow commands validating the toy example and recomputing
+    its error.
+  height: 468
+  label: CLI recording · synthetic review fixtures
+  poster: /assets/projects/covers/devresearchflow.webp
+  width: 720
 gap-navigation:
-  poster: /assets/projects/posters/gap-navigation.webp
+  alt: Saved RAFT optical-flow output with the repository’s black contour and centroid
+    annotations.
+  height: 272
+  label: Optical-flow detections · saved frame replay
+  poster: /assets/projects/covers/gap-navigation.webp
+  width: 480
 imitation-learning:
-  poster: /assets/projects/posters/imitation-learning.webp
+  alt: A simulated UR5e using the transferred policy to push the T-shaped object.
+  animation: /assets/projects/previews/imitation-learning.webp
+  height: 445
+  label: Simulated UR5e · policy recording
+  poster: /assets/projects/covers/imitation-learning.webp
+  width: 640
 nerf:
   poster: /assets/projects/posters/nerf.webp
 occupancy-world-model:
-  poster: /assets/projects/posters/occupancy-world-model.webp
+  alt: The learned world model’s saved three-dimensional semantic occupancy forecast.
+  animation: /assets/projects/previews/occupancy-world-model.webp
+  height: 310
+  label: Learned forecast · saved evaluation output
+  poster: /assets/projects/covers/occupancy-world-model.webp
+  width: 560
 orientation-filters:
   poster: /assets/projects/posters/orientation-filters.webp
 policy-gradient-lab:
   poster: /assets/projects/posters/policy-gradient-lab.webp
 stereo-vio:
-  poster: /assets/projects/posters/stereo-vio.webp
+  alt: Tracked camera features from the recorded EuRoC MH_05 estimator run.
+  animation: /assets/projects/previews/stereo-vio.webp
+  height: 240
+  label: Camera tracks · EuRoC recording
+  poster: /assets/projects/covers/stereo-vio.webp
+  width: 404
 vizflyt-perception:
   poster: /assets/projects/posters/vizflyt-perception.webp

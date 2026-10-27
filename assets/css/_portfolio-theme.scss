@@ -1070,3 +1070,131 @@ ninja-keys {
   margin-top: 0.25em;
   color: var(--global-text-color-light);
 }
+
+.home-role-statement {
+  max-width: 465px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--global-text-color-light);
+  margin-top: 20px;
+}
+.home-research {
+  margin-top: 88px;
+}
+.home-question-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+}
+.home-question {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.home-question .edition-label {
+  font-size: 10px;
+  margin-bottom: 18px;
+  color: var(--brand-amethyst-text);
+}
+.home-question h3 {
+  font-size: 23px;
+  line-height: 1.3;
+  margin: 0 0 18px;
+}
+.home-question > p:not(.edition-label) {
+  color: var(--global-text-color-light);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.home-question .text-action {
+  margin-top: auto;
+  font-size: 12px;
+  gap: 12px;
+}
+.about-opportunities {
+  margin-top: 80px;
+  border-top: 1px solid var(--global-divider-color);
+  padding-top: 30px;
+}
+.about-opportunities h2 {
+  margin: 0 0 24px;
+}
+.about-opportunities > p:not(.edition-label) {
+  max-width: 720px;
+  color: var(--global-text-color-light);
+}
+.role-interests {
+  margin-top: 30px;
+}
+.role-interests > div {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 35px;
+  padding: 24px 0;
+  border-top: 1px solid var(--global-divider-color);
+}
+.role-interests dt {
+  font-size: 16px;
+  font-weight: 500;
+}
+.role-interests dd {
+  font-size: 14px;
+  color: var(--global-text-color-light);
+  margin: 0;
+}
+.role-interests dd p {
+  margin: 0 0 12px;
+}
+.role-interests dd a {
+  font-size: 12px;
+}
+@media (max-width: 900px) {
+  .home-question-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .home-question + .home-question {
+    border-top: 1px solid var(--global-divider-color);
+    padding-top: 26px;
+  }
+  .home-question h3 {
+    max-width: 570px;
+  }
+  .home-question > p:not(.edition-label) {
+    max-width: 68ch;
+  }
+}
+@media (max-width: 600px) {
+  .home-research {
+    margin-top: 60px;
+  }
+  .home-research .editorial-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .role-interests > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .about-opportunities {
+    margin-top: 60px;
+  }
+}
+
+.preview-caption {
+  margin: 12px 0 0;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--global-text-color-light);
+}
+.home-work-item .preview-caption {
+  font-size: 12px;
+  margin: 12px 0 0;
+}
+.home-work-item .preview-caption + .work-index {
+  margin-top: 12px;
+}

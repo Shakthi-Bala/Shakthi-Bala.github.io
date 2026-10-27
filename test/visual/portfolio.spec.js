@@ -165,7 +165,7 @@ test("home presents the six real projects with locally hosted type and still pre
     .evaluateAll((links) => links.map((link) => link.getAttribute("href").split("/").filter(Boolean).pop()));
   expect(paths).toEqual(selected);
   const images = await projects.locator("img").evaluateAll((items) => items.map((item) => item.getAttribute("src")));
-  expect(images.every((path) => path.includes("/assets/projects/posters/"))).toBe(true);
+  expect(images.every((path) => path.includes("/assets/projects/covers/"))).toBe(true);
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => document.fonts.check('16px "DM Sans"') && document.fonts.check('italic 16px "Instrument Serif"'))).toBe(true);
   await expect(page.locator(".hero-experiment img")).toHaveJSProperty("complete", true);
@@ -219,4 +219,41 @@ test("photographs remain accessible without JavaScript", async ({ browser, baseU
   expect(response.ok()).toBe(true);
   expect(response.headers()["content-type"]).toContain("image/jpeg");
   await context.close();
+});
+
+test("home states career interests and directly exposes evidence-linked research questions", async ({ page, baseURL }) => {
+  await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+  await expect(page.locator(".home-role-statement")).toContainText(
+    "perception, localization and SLAM, autonomy and planning, AI/ML, and robot learning"
+  );
+  const questions = page.locator(".home-question");
+  await expect(questions).toHaveCount(3);
+  for (const link of await questions.locator("a").all()) {
+    const response = await page.request.get(await link.getAttribute("href"));
+    expect(response.ok()).toBe(true);
+  }
+  await page.getByRole("link", { name: "Research questions", exact: true }).click();
+  await expect(page).toHaveURL(/#home-research$/);
+  await expect(page.getByRole("heading", { name: "Questions behind the work", exact: true })).toBeVisible();
+  const top = await page.locator("#home-research").evaluate((element) => element.getBoundingClientRect().top);
+  const navBottom = await page.locator("#navbar").evaluate((element) => element.getBoundingClientRect().bottom);
+  expect(top).toBeGreaterThanOrEqual(navBottom);
+});
+
+test("new project recordings use accessible native controls and downloadable evidence", async ({ page, baseURL }) => {
+  for (const slug of ["gap-navigation", "devresearchflow"]) {
+    await page.goto(`${baseURL.replace(/\/$/, "")}/projects/${slug}/`, { waitUntil: "domcontentloaded" });
+    const video = page.locator("video");
+    await expect(video).toHaveCount(1);
+    await expect(video).toHaveAttribute("controls", "");
+    await expect(video).toHaveAttribute("preload", "metadata");
+    expect(await video.getAttribute("autoplay")).toBeNull();
+    expect(await video.getAttribute("aria-label")).toBeTruthy();
+    const response = await page.request.get(await video.locator("source").getAttribute("src"));
+    expect(response.ok()).toBe(true);
+    expect(response.headers()["content-type"]).toContain("video/mp4");
+  }
+  const transcript = page.getByRole("link", { name: "Read the recording transcript" });
+  const response = await page.request.get(await transcript.getAttribute("href"));
+  expect(await response.text()).toContain("12 records; 0 errors");
 });

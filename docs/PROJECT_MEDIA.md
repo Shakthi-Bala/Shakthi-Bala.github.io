@@ -2,7 +2,7 @@
 
 These previews accompany the geometric-vision, navigation, synthetic-data, and language-model case studies. Scientific visualizations use repository outputs or executed source functions; they do not invent model predictions or flight recordings. Each case study captions the kind of evidence shown.
 
-Most geometric-vision previews use an 800x600 canvas; NeRF uses a 480x480 render. Calibration, Blender, and Versifier previews use a 1200x900 canvas. The projects grid preserves each image inside a shared 4:3 display area. No additional build-time tooling is needed to serve these committed assets.
+Most geometric-vision previews use an 800x600 canvas; NeRF uses a 480x480 render. Calibration, Blender, and Versifier previews use a 1200x900 canvas. The projects grid preserves each image inside a shared 16:10 display area. No additional build-time tooling is needed to serve these committed assets.
 
 ## gap-navigation-planner.gif
 
@@ -173,3 +173,34 @@ Used in the engineering note about EuRoC V2_03 stereo-matching dropouts. The plo
 ## Site presentation
 
 The default dark palette uses jet black `#09090e`, royal amethyst `#7040b5` for primary buttons, and electric cyan `#53e3f5` for links and focus indicators. Lighter amethyst is used for text on dark surfaces. `assets/css/main.scss` mirrors the upstream theme entrypoint and adds the site-only `portfolio-theme` Sass module. Its reviewed override is recorded in `.al-folio-overrides.yml`; compare it when upgrading `al_folio_core`. The theme switch also offers a light palette with amethyst accents and a darker cyan for readable links. Saved light, dark, and system preferences are preserved; new visitors start in dark mode. `_plugins/portfolio_presentation.rb` loads the preference initializer before the upstream theme and fingerprints the local stylesheet sources, including the palette module, so CSS changes receive a fresh cache key.
+
+## Focused featured covers and recordings
+
+The featured cards now use fresh paths under `assets/projects/covers/`. Labels below the images identify recorded output, saved evaluation figures, or synthetic teaching fixtures. The full figures remain available in the case studies. The crop operations below remove surrounding panels or embedded small headings; they do not change measurements, trajectories, contours, or predictions.
+
+`bin/prepare_featured_media.py` creates the covers and focused animated WebP previews. It uses Pillow's composited GIF frames, so GIF delta encoding does not leave transparent patches. The original frame delays are retained for the four existing scientific animations.
+
+| Project               | Cover source and selection                                                                                                                                                                                                                                                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Stereo VIO            | Frame 8 of the existing `stereo-vio-demo.gif`, camera region `(8,84)-(412,324)`. The same region is retained throughout the focused preview.                                                                                                                                                                                                           |
+| Occupancy world model | Frame 8 of `occupancy-forecast.gif`, the learned forecast panel `(1132,50)-(1692,360)`. The focused animation keeps the same panel and original delays.                                                                                                                                                                                                |
+| Imitation learning    | Frame at 1.1 seconds of [`ur_pusht/media/pusht2d_flow_seed7.mp4`](https://github.com/Shakthi-Bala/imitation_learning_agent/blob/114489af9181f996d7f528d68aadedd801619ca7/ur_pusht/media/pusht2d_flow_seed7.mp4), simulated UR5e region `(0,35)-(640,480)`. The focused preview uses the corresponding existing GIF's robot panel.                      |
+| Deep VIO              | Top-down plot `(1165,60)-(2025,675)` of [`fig14_v2_trajectory_seq_001.png`](https://github.com/Shakthi-Bala/Deep_vio/blob/f87f8a9d15682d946de9bcbf6cf4d3d2048d0c17/Code/Phase%202/visualizations/fig14_v2_trajectory_seq_001.png). The focused preview crops the corresponding plot from the existing saved-figure sequence; it is not camera footage. |
+| Gap navigation        | Saved detector frame 500 from the RAFT branch, with its existing contour and centroid annotations.                                                                                                                                                                                                                                                     |
+| DevResearchFlow       | Final screen of the actual recorded CLI session, rendered with agg at 44 columns and 14 rows for a legible cover.                                                                                                                                                                                                                                      |
+
+### Gap perception recording
+
+Source: [`raft_branch` at `f6eff9e0db7d5eb263017628dbd88ef338340bf8`](https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt/tree/f6eff9e0db7d5eb263017628dbd88ef338340bf8/output/gap_detector). The default branch does not contain these recorded outputs. Frames 400–599 are replayed consecutively at 10 fps in `assets/video/gap-perception-recording.mp4`. The WebP preview keeps every fourth frame for 400 ms each, retaining the same 20-second replay duration.
+
+`Code/raft_image_gap.py` draws low-flow contours and centroids over RAFT flow colors. The site reuses those saved outputs; no inference or new detection is performed. The source frame timing is not established, so the caption explicitly states the chosen replay rate. This is perception-stage output, not an end-to-end flight recording or a measured traversal-success result.
+
+### DevResearchFlow CLI recording
+
+Source: [`DevResearchFlow` at `2740a816fa9af3f44289d8360a088610fc670827`](https://github.com/Shakthi-Bala/DevResearchFlow/tree/2740a816fa9af3f44289d8360a088610fc670827). The runnable toy example was executed in an isolated temporary directory using Python 3.13 and the repository's actual CLI. `bin/record_drf_demo.sh` records example creation, workflow status, record validation, metric recomputation, and the retained failed-run log. Every displayed result comes from those commands.
+
+The trace is committed as `assets/demos/devresearchflow-cli.cast`, with a readable `.txt` transcript. `agg` 1.9.0 renders the cast into GIF frames; the preparation script converts those frames to animated WebP and H.264 MP4. Idle intervals are limited to three seconds. The video is `assets/video/devresearchflow-cli.mp4` and uses native video controls.
+
+The example uses synthetic review fixtures and fictional local commit identities, as its README states. It makes no model or agent calls. Its actual toy metrics are baseline MSE 0 and ablated MSE 7.5; its records retain one failed run and one completed run. The CLI reports 12 records, zero blockers, and zero structural validation errors. These are software-demonstration results, not independent scientific review or generalization evidence.
+
+To reproduce, install the source package and asciinema in an isolated environment, then record the shell script with the source checkout and a new destination directory. Render the cast with agg using DejaVu Sans Mono; see the preparation script's required arguments for the original figures, recording GIFs, saved gap frames, and FFmpeg binary. These tools are only needed to regenerate media; the website serves committed files.

@@ -1,0 +1,12 @@
+- question: When should a world model use explicit geometry?
+  context: My occupancy experiments compare ego-motion warping with a model that has to learn the transformation. Moving objects and imperfect poses are the next questions.
+  project: /projects/occupancy-world-model/
+  evidence: Occupancy world model
+- question: How should a planner treat unobserved space?
+  context: Missing labels and unseen regions can change both candidate scores and the apparent safety of a trajectory. I’m interested in making those assumptions explicit.
+  project: /notes/occupancy-metric-checks/
+  evidence: Collision-metric investigation
+- question: What can localization retain when stereo matching fails?
+  context: Temporal tracks can remain useful after stereo matches disappear. My VIO work investigates retaining those observations without accepting poorly constrained landmarks.
+  project: /notes/stereo-tracking-dropouts/
+  evidence: Stereo-tracking investigation

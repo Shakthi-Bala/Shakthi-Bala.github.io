@@ -28,8 +28,9 @@ nav_order: 1
       {% assign preview = site.data.project_previews[project.slug] %}
       <article class="portfolio-featured-card " aria-labelledby="featured-{{ project.slug }}">
         <a class="portfolio-featured-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}">
         </a>
+        {% if preview.label %}<p class="preview-caption">{{ preview.label }}</p>{% endif %}
         <div class="portfolio-featured-body">
           <p class="portfolio-project-area"><span>{{ forloop.index | prepend: '0' }} /</span> {{ project.featured_area }}</p>
           <h3 id="featured-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
@@ -75,8 +76,9 @@ nav_order: 1
       {% assign preview = site.data.project_previews[project.slug] %}
       <article class="portfolio-library-card" data-project-card data-topics="{{ project.topics | join: ' ' | escape }}" data-search="{{ project.title | append: ' ' | append: project.description | append: ' ' | append: project.skills | append: ' ' | append: project.category | escape }}" aria-labelledby="library-{{ project.slug }}">
         <a class="portfolio-library-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}">
         </a>
+        {% if preview.label %}<p class="preview-caption">{{ preview.label }}</p>{% endif %}
         <div class="portfolio-library-body">
           <p class="portfolio-project-area">{{ project.category }}</p>
           <h3 id="library-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>

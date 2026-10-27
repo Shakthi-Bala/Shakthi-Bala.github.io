@@ -31,3 +31,11 @@ Build with production settings, run PurgeCSS, then use `test/visual/portfolio.sp
 The photography collection is driven by `_data/photographs.yml`. The supplied JPEGs are presented with their original aspect ratios. `assets/photography/` contains responsive WebP exports at widths of 640, 1000, and 1600 pixels (plus 2400 pixels for the wide water-lily photograph), plus larger JPEGs for the viewer. ImageMagick performs only orientation handling, resizing, and web encoding; there is no crop, retouching, or generated imagery. Original user files remain outside version control. Descriptive captions identify visible subjects without inventing locations or dates.
 
 The native dialog supports previous/next buttons, arrow keys, Escape to close, and focus return. Without JavaScript, each photograph links directly to its larger JPEG. Photography is now included in navigation; Resume remains unpublished.
+
+## Career interests and research entry points
+
+`_data/career_interests.yml` records the owner's stated target roles. Home presents one concise statement; About groups the full titles into five areas and links each area to relevant work. Control roles are not listed as career targets.
+
+`_data/research_questions.yml` supplies three questions shown on Home and reused as headings on Research. Each home-page question links to a specific case study or technical note. A direct hero link reaches this section without going through About.
+
+Featured covers focus on a single useful panel with a readable evidence label below the image. The gap-navigation and DevResearchFlow cases now lead with native video players. Media scope and source pins are documented in [PROJECT_MEDIA.md](PROJECT_MEDIA.md).

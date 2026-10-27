@@ -1,0 +1,22 @@
+statement: I’m seeking engineering and applied research roles in perception, localization and SLAM, autonomy and planning, AI/ML, and robot learning.
+areas:
+  - name: Perception & computer vision
+    roles: [Perception Engineer, Perception Software Engineer, Computer Vision Engineer]
+    project: /projects/gap-navigation/
+    evidence: Perception and navigation work
+  - name: Localization & state estimation
+    roles: [Localization Engineer, SLAM Engineer, State Estimation Engineer]
+    project: /projects/stereo-vio/
+    evidence: Stereo visual-inertial odometry
+  - name: Autonomy & planning
+    roles: [Autonomy Engineer, Autonomy Software Engineer, Motion Planning Engineer, Planning Engineer]
+    project: /projects/occupancy-world-model/
+    evidence: Occupancy forecasting and candidate planning
+  - name: AI & machine learning
+    roles: [Machine Learning Engineer, ML Engineer, AI Engineer, Applied Scientist]
+    project: /projects/occupancy-world-model/
+    evidence: Geometry-aware world models
+  - name: Robotics & robot learning
+    roles: [Robotics Software Engineer, Robot Learning Engineer, Research Engineer (Robot Learning)]
+    project: /projects/imitation-learning/
+    evidence: Imitation learning and UR5e transfer
