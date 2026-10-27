@@ -56,7 +56,7 @@ permalink: /
 
   <section class="home-personal" aria-labelledby="beyond-work">
     <img src="{{ '/assets/img/shakthibala-headshot.png' | relative_url }}" alt="Shakthibala Balamurugan" loading="lazy" width="160" height="200">
-    <div><p class="edition-label">Outside robotics</p><h2 id="beyond-work">A few other interests.</h2><p>Photography, chess, books, and films with a good plot. </p><a class="text-action" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">↗</span></a></div>
+    <div><p class="edition-label">Outside robotics</p><h2 id="beyond-work">A few other interests.</h2><p>Photography, chess, books, and films with a good plot. </p><div class="home-personal-links"><a class="text-action" href="{{ '/photography/' | relative_url }}">View photographs <span aria-hidden="true">↗</span></a><a class="text-action" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">↗</span></a></div></div>
   </section>
   <section class="contact-end" aria-labelledby="home-contact"><p class="edition-label" id="home-contact">Contact</p><a class="contact-address" href="mailto:shakthibala2004@gmail.com">shakthibala2004@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-elsewhere"><a href="https://github.com/Shakthi-Bala">GitHub ↗</a><a href="https://www.linkedin.com/in/shakthi-bala/">LinkedIn ↗</a></div></section>
 </div>

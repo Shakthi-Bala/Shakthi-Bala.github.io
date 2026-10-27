@@ -77,7 +77,7 @@ test("previews start still and play only on request", async ({ page, baseURL }) 
 test("navigation and contact links contain only ready sections", async ({ page, baseURL }) => {
   await page.goto(projectPath(baseURL));
   const nav = page.locator("#navbar a.nav-link");
-  await expect(nav).toHaveText(["Home", "Projects (current)", "Writing", "About"]);
+  await expect(nav).toHaveText(["Home", "Projects (current)", "Writing", "Photography", "About"]);
   await expect(page.locator('footer a[href="mailto:shakthibala2004@gmail.com"]')).toHaveCount(1);
   await expect(page.locator('footer a[href="https://www.linkedin.com/in/shakthi-bala/"]')).toHaveCount(1);
 });
@@ -102,11 +102,11 @@ test("Home navigation opens the current project and writing pages", async ({ pag
     .filter({ hasText: /^Writing\s*$/ })
     .click();
   await expect(page).toHaveURL(/\/writing\/$/);
-  await expect(page.locator("#navbar a.nav-link")).toHaveText(["Home", "Projects", "Writing (current)", "About"]);
+  await expect(page.locator("#navbar a.nav-link")).toHaveText(["Home", "Projects", "Writing (current)", "Photography", "About"]);
 });
 
 test("brand palette remains readable and fits the viewport", async ({ page, baseURL }) => {
-  for (const route of ["/", "/work/", "/writing/", "/about/"]) {
+  for (const route of ["/", "/work/", "/writing/", "/photography/", "/about/"]) {
     await page.goto(`${baseURL.replace(/\/$/, "")}${route}`, { waitUntil: "domcontentloaded" });
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(9, 9, 14)");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
@@ -170,4 +170,53 @@ test("home presents the six real projects with locally hosted type and still pre
   expect(await page.evaluate(() => document.fonts.check('16px "DM Sans"') && document.fonts.check('italic 16px "Instrument Serif"'))).toBe(true);
   await expect(page.locator(".hero-experiment img")).toHaveJSProperty("complete", true);
   expect(await page.locator(".hero-experiment img").evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+});
+
+test("photography preserves framing and supports keyboard viewing", async ({ page, baseURL }) => {
+  await page.goto(`${baseURL.replace(/\/$/, "")}/photography/`);
+  const prints = page.locator(".photo-print");
+  await expect(prints).toHaveCount(4);
+  for (const image of await prints.locator("img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await image.evaluate((element) => element.decode());
+    expect(await image.evaluate((element) => element.naturalWidth)).toBeGreaterThan(0);
+  }
+  const first = prints.first().locator("a");
+  await first.click();
+  const viewer = page.getByRole("dialog", { name: "Photograph viewer" });
+  await expect(viewer).toBeVisible();
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 4");
+  await expect(viewer.locator("[data-photo-image]")).toHaveAttribute("alt", /vaulted church ceiling/);
+  await page.keyboard.press("ArrowRight");
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("2 / 4");
+  await expect(viewer.locator("[data-photo-caption]")).toHaveText("Lights after dark");
+  await page.keyboard.press("ArrowLeft");
+  await expect(viewer.locator("[data-photo-position]")).toHaveText("1 / 4");
+  await page.keyboard.press("Escape");
+  await expect(viewer).not.toBeVisible();
+  await expect(first).toBeFocused();
+  const sizes = await prints.locator("img").evaluateAll((images) =>
+    images.map((image) => {
+      const bounds = image.getBoundingClientRect();
+      return {
+        displayed: bounds.width / bounds.height,
+        original: Number(image.getAttribute("width")) / Number(image.getAttribute("height")),
+        alt: image.alt,
+      };
+    })
+  );
+  expect(sizes.every((image) => image.alt.length > 20 && Math.abs(image.displayed / image.original - 1) < 0.01)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+});
+
+test("photographs remain accessible without JavaScript", async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(`${baseURL.replace(/\/$/, "")}/photography/`);
+  const photos = page.locator(".photo-print a");
+  await expect(photos).toHaveCount(4);
+  const response = await page.request.get(await photos.first().getAttribute("href"));
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toContain("image/jpeg");
+  await context.close();
 });

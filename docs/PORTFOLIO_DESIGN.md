@@ -1,6 +1,6 @@
 # Portfolio design
 
-The October 2026 redesign uses an editorial layout: the home page introduces Shakthibala beside a real VIO experiment, then presents the six selected projects, technical notes, and personal interests. The project collection keeps all 21 projects and its existing topic filters, search, and manual preview controls. Resume and Photography remain unpublished until their content is ready.
+The October 2026 redesign uses an editorial layout: the home page introduces Shakthibala beside a real VIO experiment, then presents the six selected projects, technical notes, and personal interests. The project collection keeps all 21 projects and its existing topic filters, search, and manual preview controls. Resume remains unpublished until its content is ready. The Photography page presents the supplied collection.
 
 ## References
 
@@ -25,3 +25,9 @@ These sites informed the hierarchy and presentation. Their assets and layouts we
 ## Validation
 
 Build with production settings, run PurgeCSS, then use `test/visual/portfolio.spec.js` against the built site. It covers the selected projects, topic filters, search, no-JavaScript fallback, preview playback, navigation, theme switching and persistence, page width, text contrast, and local fonts. Visually inspect Home, Projects, Writing, About, and a case study in both color modes and at mobile widths.
+
+## Photography
+
+The photography collection is driven by `_data/photographs.yml`. The four supplied JPEGs are presented with their original aspect ratios. `assets/photography/` contains responsive WebP exports at widths of 640, 1000, and 1600 pixels, plus larger JPEGs for the viewer. ImageMagick performs only orientation handling, resizing, and web encoding; there is no crop, retouching, or generated imagery. Original user files remain outside version control. Descriptive captions identify visible subjects without inventing locations or dates.
+
+The native dialog supports previous/next buttons, arrow keys, Escape to close, and focus return. Without JavaScript, each photograph links directly to its larger JPEG. Photography is now included in navigation; Resume remains unpublished.

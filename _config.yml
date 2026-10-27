@@ -239,6 +239,7 @@ kramdown:
 # Includes & excludes
 include: ["_pages"]
 exclude:
+  - "photo*.jpeg"
   - _books/
   - _news/
   - _teachings/
