@@ -19,10 +19,20 @@ featured_area: Perception & navigation
 featured_summary: Optical-flow gap localization connected to waypoint navigation in rendered scenes.
 ---
 
-**Connect visual motion cues to the motion of a drone approaching an unfamiliar opening.**
+A rendered navigation pipeline using optical flow to locate candidate openings.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt) ·
-[Perception and navigation implementation](https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt/blob/main/Code/main.py)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Connected pretrained RAFT flow estimation, OpenCV gap localization, waypoint alignment, and rendered experiments. RAFT and its weights are external dependencies; the project code handles the perception-to-motion handoff.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd>The supplied planner produces a B-spline path with velocity and acceleration profiles for the illustrative waypoints shown below. The repository does not provide an aggregate end-to-end flight-success result.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Processed frames in a worker thread so waypoint motion could continue while optical flow was being computed.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Planner preview</a> · <a href="https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt">Code</a> · <a href="https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt#steps-to-run-the-code">Setup &amp; reproduction</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/gap-navigation-planner.gif" avoid_scaling=true loading="eager" alt="The repository's B-spline planning module evaluated on illustrative waypoints, with the current trajectory sample highlighted" width="800" height="600" class="img-fluid rounded z-depth-1" %}
 

@@ -1,0 +1,42 @@
+- title: DevResearchFlow
+  project: /projects/devresearchflow/
+  period: October 2026
+  type: Research software project
+  activity: "Repository commits: October 24, 2026"
+  contribution: Built the CLI, review gates, execution runner, and Git-aware evidence checks; exercised them through subprocess tests and a runnable example.
+  history: https://github.com/Shakthi-Bala/DevResearchFlow/commits/dev/
+- title: 4D Occupancy World Model
+  project: /projects/occupancy-world-model/
+  period: October 2026
+  type: World-model experiments
+  activity: "Repository commits: October 18–19, 2026"
+  contribution: Implemented ego-warp and learned forecasting baselines, ran the no-warp ablation, and compared planning costs on matched trajectory candidates.
+  history: https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving/commits/main/
+- title: Stereo Visual-Inertial Odometry
+  project: /projects/stereo-vio/
+  period: April–October 2026
+  type: Coursework and C++ extension
+  activity: "Repository commits: April 13–October 17, 2026"
+  contribution: Extended the course MSCKF into a C++17 system with a sliding-window optimizer, ROS 2 integration, profiling, and dataset-level evaluation.
+  history: https://github.com/Shakthi-Bala/Classical_vio/commits/cpp/
+- title: Imitation Learning & UR5e Transfer
+  project: /projects/imitation-learning/
+  period: October 2026
+  type: Coursework and simulation extension
+  activity: "Repository commits: October 13–14, 2026"
+  contribution: Extended Berkeley action-chunking coursework with a simulated UR5e task, zero-shot policy transfer, and matched-seed PPO comparisons.
+  history: https://github.com/Shakthi-Bala/imitation_learning_agent/commits/main/
+- title: Navigation Through Unknown Gaps
+  project: /projects/gap-navigation/
+  period: November 2025–June 2026
+  type: Perception and navigation project
+  activity: "Repository commits: November 13, 2025–June 11, 2026"
+  contribution: Connected pretrained optical flow to gap localization and waypoint motion, with separate rendering, planning, and dynamics components.
+  history: https://github.com/Shakthi-Bala/Navigating_through_unknown-Vizflyt/commits/main/
+- title: Deep Visual-Inertial Odometry
+  project: /projects/deep-vio/
+  period: Spring 2026
+  type: WPI RBE 549 team coursework
+  activity: "Repository commits: April 27–May 9, 2026"
+  contribution: Compared visual, inertial, and fused estimators on synthetic data, including ResNet-18 and FiLM training variants. Team with Aditya Patwardhan and Bradley Kohler.
+  history: https://github.com/Shakthi-Bala/Deep_vio/commits/main/

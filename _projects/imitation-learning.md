@@ -19,10 +19,20 @@ featured_area: Robot learning & manipulation
 featured_summary: Action-chunking policies transferred from 2D demonstrations to a simulated UR5e, with paired fine-tuning evaluations.
 ---
 
-**Learn to push from human demonstrations, transfer the policy to a simulated robot arm, and improve it with reward feedback.**
+Action-chunking policies trained on 2D demonstrations, transferred to a simulated UR5e, and fine-tuned with PPO.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/imitation_learning_agent) ·
-[UR5e experiments and report](https://github.com/Shakthi-Bala/imitation_learning_agent/blob/main/ur_pusht/report/ur_pusht_report.md)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Implemented MSE and flow-matching policies, then built the MuJoCo UR5e task, transfer experiments, and PPO fine-tuning. The 2D data loader, environment, and evaluation scaffold come from Berkeley CS185/285 coursework.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd>PPO reduced clear failures from <strong>11.4% to 6.4%</strong> on the same 500 simulated start states, with a failure defined as goal-coverage reward below 0.3. Fully solved episodes did not improve measurably.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Compared final checkpoints on matched start states. Increasing the PPO clip range from 0.01 to 0.1 allowed updates through after tighter clipping stalled learning.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Simulation demo</a> · <a href="https://github.com/Shakthi-Bala/imitation_learning_agent">Code &amp; reproduction</a> · <a href="https://github.com/Shakthi-Bala/imitation_learning_agent/blob/main/ur_pusht/report/ur_pusht_report.md">Technical report</a> · <a href="https://github.com/Shakthi-Bala/imitation_learning_agent/blob/main/pusht_action_chunking/report/flow_report.pdf">Course report</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/imitation-ur5e.gif" avoid_scaling=true loading="eager" alt="A UR5e arm pushes a T-shaped block toward the green goal with a policy trained on 2D data; the right panel shows a top view and the policy target" width="800" height="343" class="img-fluid rounded z-depth-1" %}
 

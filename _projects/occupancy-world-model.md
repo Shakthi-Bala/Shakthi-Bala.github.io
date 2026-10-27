@@ -19,10 +19,20 @@ featured_area: World models & scene forecasting
 featured_summary: Geometry-aware occupancy forecasting with trajectory-conditioned predictions and inspectable planning evaluations.
 ---
 
-**Predict how a driving scene changes under a planned trajectory, then use that prediction to choose a safer plan.**
+A trajectory-conditioned model that forecasts 3D semantic occupancy from past occupancy grids.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving) ·
-[Evaluation and reproduction guide](https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving#reproducing)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Implemented the ego-warp baseline, residual occupancy forecaster, candidate-scoring planner, and evaluation tooling. The experiments use Occ3D-nuScenes labels and published evaluation conventions.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd><strong>41.92 mIoU</strong>, averaged at 1, 2, and 3 seconds over 4,519 validation windows, using two seconds of ground-truth past occupancy. This evaluates forecasting with known occupancy input.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Gave the model explicit SE(2) warping instead of asking it to learn ego-motion geometry from scratch. Removing the warp reduced mIoU to 30.15 under the same 20-epoch schedule.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Forecast demo</a> · <a href="https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving">Code &amp; technical write-up</a> · <a href="https://github.com/Shakthi-Bala/4D_occupancy_world_model_for_autonomous_driving#reproducing">Reproduction</a> · <a href="{{ '/notes/occupancy-metric-checks/' | relative_url }}">Metric investigation</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/occupancy-forecast.gif" avoid_scaling=true loading="eager" alt="Three-second occupancy forecasts for validation scene 0797: ground truth, a static-world ego-warp baseline, and the learned world model" width="1692" height="360" class="img-fluid rounded z-depth-1" %}
 
@@ -63,6 +73,8 @@ Forecasting uses two seconds of ground-truth past occupancy to predict three sec
 _Same history, three future ego trajectories. Under hard braking, neighboring cars pull ahead; a lane change changes their positions relative to the ego vehicle._
 
 ## A metric failure I investigated
+
+[Experiment note: checking collision metrics against the logged trajectory]({{ '/notes/occupancy-metric-checks/' | relative_url }})
 
 Early planning metrics incorrectly flagged the logged human trajectory as colliding and driving off-road. The checks treated unobserved ground beneath the ego as off-road, included kerbs in the vehicle body band, and counted stray labels inside the ego box. Requiring positive off-road evidence, adjusting the body-height band, and ignoring those ego cells corrected the evaluation before comparing planners.
 

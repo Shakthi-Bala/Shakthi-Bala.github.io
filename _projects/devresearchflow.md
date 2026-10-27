@@ -19,10 +19,20 @@ featured_area: Research software & reproducibility
 featured_summary: A Python CLI connecting reviewed research plans, verified inputs, and captured execution evidence.
 ---
 
-**Make AI-assisted research easier to inspect, reproduce, and challenge.**
+A Python CLI for reviewing research plans, checking inputs, and recording experiment execution.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev) ·
-[Walk through a runnable experiment](https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/examples/toy-ablation/README.md)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Built the Python CLI, structured records, review gates, input checks, execution runner, and Git hooks. Optional integrations use external tools; the repository supplies the workflow and evidence checks.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd>The 0.3.0 validation record reports <strong>88 passing tests on Python 3.10 and 3.13</strong>, with 84% combined statement/branch coverage on 3.13. These checks cover software behavior and recorded evidence.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Validated staged files and checked code/data manifests before execution. A review should stop being accepted when the material it covered changes.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Workflow illustration</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev">Code</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/docs/release-review.md">Validation record</a> · <a href="https://github.com/Shakthi-Bala/DevResearchFlow/blob/dev/examples/toy-ablation/README.md">Runnable example</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/devresearchflow-workflow.gif" avoid_scaling=true loading="eager" alt="Workflow illustration following research planning, implementation, execution, independent review, and conclusions" width="1200" height="744" class="img-fluid rounded z-depth-1" %}
 

@@ -19,10 +19,20 @@ featured_area: Visual-inertial estimation
 featured_summary: C++17 estimation with two back ends, numerical parity checks, and ROS 2 integration.
 ---
 
-**Robot localization from stereo cameras and an IMU, from numerical parity to real-time ROS 2 integration.**
+Stereo visual-inertial odometry in Python and C++17, evaluated on EuRoC and TUM-VI.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/Classical_vio/tree/cpp) ·
-[Benchmark and reproduction guide](https://github.com/Shakthi-Bala/Classical_vio/blob/cpp/cpp/README.md)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Rebuilt the Python stereo MSCKF in C++17, added a Ceres sliding-window back end and ROS 2 integration, and investigated front-end tracking failures. The Python baseline comes from WPI coursework built on KumarRobotics/msckf_vio.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd>The sliding-window estimator reached <strong>0.156 m mean ATE across all 11 EuRoC sequences</strong>, after SE3 alignment with loop closure disabled. Its settings were selected on those same sequences.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Kept validated cam0-only tracks when stereo matching disappeared. This brought V2_03 from sliding-window divergence to 0.200 m ATE; triangulation checks prevented poorly constrained landmarks.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Recorded demo</a> · <a href="https://github.com/Shakthi-Bala/Classical_vio/tree/cpp">Code</a> · <a href="https://github.com/Shakthi-Bala/Classical_vio/blob/cpp/cpp/README.md">Technical documentation &amp; reproduction</a> · <a href="{{ '/notes/stereo-tracking-dropouts/' | relative_url }}">Failure investigation</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/stereo-vio-demo.gif" avoid_scaling=true loading="eager" alt="Stereo feature tracks on the left and MSCKF, sliding-window, and ground-truth trajectories on the right" width="720" height="338" class="img-fluid rounded z-depth-1" %}
 
@@ -52,6 +62,8 @@ A working Python estimator is a starting point, but a robotics system also needs
 - **ROS 2 and reproducible evaluation.** Added bag playback, benchmark scripts, unit tests, cross-architecture CI, and Docker packaging.
 
 ## A failure I investigated and fixed
+
+[Engineering note: keeping tracks when stereo matching fails]({{ '/notes/stereo-tracking-dropouts/' | relative_url }})
 
 On V2_03_difficult, independent camera exposure and motion blur caused stereo matching to disappear for seconds at a time. Discarding every feature without a stereo match left the estimators without visual updates.
 

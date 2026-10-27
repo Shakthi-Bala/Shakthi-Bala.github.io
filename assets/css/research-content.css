@@ -1,0 +1,102 @@
+.project-brief {
+  border: 1px solid var(--global-divider-color);
+  border-radius: 10px;
+  margin: 1.5rem 0 2rem;
+  padding: 0 1.25rem;
+  background: var(--global-card-bg-color);
+}
+.project-brief dl {
+  margin: 0;
+}
+.project-brief dl > div {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1rem 0;
+}
+.project-brief dl > div + div {
+  border-top: 1px solid var(--global-divider-color);
+}
+.project-brief dt {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.project-brief dd {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.research-anchor,
+.research-page h2 {
+  scroll-margin-top: 6rem;
+}
+.research-page > section {
+  margin-top: 2.5rem;
+}
+.research-page h3 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
+.research-page .research-question {
+  border-left: 2px solid var(--global-theme-color);
+  padding-left: 1.1rem;
+  margin: 1.8rem 0;
+}
+.research-page .research-question h3 {
+  line-height: 1.4;
+  margin: 0 0 0.6rem;
+}
+.research-page .research-question p {
+  margin-bottom: 0;
+}
+.research-timeline {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0 0 0 1.5rem;
+  border-left: 1px solid var(--global-divider-color);
+}
+.research-timeline li {
+  margin: 0 0 1.7rem;
+  position: relative;
+}
+.research-timeline li::before {
+  content: "";
+  position: absolute;
+  left: -1.8rem;
+  top: 0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+}
+.research-timeline h3 {
+  margin: 0.35rem 0 0.5rem;
+}
+.research-timeline .research-period {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+}
+.research-timeline .research-context {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+.research-timeline .research-history {
+  font-size: 0.75rem;
+}
+.research-note-list {
+  padding-left: 1.25rem;
+}
+.research-note-list li {
+  margin-bottom: 1.1rem;
+}
+@media (max-width: 600px) {
+  .project-brief dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+  .project-brief {
+    padding: 0 1rem;
+  }
+}

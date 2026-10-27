@@ -19,10 +19,20 @@ featured_area: Learned state estimation
 featured_summary: Vision-only, inertial, and fused motion estimators compared through prediction loss and integrated trajectory error.
 ---
 
-**Learn motion from images and inertial measurements, then test whether fusion actually improves the resulting trajectory.**
+A team comparison of learned visual, inertial, and fused odometry on synthetic data.
 
-[View code on GitHub](https://github.com/Shakthi-Bala/Deep_vio) ·
-[Model implementations](https://github.com/Shakthi-Bala/Deep_vio/blob/main/Code/Phase%202/models_v2.py)
+<link rel="stylesheet" href="{{ '/assets/css/research-content.css' | relative_url }}">
+
+<section class="project-brief" aria-label="Project summary">
+  <dl>
+    <div><dt>Contribution &amp; credit</dt><dd>Team implementation of vision-only, IMU-only, and fused motion estimators, synthetic data generation, staged training, and trajectory evaluation. WPI RBE 549, Spring 2026, with Aditya Patwardhan and Bradley Kohler.</dd></div>
+    <div><dt>Outcome &amp; conditions</dt><dd>The repository reports <strong>1.5 m ATE for ResNet-18 vision-only odometry</strong> and 3.5 m for two-stage FiLM fusion on its synthetic test data, even though FiLM has lower test loss.</dd></div>
+    <div><dt>Engineering decision</dt><dd>Compared integrated trajectories as well as prediction loss. That comparison exposed a case where the better loss did not produce the better trajectory.</dd></div>
+    <div><dt>Artifacts</dt><dd><a href="#project-demo">Evaluation plots</a> · <a href="https://github.com/Shakthi-Bala/Deep_vio">Code &amp; reproduction</a> · <a href="https://github.com/Shakthi-Bala/Deep_vio/blob/main/cv_p4ph2.pdf">Team course report</a></dd></div>
+  </dl>
+</section>
+
+<span id="project-demo" class="research-anchor"></span>
 
 {% include figure.liquid path="assets/projects/deep-vio-trajectories.gif" avoid_scaling=true loading="eager" alt="Saved trajectory plots for sequences 001, 005, and 009 comparing ground truth, ResNet visual odometry, and FiLM fusion variants" width="800" height="600" class="img-fluid rounded z-depth-1" %}
 

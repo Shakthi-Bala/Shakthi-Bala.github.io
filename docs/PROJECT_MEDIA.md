@@ -157,3 +157,11 @@ Based on `final_pkg/scripts/Try.py`, `final_pkg/scripts/mpick_client.py`, the al
 Extracts the second embedded image on PDF page 3: Figure 8, a 1800x4500 comparison of Canny, Sobel, and Pb-lite outputs across ten images. Selects rows 1, 4, and 5 (airplane, butterfly, duck), preserving all three method columns and their existing pixel values. White gutters between the original rows and columns are omitted; no detector is run and no edge contrast is enhanced. The selected panels are fitted on a labeled 1200x900 scientific figure.
 
 Reproduce with `python bin/render_pblite_preview.py /path/to/Pblite_boundary_detection`. The optional script requires PyMuPDF, NumPy, Matplotlib, and Pillow; none are added to the website build. The figure shows qualitative report outputs, not a new precision/recall evaluation. CIFAR-10 results discussed in the case study belong to the repository's separate classification phase.
+
+## stereo-vio-tracking.png
+
+**Type:** Saved diagnostic plot, copied unchanged from the VIO repository.
+
+[Source at the inspected revision](https://github.com/Shakthi-Bala/Classical_vio/blob/5a659caad3694b498a67e6236d9b847d2ab257ce/cpp/results/final/v203_tracking.png).
+
+Used in the engineering note about EuRoC V2_03 stereo-matching dropouts. The plot shows the repository's recorded tracking/exposure diagnostics; no measurements or plot content were changed for the website. It supports the observation that temporal tracks remained available during periods of failed stereo matching.
