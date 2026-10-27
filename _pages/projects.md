@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Projects
 permalink: /work/
 description: Selected projects in robot perception, state estimation, world models, robot learning, and research software, with a browsable collection of all work.
@@ -13,35 +13,30 @@ nav_order: 1
 {% assign portfolio_projects = site.projects | where: "portfolio", true | sort: "importance" %}
 
 <div class="projects portfolio-projects" data-project-portfolio>
-  <div class="portfolio-intro">
-    <p class="portfolio-eyebrow">Perception · Robot learning · Research software</p>
-    <p class="portfolio-lead">Perception, state estimation, and robot learning.</p>
-    <p>From visual-inertial estimation and occupancy forecasting to learned manipulation and reproducible research. Explore six selected projects, or browse the full collection by topic.</p>
-    <a class="portfolio-jump" href="#all-projects">Browse all {{ portfolio_projects.size }} projects <span aria-hidden="true">↓</span></a>
-  </div>
+  <header class="editorial-page-heading"><p class="edition-label">Selected projects / Full collection</p><h1>Selected <em>work.</em></h1><div class="work-page-deck"><p>Six projects in perception, estimation, robot learning, and research software. Each one includes the implementation, evaluation, and what I learned.</p><a class="text-action" href="#all-projects">Browse all {{ portfolio_projects.size }} projects <span aria-hidden="true">↓</span></a></div></header>
 
   <section class="portfolio-featured" aria-labelledby="selected-projects">
     <div class="portfolio-section-heading">
       <div>
-        <p class="portfolio-eyebrow">A closer look</p>
+
         <h2 id="selected-projects">Selected work</h2>
       </div>
-      <p>Systems, experiments, and the evidence behind them.</p>
+      <p>Six selected projects.</p>
     </div>
     <div class="portfolio-featured-grid">
       {% for project in featured_projects %}
       {% assign preview = site.data.project_previews[project.slug] %}
-      <article class="portfolio-featured-card hoverable{% if forloop.first or forloop.last %} portfolio-featured-card--wide{% endif %}" aria-labelledby="featured-{{ project.slug }}">
+      <article class="portfolio-featured-card " aria-labelledby="featured-{{ project.slug }}">
         <a class="portfolio-featured-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
           <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
         </a>
         <div class="portfolio-featured-body">
-        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
-          <p class="portfolio-project-area">{{ project.featured_area }}</p>
+          <p class="portfolio-project-area"><span>{{ forloop.index | prepend: '0' }} /</span> {{ project.featured_area }}</p>
           <h3 id="featured-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           <p class="portfolio-evidence">{{ project.highlight }}</p>
           <p>{{ project.featured_summary }}</p>
           <p class="portfolio-skills">{{ project.skills }}</p>
+        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Read case study <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>
             <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">: {{ project.title }}</span></a>
@@ -50,12 +45,13 @@ nav_order: 1
       </article>
       {% endfor %}
     </div>
+
   </section>
 
   <section class="portfolio-library" aria-labelledby="all-projects">
     <div class="portfolio-section-heading">
       <div>
-        <p class="portfolio-eyebrow">Explore further</p>
+
         <h2 id="all-projects" tabindex="-1">All projects</h2>
       </div>
       <p>{{ portfolio_projects.size }} projects across perception, learning, vision, and robotics.</p>
@@ -82,10 +78,10 @@ nav_order: 1
           <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ project.img | relative_url }}" alt="{{ project.media_alt | escape }}" loading="lazy" width="{{ project.media_width }}" height="{{ project.media_height }}">
         </a>
         <div class="portfolio-library-body">
-        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <p class="portfolio-project-area">{{ project.category }}</p>
           <h3 id="library-{{ project.slug }}"><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           <p>{{ project.description }}</p>
+        {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Case study<span class="sr-only">: {{ project.title }}</span></a>
             <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only">: {{ project.title }}</span></a>
@@ -98,6 +94,7 @@ nav_order: 1
       <p>No projects match this search and topic.</p>
       <button type="button" class="portfolio-filter" data-project-reset>Show all projects</button>
     </div>
+
   </section>
 </div>
 

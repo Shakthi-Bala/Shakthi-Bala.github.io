@@ -154,3 +154,20 @@ test("theme switch works and remembers the visitor choice", async ({ page, baseU
   const stylesheet = await page.locator('link[href*="/assets/css/main.css"]').getAttribute("href");
   expect(stylesheet).not.toContain("3116ba77db9ee1581d05bb3e86fbf7f1");
 });
+
+test("home presents the six real projects with locally hosted type and still previews", async ({ page, baseURL }) => {
+  await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("ShakthibalaBalamurugan.");
+  const projects = page.locator(".home-work-item");
+  await expect(projects).toHaveCount(6);
+  const paths = await projects
+    .locator("h3 a")
+    .evaluateAll((links) => links.map((link) => link.getAttribute("href").split("/").filter(Boolean).pop()));
+  expect(paths).toEqual(selected);
+  const images = await projects.locator("img").evaluateAll((items) => items.map((item) => item.getAttribute("src")));
+  expect(images.every((path) => path.includes("/assets/projects/posters/"))).toBe(true);
+  await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => document.fonts.check('16px "DM Sans"') && document.fonts.check('italic 16px "Instrument Serif"'))).toBe(true);
+  await expect(page.locator(".hero-experiment img")).toHaveJSProperty("complete", true);
+  expect(await page.locator(".hero-experiment img").evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+});

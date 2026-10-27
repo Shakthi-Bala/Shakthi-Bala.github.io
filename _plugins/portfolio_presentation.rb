@@ -16,6 +16,12 @@ Liquid::Template.register_filter(PortfolioStyles)
 Jekyll::Hooks.register [:pages, :documents], :post_render do |page|
   next unless page.output_ext == '.html' && page.output.include?('</head>')
 
+  # Keep the identity consistent on the home page and inner pages.
+  if page.data['permalink'] == '/'
+    page.output = page.output.sub(/<div class="navbar-brand social">.*?<\/div>/m,
+      '<a class="navbar-brand title" href="/">Shakthibala<span class="brand-discipline"> / robotics</span></a>')
+  end
+
   site = page.site
   script_path = '/assets/js/portfolio-theme-init.js'
   digest = Digest::SHA256.file(File.join(site.source, script_path.delete_prefix('/'))).hexdigest[0, 20]

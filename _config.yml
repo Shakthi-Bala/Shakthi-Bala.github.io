@@ -40,7 +40,7 @@ apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL)
 
 url: https://shakthi-bala.github.io # For the Shakthi-Bala.github.io repository; change if using another domain.
 baseurl: "" # Keep empty for a username.github.io site; use /REPOSITORY for a project site.
-last_updated: true
+last_updated: false
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 
@@ -122,7 +122,7 @@ posts_in_search: true
 bib_search: false # Enable after adding your publications.
 
 # Dimensions
-max_width: 1100px
+max_width: 1240px
 
 # -----------------------------------------------------------------------------
 # Open Graph & Schema.org
