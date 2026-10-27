@@ -11,7 +11,7 @@ permalink: /
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-identity">
       <p class="edition-label"><span class="edition-dot" aria-hidden="true"></span> Robotics / Worcester Polytechnic Institute</p>
-      <h1 id="home-title">Shakthibala<br><span class="home-middle-name">Sivagami</span> <em>Balamurugan.</em></h1>
+      <h1 id="home-title">Shakthibala<br><em>Sivagami</em><br><em>Balamurugan.</em></h1>
       <p class="home-deck">I work on how robots see their surroundings, estimate motion, and learn from observations.</p>
       <p class="home-context">Robotics graduate student at WPI.</p>
       <p class="home-role-statement">{{ site.data.career_interests.statement }}</p>
