@@ -22,13 +22,12 @@ deep-vio:
   poster: /assets/projects/covers/deep-vio.webp
   width: 860
 devresearchflow:
-  video: /assets/video/previews/devresearchflow.mp4
-  alt: Recorded DevResearchFlow commands validating the toy example and recomputing
-    its error.
-  height: 468
-  label: CLI recording · synthetic review fixtures
-  poster: /assets/projects/covers/devresearchflow.webp
-  width: 720
+  animation: /assets/projects/devresearchflow-repository-workflow.gif
+  alt: DevResearchFlow repository diagram showing define, build, and evaluate stages with three review gates.
+  height: 744
+  label: Research workflow · repository illustration
+  poster: /assets/projects/covers/devresearchflow-workflow.webp
+  width: 1200
 gap-navigation:
   video: /assets/video/previews/gap-navigation-rgb.mp4
   animation: /assets/projects/gap-navigation-rgb.gif

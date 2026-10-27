@@ -2,16 +2,17 @@
 layout: page
 title: DevResearchFlow
 description: A Python CLI that connects research plans, independent reviews, and captured experiment evidence through Git-aware validation.
-img: assets/projects/devresearchflow-cli.webp
+img: assets/projects/devresearchflow-repository-workflow.gif
 importance: 2
 category: Research & Developer Tools
 featured: true
+demo_anchor: project-demo
 github: https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev
 skills: Python · CLI Design · JSON Schema · Git · CI · Provenance
 highlight: Reviewed protocols → verified inputs → recorded execution evidence
-media_alt: Recorded terminal commands validating the runnable example and recomputing its mean squared error
-media_width: 843
-media_height: 600
+media_alt: Repository workflow illustration showing research roles, review gates, and the evidence trail
+media_width: 1200
+media_height: 744
 portfolio: true
 topics: [research-tools]
 featured_order: 6
@@ -105,8 +106,8 @@ The validator checks structure, recorded identities, and provenance; scientific 
 
 ## Workflow reference
 
-{% include figure.liquid path="assets/projects/devresearchflow-workflow.gif" avoid_scaling=true loading="eager" alt="Workflow illustration following research planning, implementation, execution, independent review, and conclusions" width="1200" height="744" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid path="assets/projects/devresearchflow-repository-workflow.gif" avoid_scaling=true loading="eager" alt="Repository workflow illustration showing define, build, and evaluate stages, three review gates, and project memory" width="1200" height="744" class="img-fluid rounded z-depth-1" %}
 
-_Workflow illustration, not a recording of live agent execution. Amber outlines identify independent review stages._
+_The workflow GIF from the repository README. It illustrates the documented roles, three review gates, and evidence trail; it is not a recording of live agent execution._
 
 [Explore the CLI, architecture, and reproducible example →](https://github.com/Shakthi-Bala/DevResearchFlow/tree/dev)

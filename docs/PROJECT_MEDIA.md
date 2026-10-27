@@ -218,3 +218,9 @@ Source: user-supplied `/home/sbalamurugan/portfolio/rgb_color_space.mp4` (34.17 
 Regenerate with `python bin/prepare_gap_rgb.py /path/to/rgb_color_space.mp4 --ffmpeg /path/to/ffmpeg`. The looping GIF retains the full frame at 480×360 and 6 fps, with 96 colors and no dithering. The full controlled MP4 is 1280×960; the on-demand card MP4 is 720×540. Both use H.264 at 15 fps with no audio and fast-start metadata. The cover is the frame at 24 s, resized to 960×720. Playback speed is unchanged; no crops, generated frames, or overlays are added.
 
 The GIF is used by the project’s case-study Play/Pause preview and the library preview. Home and featured Projects cards use the smaller MP4 from this same recording. The case study also offers the GIF download and a controlled video. Earlier saved optical-flow detections remain linked as supporting evidence.
+
+## DevResearchFlow card presentation
+
+The DevResearchFlow cover is a still of the final frame of `docs/assets/research-workflow.gif` from the inspected repository checkout (revision `2740a816fa9af3f44289d8360a088610fc670827`). The original GIF is copied unchanged to `assets/projects/devresearchflow-repository-workflow.gif` and used by the library’s optional preview and the case-study workflow reference. The cover is exported as `assets/projects/covers/devresearchflow-workflow.webp` at quality 92.
+
+Home and featured Projects cards show the still, with Write-up, Code, and Demo links. DevResearchFlow deliberately has no `video` field in preview data, so it has no card playback button or hover recording. Its `demo_anchor` links to the recorded CLI demonstration inside the case study; that recording and its synthetic-fixture caption remain unchanged.

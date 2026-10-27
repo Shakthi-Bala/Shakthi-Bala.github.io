@@ -26,9 +26,9 @@ nav_order: 1
     <div class="portfolio-featured-grid">
       {% for project in featured_projects %}
       {% assign preview = site.data.project_previews[project.slug] %}
-      <article data-video-scope class="portfolio-featured-card " aria-labelledby="featured-{{ project.slug }}">
+      <article {% if preview.video %}data-video-scope{% endif %} class="portfolio-featured-card " aria-labelledby="featured-{{ project.slug }}">
         <a data-video-hover class="portfolio-featured-media" href="{{ project.url | relative_url }}" aria-label="Read the {{ project.title | escape }} case study">
-          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}"><video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>
+          <img src="{{ preview.poster | default: project.img | relative_url }}" data-preview-poster="{{ preview.poster | default: project.img | relative_url }}" data-preview-source="{{ preview.animation | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" loading="lazy" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}
         </a>
         {% if preview.label %}<p class="preview-caption">{{ preview.label }}</p>{% endif %}
         <div class="portfolio-featured-body">
@@ -38,10 +38,10 @@ nav_order: 1
           {% if project.card_conditions %}<p class="portfolio-evidence-conditions">{{ project.card_conditions | escape }}</p>{% endif %}
           <p>{{ project.featured_summary }}</p>
           <p class="card-tech-stack">{{ project.card_stack | escape }}</p>
-        <button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>
+        {% if preview.video %}<button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Read case study <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>
-            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>
+            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
           </div>
         </div>
       </article>
@@ -87,7 +87,7 @@ nav_order: 1
         {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Case study<span class="sr-only">: {{ project.title }}</span></a>
-            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>
+            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
           </div>
         </div>
       </article>
