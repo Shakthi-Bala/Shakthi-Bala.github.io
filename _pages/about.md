@@ -43,8 +43,8 @@ permalink: /
       {% for project in selected %}
       {% assign preview = site.data.project_previews[project.slug] %}
       <article class="home-work-item" {% if preview.video %}data-video-scope{% endif %}>
-        <a data-video-hover class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}</a>
-        <div class="card-preview-caption"><p class="preview-caption">{{ preview.label }}</p>{% if preview.video %}<button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}</div>
+        <a {% unless preview.video %}{% if preview.animation %}data-preview-hover{% endif %}{% endunless %} data-video-hover class="home-work-image" href="{{ project.url | relative_url }}" aria-label="Read {{ project.title | escape }}"><img src="{{ preview.poster | default: project.img | relative_url }}" {% unless preview.video %}data-preview-poster="{{ preview.poster | relative_url }}" data-preview-source="{{ preview.animation | relative_url }}"{% endunless %} alt="{{ preview.alt | default: project.media_alt | escape }}" width="{{ preview.width | default: project.media_width }}" height="{{ preview.height | default: project.media_height }}" loading="lazy">{% if preview.video %}<video class="card-preview-video" data-card-video data-video-src="{{ preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>{% endif %}</a>
+        <div class="card-preview-caption"><p class="preview-caption">{{ preview.label }}</p>{% if preview.video %}<button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% elsif preview.animation %}<button type="button" class="card-preview-toggle" data-preview-toggle aria-pressed="false" aria-label="Play workflow preview: {{ project.title | escape }}" hidden>Play workflow</button>{% endif %}</div>
         <div class="work-index"><span>{{ forloop.index | prepend: '0' }} / {{ project.featured_area }}</span><span aria-hidden="true">↗</span></div>
         <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
         <p>{{ project.featured_summary }}</p>
@@ -80,3 +80,5 @@ permalink: /
 </div>
 
 <script src="{{ "/assets/js/card-videos.js" | relative_url }}" defer></script>
+
+<script src="{{ "/assets/js/project-previews.js" | relative_url }}?v=workflow-hover-1" defer></script>

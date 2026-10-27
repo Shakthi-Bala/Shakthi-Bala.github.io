@@ -280,3 +280,33 @@ test("new project recordings use accessible native controls and downloadable evi
   const response = await page.request.get(await transcript.getAttribute("href"));
   expect(await response.text()).toContain("12 records; 0 errors");
 });
+
+test("DevResearchFlow workflow animates on hover or explicit playback while the demo stays linked", async ({ page, baseURL, isMobile }) => {
+  for (const route of ["/", "/work/"]) {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto(`${baseURL.replace(/\/$/, "")}${route}`, { waitUntil: "domcontentloaded" });
+    const card = page.locator(route === "/" ? ".home-work-item" : ".portfolio-featured-card").filter({ hasText: "DevResearchFlow" });
+    const image = card.locator("img");
+    const button = card.locator("[data-preview-toggle]");
+    const poster = await image.getAttribute("data-preview-poster");
+    const animation = await image.getAttribute("data-preview-source");
+    await expect(image).toHaveAttribute("src", poster);
+    await expect(card.locator("video")).toHaveCount(0);
+    await expect(card.getByRole("link", { name: /^Demo/ })).toHaveAttribute("href", "/projects/devresearchflow/#project-demo");
+    if (isMobile) await button.click();
+    else await card.locator("[data-preview-hover]").hover();
+    await expect(image).toHaveAttribute("src", animation);
+    await expect(button).toHaveAttribute("aria-pressed", "true");
+    if (isMobile) await button.click();
+    else await page.mouse.move(0, 0);
+    await expect(image).toHaveAttribute("src", poster);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    if (!isMobile) {
+      await card.locator("[data-preview-hover]").hover();
+      await expect(image).toHaveAttribute("src", poster);
+    }
+    await button.focus();
+    await page.keyboard.press("Enter");
+    await expect(image).toHaveAttribute("src", animation);
+  }
+});
