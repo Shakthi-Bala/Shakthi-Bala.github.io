@@ -30,13 +30,13 @@ devresearchflow:
   poster: /assets/projects/covers/devresearchflow.webp
   width: 720
 gap-navigation:
-  video: /assets/video/previews/gap-navigation.mp4
-  alt: Saved RAFT optical-flow output with the repository’s black contour and centroid
-    annotations.
-  height: 272
-  label: Optical-flow detections · saved frame replay
-  poster: /assets/projects/covers/gap-navigation.webp
-  width: 480
+  video: /assets/video/previews/gap-navigation-rgb.mp4
+  animation: /assets/projects/gap-navigation-rgb.gif
+  alt: Rendered first-person approach to an irregular opening, beside optical-flow detections.
+  height: 720
+  label: RGB + optical flow · rendered navigation run
+  poster: /assets/projects/covers/gap-navigation-rgb.webp
+  width: 960
 imitation-learning:
   video: /assets/video/previews/imitation-learning.mp4
   alt: A simulated UR5e using the transferred policy to push the T-shaped object.

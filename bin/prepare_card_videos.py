@@ -44,5 +44,6 @@ for slug in ['stereo-vio', 'occupancy-world-model', 'imitation-learning', 'deep-
         manifest.write_text('\n'.join(entries) + '\n')
         encode(['-f', 'concat', '-safe', '0', '-i', str(manifest)], out / f'{slug}.mp4')
 
-for slug, source in [('gap-navigation', 'gap-perception-recording'), ('devresearchflow', 'devresearchflow-cli')]:
+# Gap navigation now uses the supplied RGB recording; regenerate it with prepare_gap_rgb.py.
+for slug, source in [('devresearchflow', 'devresearchflow-cli')]:
     encode(['-i', str(root / f'assets/video/{source}.mp4')], out / f'{slug}.mp4')
