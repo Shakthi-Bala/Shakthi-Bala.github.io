@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Research
-description: Questions behind my work, project experience, and technical notes.
+description: Research questions, research and internship experience, teaching, and technical notes.
 permalink: /research/
 nav: false
 nav_order: 2
@@ -38,7 +38,19 @@ nav_order: 2
     </ul>
   </section>
 
-  <section aria-labelledby="project-experience">
+  <section class="research-experience" aria-labelledby="research-experience">
+    <h2 id="research-experience">Research, teaching &amp; industry</h2>
+    <ol class="experience-overview">
+      {% for entry in site.data.experience %}
+      <li><p class="experience-overview-period">{{ entry.period }}</p><div><h3><a href="{{ '/about/' | relative_url }}#experience-{{ entry.id }}">{{ entry.role }}{% if entry.unit %} · {{ entry.unit }}{% endif %}</a></h3><p class="experience-overview-organization">{{ entry.organization }}</p><p>{{ entry.summary }}</p></div></li>
+      {% endfor %}
+    </ol>
+    <a class="text-action" href="{{ '/about/' | relative_url }}#experience">Full experience &amp; contributions <span aria-hidden="true">↗</span></a>
+  </section>
+
+  <details class="project-history">
+    <summary>Coursework &amp; independent project history</summary>
+    <section aria-labelledby="project-experience">
     <h2 id="project-experience">Project experience</h2>
     <p>Dates below come from repository history. They show when work was recorded in Git; coursework terms are included where documented.</p>
     <ol class="research-timeline">
@@ -52,7 +64,8 @@ nav_order: 2
       </li>
       {% endfor %}
     </ol>
-  </section>
+    </section>
+  </details>
 
   <section aria-labelledby="skills-in-use">
     <h2 id="skills-in-use">Skills in use</h2>

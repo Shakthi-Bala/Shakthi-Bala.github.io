@@ -1189,3 +1189,214 @@ ninja-keys {
 .home-work-item .preview-caption + .work-index {
   margin-top: 12px;
 }
+
+.professional-experience {
+  margin-top: 88px;
+}
+.professional-experience .editorial-section-heading > p {
+  margin: 0;
+  font:
+    11px/1.7 ui-monospace,
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  color: var(--global-text-color-light);
+}
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.experience-entry {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 48px;
+  padding: 34px 0 38px;
+  border-bottom: 1px solid var(--global-divider-color);
+  scroll-margin-top: 120px;
+}
+.experience-entry:first-child {
+  padding-top: 8px;
+}
+.experience-dates > p {
+  margin: 0;
+  font:
+    11px/1.8 ui-monospace,
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  color: var(--global-text-color-light);
+}
+.experience-current {
+  display: inline-block;
+  margin-top: 12px;
+  padding-left: 10px;
+  border-left: 2px solid var(--brand-amethyst);
+  font-size: 11px;
+  color: var(--brand-amethyst-text);
+}
+.experience-organization {
+  margin: 0 0 10px;
+  color: var(--global-text-color-light);
+  font-size: 13px;
+}
+.experience-organization > span {
+  display: inline-block;
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid var(--brand-border);
+  color: var(--brand-amethyst-text);
+}
+.experience-content h3 {
+  margin: 0 0 12px;
+  font-size: 25px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.experience-location {
+  font-size: 12px;
+  color: var(--global-text-color-light);
+  margin: 0 0 22px;
+}
+.experience-content ul {
+  padding-left: 18px;
+  margin: 0;
+  max-width: 86ch;
+}
+.experience-content li {
+  padding-left: 4px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--global-text-color);
+}
+.experience-content li::marker {
+  color: var(--global-text-color-light);
+}
+.experience-skills {
+  margin: 22px 0 0;
+  font:
+    11px/1.8 ui-monospace,
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  color: var(--global-text-color-light);
+}
+.about-intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px 30px;
+}
+.experience-overview {
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+}
+.experience-overview > li {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--global-divider-color);
+  padding: 24px 0;
+}
+.experience-overview-period {
+  font:
+    11px/1.8 ui-monospace,
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  color: var(--global-text-color-light);
+  margin: 0;
+}
+.experience-overview h3 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+.experience-overview h3 a {
+  color: var(--brand-heading);
+}
+.experience-overview h3 a:hover {
+  color: var(--global-theme-color);
+}
+.experience-overview-organization {
+  font-size: 12px;
+  color: var(--global-text-color-light);
+  margin: 0 0 10px;
+}
+.experience-overview > li > div > p:last-child {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+  color: var(--global-text-color-light);
+}
+.project-history {
+  border-block: 1px solid var(--global-divider-color);
+  padding: 22px 0;
+  margin: 40px 0;
+}
+.project-history > summary {
+  color: var(--brand-heading);
+  cursor: pointer;
+  font-size: 14px;
+  padding-block: 8px;
+}
+.project-history > summary:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .experience-entry {
+    grid-template-columns: 155px minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .professional-experience {
+    margin-top: 60px;
+  }
+  .professional-experience .editorial-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .experience-entry {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 28px 0;
+  }
+  .experience-dates {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+  .experience-current {
+    margin-top: 0;
+  }
+  .experience-content h3 {
+    font-size: 23px;
+  }
+  .experience-organization > span {
+    margin-left: 8px;
+    padding-left: 8px;
+  }
+  .experience-content li {
+    font-size: 14px;
+  }
+  .experience-overview > li {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .experience-overview h3 {
+    font-size: 21px;
+  }
+}
+@media (max-width: 600px) {
+  .experience-organization > span {
+    display: block;
+    margin: 6px 0 0;
+    padding: 0;
+    border: 0;
+  }
+}

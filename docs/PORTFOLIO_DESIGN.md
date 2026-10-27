@@ -39,3 +39,7 @@ The native dialog supports previous/next buttons, arrow keys, Escape to close, a
 `_data/research_questions.yml` supplies three questions shown on Home and reused as headings on Research. Each home-page question links to a specific case study or technical note. A direct hero link reaches this section without going through About.
 
 Featured covers focus on a single useful panel with a readable evidence label below the image. The gap-navigation and DevResearchFlow cases now lead with native video players. Media scope and source pins are documented in [PROJECT_MEDIA.md](PROJECT_MEDIA.md).
+
+## Experience
+
+`_data/experience.yml` contains six owner-supplied research, teaching, and internship roles. About presents the full reverse-chronological timeline with dates, locations, concise contribution bullets, and skills. Research shows a shorter overview linking to individual role anchors. The existing Git-based project history is retained in a separate expandable section and is not presented as employment. The current PeAR Lab role is also linked from Home. Relative LinkedIn duration labels are omitted so the dates do not become stale.

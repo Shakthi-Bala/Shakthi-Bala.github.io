@@ -1,0 +1,74 @@
+- id: pear-lab
+  organization: Worcester Polytechnic Institute
+  unit: PeAR Lab
+  role: Student Researcher
+  period: Jan 2026 – Present
+  location: Worcester, Massachusetts, USA
+  current: true
+  summary: Thermal–ultrasound sensor fusion, uncertainty-aware depth estimation, and embedded navigation for a flapping-wing MAV.
+  bullets:
+    - Designed a 24 g thermal–ultrasound sensing package for a 148 g flapping-wing MAV, targeting navigation in snow, smoke, and darkness.
+    - Developed ThermalUSFusionNet, a FiLM-conditioned encoder–decoder that fuses thermal frames and ultrasonic A-scans to estimate multi-scale metric depth and uncertainty up to 7 m, with BerHu reconstruction, Ajna attenuation, scale-invariant, and gradient-matching losses.
+    - Built a synchronized ultrasound, thermal, and RGB-D capture rig with a heated calibration checkerboard. Curated a 70/15/15 dataset split and used recorded in-flight wing noise to augment clean A-scans.
+    - Deployed the stack on a Raspberry Pi Zero 2W at 18 Hz and validated it across 6+ indoor scenes and 4 outdoor sites, including challenging materials such as acrylic, aluminum foil, and matte black surfaces.
+    - Developed a velocity-based teacher–student RL navigation policy to address the local-minima failures of potential-field planners.
+  skills: [Sensor fusion, PyTorch, Depth estimation, Embedded deployment]
+- id: wpi-teaching
+  organization: Worcester Polytechnic Institute
+  role: Graduate Teaching Assistant (Graduate Tutor)
+  period: Mar 2026 – May 2026
+  location: Worcester, Massachusetts, USA
+  context: D Term · 20 hours/week
+  summary: Mentored undergraduate teams through a seven-week project-based design course, from concept to prototype.
+  bullets:
+    - Guided undergraduate teams from initial concepts to working prototypes, with weekly meetings to track individual and team milestones.
+    - Supported hardware debugging and lab work using Makerspace, ECE Shop, and 3D-printing resources.
+    - Evaluated final demonstrations and provided structured feedback against course rubrics.
+  skills: [Mentoring, Prototyping, Hardware debugging]
+- id: mer-lab
+  organization: Worcester Polytechnic Institute
+  unit: MER Lab
+  role: Student Researcher
+  period: Aug 2025 – Dec 2025
+  location: USA
+  summary: Grasp benchmarking and learning-based grasp quality models for cluttered manipulation.
+  bullets:
+    - Built benchmarking pipelines for classical and learning-based grasping methods, evaluating 1,000+ grasp attempts using simulation and real-world data.
+    - Implemented antipodal grasping methods and ensemble-based grasp quality models for cluttered object manipulation.
+    - Worked with the research team to integrate evaluation results into manipulation experiments and lab demonstrations.
+  skills: [Grasp planning, Machine learning, Benchmarking, ROS]
+- id: sutd-2025
+  organization: Singapore University of Technology and Design
+  unit: DManD Lab
+  role: Student Intern
+  period: Feb 2025 – Jul 2025
+  location: Singapore
+  summary: Reinforcement learning, ROS 2 migration, and system integration for robotic manipulation.
+  bullets:
+    - Developed an RL-based UR16e reach policy in simulation and on hardware, improving task execution efficiency by approximately 30% across repeated reach and placement trials.
+    - Migrated a dual-arm manipulation system from ROS 1 to ROS 2 and integrated a voice-based interaction interface.
+    - Contributed to a system that earned 2nd Runner-Up in the ICRA 2025 simulation sorting competition.
+  skills: [Reinforcement learning, ROS 2, Robot manipulation, System integration]
+- id: pricol
+  organization: Pricol Limited
+  role: Project Intern · Automation Software
+  period: Aug 2024 – Oct 2024
+  location: Coimbatore, Tamil Nadu, India
+  summary: Python interfaces and industrial communication for automated assembly-line testing.
+  bullets:
+    - Built a Python GUI for an automated assembly-line testing system and integrated a proprietary industrial I/O card over CAN and RS232.
+    - Improved interface responsiveness and data flow to reduce testing time; debugged communication issues with automation engineers.
+    - Tested the interface across multiple assembly-line configurations to validate deployment behavior.
+  skills: [Python, GUI development, CAN, RS232]
+- id: sutd-2024
+  organization: Singapore University of Technology and Design
+  unit: DManD Lab
+  role: Student Intern
+  period: May 2024 – Jul 2024
+  location: Singapore
+  summary: UR16e manipulation, collision-aware trajectory planning, and language-guided food assembly.
+  bullets:
+    - Developed UR16e manipulation and trajectory planning with collision avoidance for repeatable food assembly.
+    - Integrated an LLM interface to turn user requests into customized meal assembly instructions.
+    - Designed and tested a soft gripper for scooping fine grains and grasping semi-solid foods, with repeated trials in a food-processing setup.
+  skills: [Robot manipulation, ROS, Trajectory planning, LLM integration]

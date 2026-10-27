@@ -13,7 +13,7 @@ permalink: /
       <p class="edition-label"><span class="edition-dot" aria-hidden="true"></span> Robotics / Worcester Polytechnic Institute</p>
       <h1 id="home-title">Shakthibala<br><em>Sivagami</em><br><em>Balamurugan.</em></h1>
       <p class="home-deck">I work on how robots see their surroundings, estimate motion, and learn from observations.</p>
-      <p class="home-context">Robotics graduate student at WPI.</p>
+      <p class="home-context">Robotics graduate student at WPI.<br><a href="{{ '/about/' | relative_url }}#experience-pear-lab">Student researcher · PeAR Lab <span aria-hidden="true">↗</span></a></p>
       <p class="home-role-statement">{{ site.data.career_interests.statement }}</p>
       <div class="editorial-actions">
         <a class="text-action" href="#selected-work">Selected work <span aria-hidden="true">↘</span></a>
