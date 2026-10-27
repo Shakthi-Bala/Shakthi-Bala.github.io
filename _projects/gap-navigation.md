@@ -18,8 +18,8 @@ featured_order: 5
 featured_area: Perception & navigation
 card_stack: "Python · RAFT · OpenCV"
 featured_summary: Optical-flow gap localization connected to waypoint navigation in rendered scenes.
-card_result: "A rendered run shows passage through an irregular opening."
-card_conditions: "One 34-second RGB/flow recording; an aggregate flight-success rate is not reported."
+card_result: "Optical-flow gap detection and waypoint navigation through an irregular opening."
+card_conditions: "Demonstrated in a continuous 34-second rendered sequence, with RGB and flow views."
 ---
 
 A rendered navigation pipeline using optical flow to locate candidate openings.

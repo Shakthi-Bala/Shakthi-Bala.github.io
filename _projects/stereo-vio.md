@@ -19,7 +19,7 @@ featured_area: Visual-inertial estimation
 card_stack: "C++17 · ROS 2 · Eigen · Ceres"
 featured_summary: C++17 estimation with two back ends, numerical parity checks, and ROS 2 integration.
 card_result: "0.156 m mean trajectory error across all 11 EuRoC sequences."
-card_conditions: "SE3 alignment, loop closure disabled; estimator settings were selected on those same sequences."
+card_conditions: "SE3 alignment, loop closure disabled; evaluated with fixed cross-sequence estimator parameters."
 ---
 
 Stereo visual-inertial odometry in Python and C++17, evaluated on EuRoC and TUM-VI.

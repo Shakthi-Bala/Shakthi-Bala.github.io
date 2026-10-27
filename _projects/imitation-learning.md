@@ -18,8 +18,8 @@ featured_order: 3
 featured_area: Robot learning & manipulation
 card_stack: "PyTorch · MuJoCo · Flow matching · PPO"
 featured_summary: Action-chunking policies transferred from 2D demonstrations to a simulated UR5e, with paired fine-tuning evaluations.
-card_result: "PPO reduced clear failures from 11.4% to 6.4%."
-card_conditions: "Paired evaluation on 500 simulated UR5e start states; failure means goal-coverage reward below 0.3. Fully solved episodes did not improve measurably."
+card_result: "PPO cut low-coverage failures by 44% (11.4% → 6.4%)."
+card_conditions: "500 matched simulated UR5e starts; failure means goal coverage below 0.3. Observed full-solve rates remained similar (14.8% → 16.0%)."
 ---
 
 Action-chunking policies trained on 2D demonstrations, transferred to a simulated UR5e, and fine-tuned with PPO.
