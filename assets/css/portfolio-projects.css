@@ -323,3 +323,8 @@
 .portfolio-projects .preview-caption {
   margin-bottom: 0;
 }
+.portfolio-featured-body .portfolio-evidence-conditions {
+  color: var(--portfolio-muted);
+  font-size: 12px !important;
+  line-height: 1.8;
+}
