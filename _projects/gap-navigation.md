@@ -17,8 +17,8 @@ topics: [perception]
 featured_order: 5
 featured_area: Perception & navigation
 card_stack: "Python · RAFT · OpenCV"
-featured_summary: Optical-flow gap localization connected to waypoint navigation in rendered scenes.
-card_result: "Optical-flow gap detection and waypoint navigation through an irregular opening."
+featured_summary: Threaded optical-flow perception runs alongside waypoint motion.
+card_result: "Demonstrated passage through an irregular opening."
 card_conditions: "Demonstrated in a continuous 34-second rendered sequence, with RGB and flow views."
 ---
 

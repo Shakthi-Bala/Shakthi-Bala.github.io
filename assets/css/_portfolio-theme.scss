@@ -244,11 +244,11 @@ body > .container[role="main"] {
   padding: 0 0 84px;
 }
 .home-identity h1 {
-  font-size: clamp(3.6rem, 6.3vw, 5.9rem);
+  font-size: clamp(3.3rem, 5.6vw, 5.2rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.065em;
-  margin: 0 0 32px;
+  margin: 0 0 26px;
 }
 .home-identity h1 em {
   display: inline-block;
@@ -275,7 +275,7 @@ body > .container[role="main"] {
   flex-wrap: wrap;
   gap: 30px;
   font-size: 13px;
-  margin-top: 30px;
+  margin: 24px 0;
 }
 .editorial-actions a {
   color: var(--brand-heading);
@@ -703,7 +703,7 @@ ninja-keys {
 }
 @media (min-width: 1500px) {
   .home-identity h1 {
-    font-size: 96px;
+    font-size: 84px;
   }
 }
 @media (max-width: 1000px) {

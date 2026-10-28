@@ -13,14 +13,15 @@ permalink: /
       <p class="edition-label"><span class="edition-dot" aria-hidden="true"></span> Robotics / Worcester Polytechnic Institute</p>
       <h1 id="home-title">Shakthibala<br><em>Sivagami</em><br><em>Balamurugan.</em></h1>
       <p class="home-deck">I work on how robots see their surroundings, estimate motion, and learn from observations.</p>
-      <p class="home-context">Robotics graduate student at WPI.<br><a href="{{ '/about/' | relative_url }}#experience-pear-lab">Student researcher · PeAR Lab <span aria-hidden="true">↗</span></a></p>
-      <p class="home-role-statement">{{ site.data.career_interests.statement }}</p>
-      <div class="career-availability" aria-label="Availability"><p><strong>{{ site.data.career_interests.availability.seeking }}</strong></p><p>Expected graduation: {{ site.data.career_interests.availability.graduation }}{% if site.data.career_interests.availability.start != empty %}<br>{{ site.data.career_interests.availability.start }}{% endif %}</p></div>
+      <p class="home-role-statement">{{ site.data.career_interests.home_statement }}</p>
+
       <div class="editorial-actions">
         <a class="text-action" href="#selected-work">Selected work <span aria-hidden="true">↘</span></a>
         <a href="#home-research">Research questions <span aria-hidden="true">↓</span></a>
         <a href="mailto:shakthibala2004@gmail.com">Email me <span aria-hidden="true">↗</span></a>
       </div>
+      <p class="home-context">Robotics graduate student at WPI.<br><a href="{{ '/about/' | relative_url }}#experience-pear-lab">Student researcher · PeAR Lab <span aria-hidden="true">↗</span></a></p>
+      <div class="career-availability" aria-label="Availability"><p><strong>{{ site.data.career_interests.availability.seeking }}</strong></p><p>Expected graduation: {{ site.data.career_interests.availability.graduation }}{% if site.data.career_interests.availability.start != empty %}<br>{{ site.data.career_interests.availability.start }}{% endif %}</p></div>
     </div>
     <figure class="hero-experiment" data-video-scope>
       <div class="experiment-caption"><span>From the work</span><span>01 / Estimation</span></div>
@@ -36,6 +37,7 @@ permalink: /
       </figcaption>
       <div class="experiment-result"><strong>0.156<span> m</span></strong><p>Mean trajectory error across 11 EuRoC sequences.<br>SE3 alignment · loop closure disabled.</p></div>
     </figure>
+
   </section>
 
   <section class="home-work" aria-labelledby="selected-work">

@@ -251,9 +251,7 @@ test("photographs remain accessible without JavaScript", async ({ browser, baseU
 
 test("home states career interests and directly exposes evidence-linked research questions", async ({ page, baseURL }) => {
   await page.goto(baseURL, { waitUntil: "domcontentloaded" });
-  await expect(page.locator(".home-role-statement")).toContainText(
-    "perception, localization and SLAM, autonomy and planning, AI/ML, and robot learning"
-  );
+  await expect(page.locator(".home-role-statement")).toContainText("perception, state estimation, and robot learning");
   const questions = page.locator(".home-question");
   await expect(questions).toHaveCount(3);
   for (const link of await questions.locator("a").all()) {
