@@ -1708,3 +1708,68 @@ html[data-theme="light"] .home-hero {
     display: none;
   }
 }
+
+.brand-quad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+  vertical-align: middle;
+  overflow: hidden;
+  pointer-events: none;
+}
+.brand-quad svg {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  transform-origin: center;
+}
+.brand-quad-arms,
+.brand-quad-rotors {
+  stroke: var(--brand-amethyst-text);
+  stroke-width: 1.6;
+}
+.brand-quad-body {
+  fill: var(--brand-selected);
+  stroke: var(--brand-amethyst-text);
+  stroke-width: 1.4;
+}
+.brand-quad-heading {
+  fill: var(--global-theme-color);
+}
+#navbar .navbar-brand:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+@keyframes navbar-quad-roll {
+  0% {
+    transform: rotate(0deg);
+  }
+  18% {
+    transform: rotate(-12deg);
+  }
+  84%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #navbar .navbar-brand:hover .brand-quad svg,
+  #navbar .navbar-brand:focus-visible .brand-quad svg {
+    animation: navbar-quad-roll 800ms cubic-bezier(0.45, 0, 0.2, 1) 1;
+  }
+}
+@media (max-width: 760px) {
+  .brand-quad {
+    width: 28px;
+    height: 28px;
+    margin-left: 5px;
+  }
+  .brand-quad svg {
+    width: 22px;
+    height: 22px;
+  }
+}

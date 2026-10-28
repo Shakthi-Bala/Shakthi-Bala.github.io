@@ -317,3 +317,35 @@ test("DevResearchFlow workflow animates on hover or explicit playback while the 
     await expect(image).toHaveAttribute("src", animation);
   }
 });
+
+test("navbar quad rolls once on interaction and respects reduced motion", async ({ page, baseURL, isMobile }) => {
+  for (const route of ["/", "/work/"]) {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto(`${baseURL.replace(/\/$/, "")}${route}`, { waitUntil: "domcontentloaded" });
+    await page.evaluate(() => document.fonts.ready);
+    const brand = page.locator("#navbar .navbar-brand");
+    const quad = brand.locator(".brand-quad svg");
+    await expect(quad).toHaveCount(1);
+    await expect(brand.locator(".brand-quad")).toHaveAttribute("aria-hidden", "true");
+    await expect(brand).toHaveAttribute("href", "/");
+    await expect(quad).toHaveCSS("animation-name", "none");
+    const before = await brand.boundingBox();
+    if (!isMobile) {
+      await brand.hover();
+      await expect(quad).toHaveCSS("animation-name", "navbar-quad-roll");
+      await expect(quad).toHaveCSS("animation-iteration-count", "1");
+      await quad.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+      expect(await quad.evaluate((element) => element.getAnimations().some((animation) => animation.playState === "running"))).toBe(false);
+      expect((await brand.boundingBox()).width).toBe(before.width);
+      await page.mouse.move(0, 0);
+    }
+    await page.keyboard.press("Tab");
+    await brand.focus();
+    await expect(brand).toBeFocused();
+    await expect(quad).toHaveCSS("animation-name", "navbar-quad-roll");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(quad).toHaveCSS("animation-name", "none");
+    expect(await quad.evaluate((element) => element.getAnimations().length)).toBe(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  }
+});

@@ -59,3 +59,7 @@ Featured cards on Home and Projects share concise `card_stack` metadata from pro
 ## Homepage atmosphere
 
 The hero has two static amethyst radial gradients and a faint, repeating monochrome SVG grain tile, masked to fade at the edges. The palette is adjusted for light mode. Four decorative feature points and a short trajectory line sit above the VIO preview on desktop; they are an illustration, not estimator output, and are hidden on smaller screens. These layers are confined to Home, ignore pointer input, carry no accessible content, and have no animation or JavaScript. Forced-color mode suppresses them.
+
+## Navigation quad
+
+The site-specific presentation hook renders the same Home link on every page, with a small inline quadrotor beside the robotics label. Hovering or keyboard-focusing the brand link triggers a single 800 ms roll. Its reserved box contains the rotation, with no travel across navigation links or continuous propeller animation. Reduced-motion users see a static icon. The decorative SVG is hidden from assistive technology and adds no separate tab stop, image request, or JavaScript.
