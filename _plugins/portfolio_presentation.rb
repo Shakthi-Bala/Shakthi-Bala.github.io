@@ -30,4 +30,9 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |page|
   digest = Digest::SHA256.file(File.join(site.source, script_path.delete_prefix('/'))).hexdigest[0, 20]
   script = %(<script src="#{site.baseurl}#{script_path}?v=#{digest}"></script>)
   page.output = page.output.sub(/<head\b[^>]*>/) { |head| "#{head}\n#{script}" }
+
+  quad_path = '/assets/js/navbar-quad.js'
+  quad_digest = Digest::SHA256.file(File.join(site.source, quad_path.delete_prefix('/'))).hexdigest[0, 20]
+  quad_script = %(<script src="#{site.baseurl}#{quad_path}?v=#{quad_digest}" defer></script>)
+  page.output = page.output.sub('</body>', "#{quad_script}\n</body>")
 end

@@ -349,3 +349,43 @@ test("navbar quad rolls once on interaction and respects reduced motion", async 
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   }
 });
+
+test("navbar quad dodges the mouse in free space and resets for keyboard or reduced motion", async ({ page, baseURL, isMobile }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+  await page.evaluate(() => document.fonts.ready);
+  const brand = page.locator("#navbar .navbar-brand");
+  const quad = brand.locator(".brand-quad");
+  const home = await quad.boundingBox();
+  await page.mouse.move(home.x + home.width / 2, home.y + home.height / 2);
+  if (isMobile) {
+    await expect(quad).toHaveCSS("transform", "none");
+    return;
+  }
+  await expect.poll(async () => (await quad.boundingBox()).x - home.x).toBeGreaterThan(25);
+  await quad.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+  const escaped = await quad.boundingBox();
+  const navbar = await page.locator("#navbar").boundingBox();
+  const links = await page.locator("#navbar .navbar-nav .nav-link").evaluateAll((elements) =>
+    elements
+      .map((element) => element.getBoundingClientRect())
+      .filter((rect) => rect.width && rect.height)
+      .map((rect) => rect.left)
+  );
+  expect(escaped.x).toBeGreaterThanOrEqual(home.x - 1);
+  expect(escaped.x + escaped.width).toBeLessThan(Math.min(...links));
+  expect(escaped.y).toBeGreaterThan(navbar.y);
+  expect(escaped.y + escaped.height).toBeLessThan(navbar.y + navbar.height);
+  await page.mouse.move(0, 200);
+  await expect.poll(async () => Math.abs((await quad.boundingBox()).x - home.x)).toBeLessThan(1);
+  await page.mouse.move(home.x + home.width / 2, home.y + home.height / 2);
+  await expect.poll(async () => (await quad.boundingBox()).x - home.x).toBeGreaterThan(25);
+  await brand.focus();
+  await expect(quad).toHaveCSS("transform", "none");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.mouse.move(0, 200);
+  await page.mouse.move(home.x + home.width / 2, home.y + home.height / 2);
+  await expect(quad).toHaveCSS("transform", "none");
+  await page.getByRole("link", { name: "Projects", exact: true }).click();
+  await expect(page).toHaveURL(/\/work\/$/);
+});
