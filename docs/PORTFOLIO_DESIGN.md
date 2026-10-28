@@ -55,3 +55,7 @@ Each of the six featured case studies has a four-stage system overview between i
 Availability on Home and About comes from `_data/career_interests.yml`. Update the shared seeking, graduation, start, and updated fields when plans change; `updated` records the last confirmation, not the build date. An empty start field is omitted until the date is confirmed.
 
 Featured cards on Home and Projects share concise `card_stack` metadata from project front matter and expose a direct Code link beside the case-study link. List only tools supported by that implementation. For motion-preview behavior and regeneration, see [Project media](PROJECT_MEDIA.md#mp4-previews-on-home-and-projects).
+
+## Homepage atmosphere
+
+The hero has two static amethyst radial gradients and a faint, repeating monochrome SVG grain tile, masked to fade at the edges. The palette is adjusted for light mode. Four decorative feature points and a short trajectory line sit above the VIO preview on desktop; they are an illustration, not estimator output, and are hidden on smaller screens. These layers are confined to Home, ignore pointer input, carry no accessible content, and have no animation or JavaScript. Forced-color mode suppresses them.

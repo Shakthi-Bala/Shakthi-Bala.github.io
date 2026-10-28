@@ -24,6 +24,11 @@ permalink: /
       <div class="career-availability" aria-label="Availability"><p><strong>{{ site.data.career_interests.availability.seeking }}</strong></p><p>Expected graduation: {{ site.data.career_interests.availability.graduation }}{% if site.data.career_interests.availability.start != empty %}<br>{{ site.data.career_interests.availability.start }}{% endif %}</p></div>
     </div>
     <figure class="hero-experiment" data-video-scope>
+      <svg class="hero-traces" viewBox="0 0 600 140" fill="none" aria-hidden="true" focusable="false">
+        <path class="hero-trace-path" d="M205 118L284 99L355 91L423 57L490 39L565 47"/>
+        <path class="hero-trace-guide" d="M275 99H293M284 90V108M414 57H432M423 48V66"/>
+        <g class="hero-trace-points"><circle cx="284" cy="99" r="2.5"/><circle cx="355" cy="91" r="2.5"/><circle cx="423" cy="57" r="2.5"/><circle cx="490" cy="39" r="2.5"/></g>
+      </svg>
       <div class="experiment-caption"><span>From the work</span><span>01 / Estimation</span></div>
       <a class="hero-preview-media" data-video-hover href="{{ lead.url | relative_url }}" aria-label="Explore Stereo Visual-Inertial Odometry">
         <img src="{{ lead_preview.poster | relative_url }}" alt="Tracked camera features from the recorded EuRoC MH_05 estimator run" width="{{ lead_preview.width }}" height="{{ lead_preview.height }}" fetchpriority="high">
