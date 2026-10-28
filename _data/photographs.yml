@@ -24,3 +24,13 @@
   width: 6000
   height: 4000
   wide: true
+- id: photo-6
+  caption: Droplets
+  alt: Water droplets on green leaves and a dark branch against a softly blurred background.
+  width: 6000
+  height: 4000
+- id: photo-7
+  caption: Across the pond
+  alt: Autumn trees and a footbridge reflected in a pond, with white birds on the water.
+  width: 4032
+  height: 3024

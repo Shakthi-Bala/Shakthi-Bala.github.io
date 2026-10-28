@@ -230,3 +230,7 @@ The workflow image on Home and featured Projects cards now plays the repository 
 ## Preview cues
 
 The hero and six featured cards have a small decorative “▶ Preview” badge in the top-right corner. It appears only after JavaScript enables playback, fades while the video or workflow GIF is playing, and returns on pause or pointer exit. The badge does not intercept case-study links; the existing labelled Play/Pause buttons remain the touch and keyboard controls. Reduced-motion preferences disable the fade. Videos retain on-demand loading and `preload="none"`.
+
+## Photography additions — 28 October 2026
+
+`photo-6` comes from the supplied `DSC_3572.JPG` (6000×4000), showing droplets on leaves. `photo-7` comes from the supplied `photo5.jpeg` (4032×3024), showing an autumn pond and footbridge. The source files remain untouched outside the repository. Pillow exports preserve the complete framing and orientation at 640, 1000, and 1600 pixels wide (WebP quality 88), with 2400-pixel-long-edge viewer JPEGs at quality 90. No brightness, color, or crop adjustments are applied. Captions describe the visible subjects without inferred locations or dates.
