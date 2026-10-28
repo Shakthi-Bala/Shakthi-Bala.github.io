@@ -18,7 +18,7 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |page|
 
   # Keep one identity and decorative quad on Home and inner pages.
   brand = <<~HTML.strip
-    <a class="navbar-brand title" href="/">Shakthibala<span class="brand-discipline"> / robotics</span><span class="brand-quad" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" focusable="false"><path class="brand-quad-arms" d="M12 12L28 28M28 12L12 28"/><g class="brand-quad-rotors"><circle cx="10" cy="10" r="6"/><circle cx="30" cy="10" r="6"/><circle cx="10" cy="30" r="6"/><circle cx="30" cy="30" r="6"/></g><rect class="brand-quad-body" x="16" y="14" width="8" height="12" rx="3"/><path class="brand-quad-heading" d="M20 16L22 20H18Z"/></svg></span></a>
+    <a class="navbar-brand title" href="/">Shakthibala<span class="brand-discipline"> / robotics</span><span class="brand-quad" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" focusable="false"><path class="brand-quad-arms" d="M12 12L28 28M28 12L12 28"/><g class="brand-quad-rotors"><circle cx="10" cy="10" r="6"/><circle cx="30" cy="10" r="6"/><circle cx="10" cy="30" r="6"/><circle cx="30" cy="30" r="6"/></g><g class="brand-quad-propellers"><g class="brand-quad-propeller"><path d="M6 10H14"/></g><g class="brand-quad-propeller"><path d="M30 6V14"/></g><g class="brand-quad-propeller"><path d="M10 26V34"/></g><g class="brand-quad-propeller"><path d="M26 30H34"/></g></g><rect class="brand-quad-body" x="16" y="14" width="8" height="12" rx="3"/><path class="brand-quad-heading" d="M20 16L22 20H18Z"/></svg></span></a>
   HTML
   if page.data['permalink'] == '/'
     page.output = page.output.sub(/<div class="navbar-brand social">.*?<\/div>/m, brand)

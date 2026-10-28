@@ -363,6 +363,10 @@ test("navbar quad dodges the mouse in free space and resets for keyboard or redu
     return;
   }
   await expect.poll(async () => (await quad.boundingBox()).x - home.x).toBeGreaterThan(25);
+  const propellers = quad.locator(".brand-quad-propeller");
+  await expect(propellers).toHaveCount(4);
+  await expect(propellers.first()).toHaveCSS("animation-name", "navbar-propeller-spin");
+  await expect(propellers.first()).toHaveCSS("animation-iteration-count", "infinite");
   await quad.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
   const escaped = await quad.boundingBox();
   const navbar = await page.locator("#navbar").boundingBox();
@@ -383,6 +387,7 @@ test("navbar quad dodges the mouse in free space and resets for keyboard or redu
   await brand.focus();
   await expect(quad).toHaveCSS("transform", "none");
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(propellers.first()).toHaveCSS("animation-name", "none");
   await page.mouse.move(0, 200);
   await page.mouse.move(home.x + home.width / 2, home.y + home.height / 2);
   await expect(quad).toHaveCSS("transform", "none");

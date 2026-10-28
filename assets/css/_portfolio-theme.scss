@@ -1773,3 +1773,33 @@ html[data-theme="light"] .home-hero {
     height: 22px;
   }
 }
+
+.brand-quad-propeller {
+  stroke: var(--global-theme-color);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.brand-quad-propeller:nth-child(even) {
+  --propeller-direction: reverse;
+}
+@keyframes navbar-propeller-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #navbar .navbar-brand:hover .brand-quad-propeller,
+  #navbar .navbar-brand:focus-visible .brand-quad-propeller {
+    animation: navbar-propeller-spin 180ms linear 4;
+    animation-direction: var(--propeller-direction, normal);
+  }
+  #navbar .navbar-brand .brand-quad.is-flying svg {
+    animation: none;
+  }
+  #navbar .navbar-brand .brand-quad.is-flying .brand-quad-propeller {
+    animation: navbar-propeller-spin 140ms linear infinite;
+    animation-direction: var(--propeller-direction, normal);
+  }
+}

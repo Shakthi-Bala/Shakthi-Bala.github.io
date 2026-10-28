@@ -7,9 +7,8 @@
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const mouseViewport = matchMedia("(min-width: 1000px) and (hover: hover) and (pointer: fine)");
   let flight = null;
-  let lastEscape = -Infinity;
+  let pointer = null;
   const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
-  const random = (low, high) => low + Math.random() * (high - low);
   const enabled = () => mouseViewport.matches && !reducedMotion.matches && !document.hidden;
   const offset = () => {
     const transform = getComputedStyle(quad).transform;
@@ -40,21 +39,22 @@
     const start = offset();
     if (flight) flight.cancel();
     quad.style.transform = translate(start);
-    const control = {
-      x: clamp((start.x + destination.x) / 2 + random(-50, 50), 0, limits.x),
-      y: random(limits.top, limits.bottom),
-    };
-    const frames = Array.from({ length: 9 }, (_, index) => {
-      const t = index / 8;
+    const clearance = Math.min(Math.min(start.y, destination.y) - limits.top, limits.bottom - Math.max(start.y, destination.y));
+    const amplitude = Math.min(13, Math.max(0, clearance - 2));
+    // A fixed S-shaped route with zero velocity and acceleration at each end.
+    const frames = Array.from({ length: 49 }, (_, index) => {
+      const t = index / 48;
+      const progress = 6 * t ** 5 - 15 * t ** 4 + 10 * t ** 3;
       return {
         offset: t,
         transform: translate({
-          x: (1 - t) ** 2 * start.x + 2 * (1 - t) * t * control.x + t ** 2 * destination.x,
-          y: (1 - t) ** 2 * start.y + 2 * (1 - t) * t * control.y + t ** 2 * destination.y,
+          x: start.x + (destination.x - start.x) * progress,
+          y: clamp(start.y + (destination.y - start.y) * progress + amplitude * Math.sin(2 * Math.PI * progress), limits.top, limits.bottom),
         }),
       };
     });
-    const animation = quad.animate(frames, { duration, easing: "cubic-bezier(0.2, 0.65, 0.3, 1)", fill: "forwards" });
+    quad.classList.add("is-flying");
+    const animation = quad.animate(frames, { duration, easing: "linear", fill: "forwards" });
     flight = animation;
     animation.finished
       .then(() => {
@@ -62,41 +62,42 @@
         quad.style.transform = translate(destination);
         flight = null;
         animation.cancel();
+        quad.classList.remove("is-flying");
+        evade();
       })
       .catch(() => {});
   };
   const reset = (animate = false) => {
-    lastEscape = -Infinity;
+    pointer = null;
     const position = offset();
     if (animate && enabled() && Math.hypot(position.x, position.y) > 1) {
       const limits = bounds();
       if (limits.x >= 90) {
-        moveTo({ x: 0, y: 0 }, limits, 360);
+        moveTo({ x: 0, y: 0 }, limits, 500 + Math.abs(position.x) * 2);
         return;
       }
     }
     if (flight) flight.cancel();
     flight = null;
     quad.style.removeProperty("transform");
+    quad.classList.remove("is-flying");
   };
-  navbar.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse" || !enabled() || brand.matches(":focus-visible")) return;
-    const now = performance.now();
-    if (now - lastEscape < 180) return;
+  const evade = () => {
+    if (flight || !pointer || !enabled() || brand.matches(":focus-visible")) return;
     const box = quad.getBoundingClientRect();
-    if (Math.hypot(event.clientX - box.left - box.width / 2, event.clientY - box.top - box.height / 2) > 58) return;
+    if (Math.hypot(pointer.x - box.left - box.width / 2, pointer.y - box.top - box.height / 2) > 58) return;
     const limits = bounds();
     if (limits.x < 90 || limits.bottom < limits.top) return;
-    const cursor = { x: event.clientX - limits.origin.x - limits.width / 2, y: event.clientY - limits.origin.y - limits.height / 2 };
-    const start = offset();
-    const candidates = Array.from({ length: 16 }, () => ({ x: random(0, limits.x), y: random(limits.top, limits.bottom) }));
-    const distance = (point) => Math.hypot(point.x - cursor.x, point.y - cursor.y);
-    const escape = candidates.find(
-      (point) => distance(point) > Math.min(100, limits.x * 0.45) && Math.hypot(point.x - start.x, point.y - start.y) > Math.min(75, limits.x * 0.4)
-    );
-    if (!escape) return;
-    lastEscape = now;
-    moveTo(escape, limits, random(430, 600));
+    const cursorX = pointer.x - limits.origin.x - limits.width / 2;
+    const destination = { x: cursorX < limits.x / 2 ? limits.x : 0, y: clamp(0, limits.top, limits.bottom) };
+    const distance = Math.abs(destination.x - offset().x);
+    if (distance < 20) return;
+    moveTo(destination, limits, 600 + distance * 2.4);
+  };
+  navbar.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse" || !enabled()) return;
+    pointer = { x: event.clientX, y: event.clientY };
+    evade();
   });
   navbar.addEventListener("pointerleave", () => reset(true));
   brand.addEventListener("focus", () => reset());
