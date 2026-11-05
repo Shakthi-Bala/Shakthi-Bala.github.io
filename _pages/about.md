@@ -5,8 +5,6 @@ permalink: /
 ---
 
 {% assign selected = site.projects | where: "featured", true | sort: "featured_order" %}
-{% assign lead = selected | first %}
-{% assign lead_preview = site.data.project_previews[lead.slug] %}
 <div class="editorial-home">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-identity">
@@ -29,18 +27,18 @@ permalink: /
         <path class="hero-trace-guide" d="M275 99H293M284 90V108M414 57H432M423 48V66"/>
         <g class="hero-trace-points"><circle cx="284" cy="99" r="2.5"/><circle cx="355" cy="91" r="2.5"/><circle cx="423" cy="57" r="2.5"/><circle cx="490" cy="39" r="2.5"/></g>
       </svg>
-      <div class="experiment-caption"><span>From the work</span><span>01 / Estimation</span></div>
-      <a class="hero-preview-media" data-video-hover href="{{ lead.url | relative_url }}" aria-label="Explore Stereo Visual-Inertial Odometry">
-        <img src="{{ lead_preview.poster | relative_url }}" alt="Tracked camera features from the recorded EuRoC MH_05 estimator run" width="{{ lead_preview.width }}" height="{{ lead_preview.height }}" fetchpriority="high">
-        <video class="card-preview-video" data-card-video data-video-src="{{ lead_preview.video | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>
+      <div class="experiment-caption"><span>Current research</span><span>Thesis / In progress</span></div>
+      <a class="hero-preview-media" data-video-hover href="{{ '/projects/coded-aperture-thesis/' | relative_url }}#project-demo" aria-label="Watch ongoing thesis preview">
+        <img src="{{ '/assets/projects/posters/thesis-preview.webp' | relative_url }}" alt="Video still from ongoing thesis work" width="960" height="540" fetchpriority="high">
+        <video class="card-preview-video" data-card-video data-video-src="{{ '/assets/video/thesis-preview.mp4' | relative_url }}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" hidden></video>
         <span class="preview-cue" data-preview-cue aria-hidden="true" hidden><span>▶</span> Preview</span>
       </a>
       <figcaption>
-        <span>Stereo visual-inertial odometry</span>
-        <button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ lead.title | escape }}" hidden>Play preview</button>
-        <a href="{{ lead.url | relative_url }}">View experiment <span aria-hidden="true">↗</span></a>
+        <span>Ongoing thesis work</span>
+        <button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: Ongoing thesis work" hidden>Play preview</button>
+        <a href="{{ '/projects/coded-aperture-thesis/' | relative_url }}#project-demo">Watch preview <span aria-hidden="true">↗</span></a>
       </figcaption>
-      <div class="experiment-result"><strong>0.156<span> m</span></strong><p>Mean trajectory error across 11 EuRoC sequences.<br>SE3 alignment · loop closure disabled.</p></div>
+      <p class="preview-caption">Work in progress · Unpublished</p>
     </figure>
 
   </section>
