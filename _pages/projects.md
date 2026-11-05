@@ -41,7 +41,7 @@ nav_order: 1
         {% if preview.video %}<button type="button" class="card-preview-toggle" data-video-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% elsif preview.animation %}<button type="button" class="card-preview-toggle" data-preview-toggle aria-pressed="false" aria-label="Play workflow preview: {{ project.title | escape }}" hidden>Play workflow</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Read case study <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>
-            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
+            {% if project.github %}<a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
           </div>
         </div>
       </article>
@@ -87,7 +87,7 @@ nav_order: 1
         {% if preview %}<button type="button" class="portfolio-filter" data-preview-toggle aria-pressed="false" aria-label="Play preview: {{ project.title | escape }}" hidden>Play preview</button>{% endif %}
           <div class="portfolio-project-links">
             <a class="portfolio-primary-link" href="{{ project.url | relative_url }}">Case study<span class="sr-only">: {{ project.title }}</span></a>
-            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
+            {% if project.github %}<a href="{{ project.github }}" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}{% if project.demo_anchor %}<a href="{{ project.url | relative_url }}#{{ project.demo_anchor }}">Demo <span aria-hidden="true">↗</span><span class="sr-only">: {{ project.title }}</span></a>{% endif %}
           </div>
         </div>
       </article>
